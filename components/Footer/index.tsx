@@ -1,13 +1,13 @@
 import { Dock, DockIcon } from "../UI/dock";
 import { HomeIcon, PencilIcon } from "lucide-react";
-import { Button } from "@/components/UI/button";
-import { Separator } from "@/components/UI/separator";
+import { Button } from "../UI/button";
+import { Separator } from "../UI/separator";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/UI/tooltip";
+} from "../UI/tooltip";
 
 export default function Footer() {
   return (

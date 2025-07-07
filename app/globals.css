@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@source inline("col-start-{1..30}");
+@source inline("row-start-{1..15}");
 
 :root {
   --background: oklch(0.8452 0 0);
@@ -53,7 +55,7 @@
   --shadow-xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.4),
     0px 8px 10px -1px hsl(0 0% 0% / 0.4);
   --shadow-2xl: 0px 2px 4px 0px hsl(0 0% 0% / 1);
-  --taskbar-height: calc(100dvh - var(--spacing) * 6 - 58px);
+  --taskbar-height: calc(100dvh - var(--spacing) * 18 - 58px);
 }
 
 .dark {
@@ -180,5 +182,25 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@utility h-desktop {
+  height: var(--taskbar-height);
+}
+
+@utility grid-cols-desktop {
+  grid-template-columns: repeat(auto-fill, 83px);
+
+  @variant sm {
+    grid-template-columns: repeat(auto-fill, 74px);
+  }
+}
+
+@utility grid-rows-desktop {
+  grid-template-rows: repeat(auto-fill, 90px);
+
+  @variant sm {
+    grid-template-rows: repeat(auto-fill, 74px);
   }
 }

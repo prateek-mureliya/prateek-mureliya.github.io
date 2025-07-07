@@ -12,9 +12,7 @@ export default function ConsoleMessage() {
 You've just entered the matrix of creativity 🤯🎨
 Sit back, relax, and check out the pixels and passion 👨‍💻
 
-🛠️ Portfolio Loaded...
 💾 Booting up dev mode...
-🔍 Scanning skills...
 🧬 Rendering creativity...
 
 👁️‍🗨️ Browse freely.
@@ -28,12 +26,16 @@ Happy hacking! 💻🔥
         "color: #3498db; font-style: italic;"
       );
 
-      window.revealSecrets = () =>
+      window.revealSecrets = () => {
         console.log(
-          "%c🔒 Secrets under development...\n%cStay tuned... magic is being crafted.",
-          "color: #8e44ad; font-size: 18px; font-weight: bold;",
-          "color: #555; font-style: italic; font-size: 14px;"
+          "%c🎉 Secret Unlocked! 🎉",
+          "color: green; font-size: 20px; font-weight: bold;"
         );
+        console.log(
+          "🔑 The secret password is: %c" + process.env.SECRET,
+          "color: red; font-weight: bold;"
+        );
+      };
     }
   }, []);
 

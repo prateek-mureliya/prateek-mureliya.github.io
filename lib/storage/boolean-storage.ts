@@ -6,29 +6,17 @@ export class BooleanStorage {
   }
 
   public getValue(): boolean {
-    try {
-      const data = localStorage.getItem(this.key);
-      if (!data) return false;
+    const data = localStorage.getItem(this.key);
+    if (!data) return false;
 
-      return JSON.parse(data) as boolean;
-    } catch {
-      throw new Error('Failed to retrieve value from storage');
-    }
+    return JSON.parse(data) as boolean;
   }
 
   public setValue(value: boolean): void {
-    try {
-      localStorage.setItem(this.key, JSON.stringify(value));
-    } catch {
-      throw new Error('Failed to set value in storage');
-    }
+    localStorage.setItem(this.key, JSON.stringify(value));
   }
 
   public deleteValue(): void {
-    try {
-      localStorage.removeItem(this.key);
-    } catch {
-      throw new Error('Failed to clear value from storage');
-    }
+    localStorage.removeItem(this.key);
   }
 }

@@ -83,7 +83,7 @@ export default function Menu() {
               </DialogHeader>
               <DialogFooter>
                 <Button variant={"default"} asChild>
-                  <Link href={"https://github.com/prateek-mureliya"}>
+                  <Link href={process.env.GITHUB_PROFILE}>
                     <ExternalLink /> Continue
                   </Link>
                 </Button>
