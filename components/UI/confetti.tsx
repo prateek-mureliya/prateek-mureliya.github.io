@@ -1,7 +1,7 @@
 import confetti from "canvas-confetti";
 
-export const handleSideCannons = () => {
-  const end = Date.now() + 2 * 1000; // 2 seconds
+export const handleSideCannons = (duration = 0.5) => {
+  const end = Date.now() + duration * 1000;
   const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
 
   const frame = () => {

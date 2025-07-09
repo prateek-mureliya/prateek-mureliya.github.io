@@ -26,6 +26,7 @@ import {
 } from "../../UI/form";
 import { Input } from "../../UI/input";
 import HackedSecrets from "./hacked-secrets";
+import Portal from "@/components/Portal";
 
 const icon = {
   logo: Secret,
@@ -109,7 +110,11 @@ export default function RevealSecrets() {
           </Form>
         </DialogContent>
       </Dialog>
-      {ishacked && <HackedSecrets onClose={() => setIshacked(false)} />}
+      {ishacked && (
+        <Portal>
+          <HackedSecrets onClose={() => setIshacked(false)} />
+        </Portal>
+      )}
     </>
   );
 }
