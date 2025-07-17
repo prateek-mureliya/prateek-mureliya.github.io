@@ -8,10 +8,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../UI/tooltip";
+import { HEADER_FOOTER_Z_INDEX } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className='fixed bottom-6 z-50 w-full'>
+    <footer
+      className={`fixed bottom-6 w-full`}
+      style={{ zIndex: HEADER_FOOTER_Z_INDEX }}
+    >
       <TooltipProvider>
         <Dock direction='middle'>
           <DockIcon>

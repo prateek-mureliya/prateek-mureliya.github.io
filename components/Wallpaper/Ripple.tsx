@@ -18,7 +18,7 @@ export const Ripple = React.memo(function Ripple({
   return (
     <section
       className={cn(
-        "absolute inset-0 z-0 [mask-image:linear-gradient(to_bottom,white,transparent)]",
+        "[mask-image:linear-gradient(to_bottom,white,transparent)]",
         className
       )}
       {...props}

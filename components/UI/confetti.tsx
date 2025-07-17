@@ -1,6 +1,6 @@
 import confetti from "canvas-confetti";
 
-export const handleSideCannons = (duration = 0.5) => {
+export const handleSideCannons = (duration = 1) => {
   const end = Date.now() + duration * 1000;
   const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
 
@@ -14,6 +14,7 @@ export const handleSideCannons = (duration = 0.5) => {
       startVelocity: 60,
       origin: { x: 0, y: 0.5 },
       colors: colors,
+      zIndex: 500,
     });
     confetti({
       particleCount: 2,
@@ -22,6 +23,7 @@ export const handleSideCannons = (duration = 0.5) => {
       startVelocity: 60,
       origin: { x: 1, y: 0.5 },
       colors: colors,
+      zIndex: 500,
     });
 
     requestAnimationFrame(frame);

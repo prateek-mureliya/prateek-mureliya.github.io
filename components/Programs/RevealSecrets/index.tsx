@@ -26,7 +26,6 @@ import {
 } from "../../UI/form";
 import { Input } from "../../UI/input";
 import HackedSecrets from "./hacked-secrets";
-import Portal from "@/components/Portal";
 
 const icon = {
   logo: Secret,
@@ -72,10 +71,10 @@ export default function RevealSecrets() {
             key={icon.title}
             logo={icon.logo}
             title={icon.title}
-            onDoubleClick={() => setOpen(true)}
+            onDoubleClick={() => handleDialog(true)}
           />
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent hideHeader>
           <DialogHeader>
             <DialogTitle>TOP SECRET</DialogTitle>
             <DialogDescription>
@@ -111,9 +110,7 @@ export default function RevealSecrets() {
         </DialogContent>
       </Dialog>
       {ishacked && (
-        <Portal>
-          <HackedSecrets onClose={() => setIshacked(false)} />
-        </Portal>
+        <HackedSecrets defaultOpen onOpenChange={() => setIshacked(false)} />
       )}
     </>
   );

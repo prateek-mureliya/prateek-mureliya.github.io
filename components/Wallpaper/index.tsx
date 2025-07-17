@@ -1,9 +1,10 @@
+import { Slot } from "@radix-ui/react-slot";
 import { Ripple } from "./Ripple";
 
 export default function Wallpaper() {
   return (
-    <section role='wallpaper'>
+    <Slot role='wallpaper' className='absolute inset-0 z-0 overflow-hidden'>
       <Ripple />
-    </section>
+    </Slot>
   );
 }

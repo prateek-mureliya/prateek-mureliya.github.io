@@ -1,23 +1,35 @@
-"use client";
-
 import { Button } from "../../UI/button";
 import { HyperText } from "../../UI/hyper-text";
 import { handleSideCannons } from "../../UI/confetti";
 import { useEffect } from "react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../../UI/dialog";
 
-type HackedSecretsProps = {
-  onClose: () => void;
-};
-
-export default function HackedSecrets({ onClose }: HackedSecretsProps) {
+export default function HackedSecrets({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Root>) {
   useEffect(() => {
     handleSideCannons();
   }, []);
 
   return (
-    <div className='fixed inset-0 z-50 flex flex-col justify-center items-center bg-black/50'>
-      <div className='flex flex-col justify-center items-center bg-background rounded-lg border p-6 shadow-lg sm:max-w-sm'>
-        <HyperText className='text-3xl'>Portfolio Hacked!</HyperText>
+    <Dialog {...props}>
+      <DialogContent hideHeader className='justify-items-center'>
+        <DialogHeader>
+          <DialogTitle>
+            <HyperText className='text-3xl'>Portfolio Hacked!</HyperText>
+          </DialogTitle>
+          <DialogDescription className='hidden' />
+        </DialogHeader>
+
         <div className='flex'>
           <div className='flex flex-col items-center'>
             <HyperText className='text-xl w-30 text-center'>Hacker</HyperText>
@@ -35,10 +47,12 @@ export default function HackedSecrets({ onClose }: HackedSecretsProps) {
           <span className='text-md'> 🌶️😅🔐</span>
         </div>
 
-        <Button variant={"outline"} className='w-fit mt-8' onClick={onClose}>
-          close
-        </Button>
-      </div>
-    </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant='outline'>Cancel</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

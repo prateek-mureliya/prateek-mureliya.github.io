@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Skeleton } from "../UI/skeleton";
 import { is24HourStorage } from "@/lib/storage";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../UI/tooltip";
 
 export default function DigitalClock() {
   const [time, setTime] = useState<Date>(new Date());
@@ -59,13 +60,20 @@ export default function DigitalClock() {
   };
 
   return mounted ? (
-    <div
-      role='system-date-time'
-      className='text-sm cursor-default select-none'
-      onClick={is24HourHandler}
-    >
-      {formattedTime}
-    </div>
+    <Tooltip>
+      <TooltipTrigger>
+        <div
+          role='system-date-time'
+          className='text-sm cursor-default select-none'
+          onClick={is24HourHandler}
+        >
+          {formattedTime}
+        </div>
+      </TooltipTrigger>
+      <TooltipContent>
+        Switch to {is24Hour ? 12 : 24}-hour format
+      </TooltipContent>
+    </Tooltip>
   ) : (
     <Skeleton className='h-[20px] w-[130px] rounded-full' />
   );
