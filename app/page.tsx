@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Wallpaper from "@/components/Wallpaper";
 import Desktop from "@/components/Desktop";
 import Footer from "@/components/Footer";
+import ProcessManager from "@/components/ProcessManager";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Wallpaper />
       <Desktop />
       <Footer />
+      <ProcessManager />
     </>
   );
 }

@@ -30,7 +30,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../UI/dropdown-menu";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../UI/tooltip";
 
 export default function Menu() {
   const { theme, setTheme } = useTheme();
@@ -40,18 +39,12 @@ export default function Menu() {
       <NavigationMenuList>
         <NavigationMenuItem asChild>
           <DropdownMenu>
-            <Tooltip>
-              <DropdownMenuTrigger
-                className={cn(navigationMenuTriggerStyle(), "py-2 px-3")}
-                asChild
-              >
-                <TooltipTrigger>
-                  <Sun className='size-4 block dark:hidden' />
-                  <Moon className='size-4 hidden dark:block' />
-                </TooltipTrigger>
-              </DropdownMenuTrigger>
-              <TooltipContent>Theme</TooltipContent>
-            </Tooltip>
+            <DropdownMenuTrigger
+              className={cn(navigationMenuTriggerStyle(), "py-2 px-3")}
+            >
+              <Sun className='size-4 block dark:hidden' />
+              <Moon className='size-4 hidden dark:block' />
+            </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuLabel>Appearance</DropdownMenuLabel>
               <DropdownMenuSeparator />
@@ -74,17 +67,12 @@ export default function Menu() {
         </NavigationMenuItem>
         <NavigationMenuItem asChild>
           <Dialog>
-            <Tooltip>
-              <DialogTrigger
-                className={cn(navigationMenuTriggerStyle(), "py-2 px-3")}
-                asChild
-              >
-                <TooltipTrigger>
-                  <Power className='size-4' />
-                </TooltipTrigger>
-              </DialogTrigger>
-              <TooltipContent>Shut down</TooltipContent>
-            </Tooltip>
+            <DialogTrigger
+              className={cn(navigationMenuTriggerStyle(), "py-2 px-3")}
+              asChild
+            >
+              <Power className='size-4' />
+            </DialogTrigger>
             <DialogContent hideHeader>
               <DialogHeader>
                 <DialogTitle>Are you sure you want to shut down?</DialogTitle>

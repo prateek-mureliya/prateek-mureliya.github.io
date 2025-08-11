@@ -1,60 +1,41 @@
-import { Dock, DockIcon } from "../UI/dock";
-import { HomeIcon, PencilIcon } from "lucide-react";
-import { Button } from "../UI/button";
+"use client";
+
+import { Dock } from "../UI/dock";
+import HomeIcon from "@/public/images/icon/home.png";
 import { Separator } from "../UI/separator";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../UI/tooltip";
 import { HEADER_FOOTER_Z_INDEX } from "@/lib/constants";
+import { useProcessContext } from "@/contexts/process-manager";
+import FooterButton from "./FooterButton";
 
 export default function Footer() {
+  const { processes, handleHome, handleOpen } = useProcessContext();
+
   return (
     <footer
       className={`fixed bottom-6 w-full`}
       style={{ zIndex: HEADER_FOOTER_Z_INDEX }}
     >
-      <TooltipProvider>
-        <Dock direction='middle'>
-          <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  aria-label={"Home"}
-                  variant={"ghost"}
-                  size={"icon"}
-                  className={"size-12 rounded-full"}
-                >
-                  <HomeIcon className='size-4' />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Home</p>
-              </TooltipContent>
-            </Tooltip>
-          </DockIcon>
+      <Dock direction='middle'>
+        <FooterButton
+          key={"Home"}
+          icon={HomeIcon}
+          title={"Desktop"}
+          onClick={handleHome}
+          focus={false}
+        />
+        {processes.length !== 0 && (
           <Separator orientation='vertical' className='h-full' />
-          <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  aria-label={"Blog"}
-                  variant={"ghost"}
-                  size={"icon"}
-                  className={"size-12 rounded-full"}
-                >
-                  <PencilIcon className='size-4' />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Blog</p>
-              </TooltipContent>
-            </Tooltip>
-          </DockIcon>
-        </Dock>
-      </TooltipProvider>
+        )}
+        {processes.map((p) => (
+          <FooterButton
+            key={p.id}
+            icon={p.icon}
+            title={p.title}
+            onClick={() => handleOpen(p)}
+            focus={p.focus}
+          />
+        ))}
+      </Dock>
     </footer>
   );
 }

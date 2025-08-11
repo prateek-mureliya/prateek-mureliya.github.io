@@ -10,9 +10,10 @@ export default function Header() {
         zIndex: HEADER_FOOTER_Z_INDEX,
       }}
     >
-      <div role='active-task' className='text-sm hidden sm:block sm:invisible'>
-        Terminal
-      </div>
+      <div
+        role='active-task'
+        className='text-sm hidden sm:block sm:invisible'
+      ></div>
       <DigitalClock />
       <NavigationMenu />
     </header>

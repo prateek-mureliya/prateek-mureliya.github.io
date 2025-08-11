@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/contexts/theme-provider";
+import { ProcessContextProvider } from "@/contexts/process-manager";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,14 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className='relative w-full h-dvh'>
+      <body className='relative w-full h-dvh overflow-hidden'>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ProcessContextProvider>{children}</ProcessContextProvider>
         </ThemeProvider>
       </body>
     </html>

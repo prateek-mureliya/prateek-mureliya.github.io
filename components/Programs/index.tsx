@@ -1,3 +1,4 @@
 import RevealSecrets from "./RevealSecrets";
+import Terminal from "./Terminal";
 
-export { RevealSecrets };
+export { RevealSecrets, Terminal };

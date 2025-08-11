@@ -3,8 +3,6 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-@source inline("col-start-{1..30}");
-@source inline("row-start-{1..15}");
 
 :root {
   --background: oklch(0.9755 0.0045 258.3245);
@@ -58,7 +56,6 @@
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
-  --taskbar-height: calc(100dvh - var(--spacing) * 18 - 58px);
 }
 
 .dark {
@@ -189,7 +186,7 @@
 }
 
 @utility h-desktop {
-  height: var(--taskbar-height);
+  height: calc(100dvh - var(--spacing) * 18 - 58px);
 }
 
 @utility grid-cols-desktop {

@@ -2,14 +2,11 @@
 
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-
 import { cn } from "@/lib/utils";
-import {
-  WindowActionBar,
-  WindowActionClose,
-  WindowBody,
-  WindowHeader,
-} from "../Window";
+import WindowHeader from "../Window/window-header";
+import WindowActionBar from "../Window/window-action-bar";
+import { WindowActionClose } from "../Window/window-action-button";
+import WindowBody from "../Window/window-body";
 
 function Dialog({
   ...props
@@ -64,7 +61,7 @@ function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot='dialog-content'
-        className='border border-border shadow-lg bg-background overflow-hidden w-full max-w-[calc(100%-2rem)] sm:max-w-fit rounded-lg z-100 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] duration-200'
+        className='border border-border shadow-lg bg-background overflow-hidden w-full max-w-[calc(100%-2rem)] sm:w-fit sm:max-w-lg rounded-lg z-100 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] duration-200'
         {...props}
       >
         {!hideHeader && (

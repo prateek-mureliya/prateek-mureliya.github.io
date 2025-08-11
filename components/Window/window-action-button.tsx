@@ -7,7 +7,7 @@ type WindowActionButtonProps = {
   children?: React.ReactNode;
 };
 
-const buttonVariants = cva("size-3 rounded-full", {
+const buttonVariants = cva("size-4 sm:size-3 rounded-full", {
   variants: {
     variant: {
       maximize: "bg-green-500",
@@ -40,8 +40,7 @@ export function WindowActionClose({
   return (
     <WindowActionButton {...props} variant={"close"}>
       <XIcon
-        size={12}
-        className='text-red-900 invisible group-hover:visible'
+        className='text-red-900 invisible group-hover:visible size-4 sm:size-3'
         strokeWidth={2}
       />
       {children}
@@ -56,8 +55,7 @@ export function WindowActionMinimize({
   return (
     <WindowActionButton {...props} variant={"minimize"}>
       <Minus
-        size={12}
-        className='text-yellow-900 invisible group-hover:visible'
+        className='text-yellow-900 invisible group-hover:visible size-4 sm:size-3'
         strokeWidth={2}
       />
       {children}
@@ -72,8 +70,7 @@ export function WindowActionMaximize({
   return (
     <WindowActionButton {...props} variant={"maximize"}>
       <MoveDiagonal
-        size={12}
-        className='text-green-900 invisible group-hover:visible'
+        className='text-green-900 invisible group-hover:visible size-4 sm:size-3'
         strokeWidth={2}
       />
       {children}

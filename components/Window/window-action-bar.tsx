@@ -9,7 +9,7 @@ export default function WindowActionBar({
   children,
 }: WindowActionBarProps) {
   return (
-    <div className={cn("flex flex-row gap-x-2 w-fit", className)}>
+    <div className={cn("flex flex-row gap-x-3 sm:gap-x-2 w-fit", className)}>
       {children}
     </div>
   );

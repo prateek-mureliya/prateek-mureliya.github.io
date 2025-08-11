@@ -2,19 +2,19 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Skeleton } from "../UI/skeleton";
-import { is24HourStorage } from "@/lib/storage";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../UI/tooltip";
+import { useLocalStorage } from "@/hook/useLocalStorage";
 
 export default function DigitalClock() {
   const [time, setTime] = useState<Date>(new Date());
-  const [is24Hour, setIs24Hour] = useState<boolean>(is24HourStorage.get());
+  const [is24Hour, setIs24Hour] = useLocalStorage("is24Hour", false);
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    setMounted(true);
     const interval = setInterval(() => {
       setTime(new Date());
     }, 1000);
+
+    setMounted(true);
     return () => clearInterval(interval);
   }, []);
 
@@ -56,24 +56,16 @@ export default function DigitalClock() {
 
   const is24HourHandler = () => {
     setIs24Hour(!is24Hour);
-    is24HourStorage.set(!is24Hour);
   };
 
   return mounted ? (
-    <Tooltip>
-      <TooltipTrigger>
-        <div
-          role='system-date-time'
-          className='text-sm cursor-default select-none'
-          onClick={is24HourHandler}
-        >
-          {formattedTime}
-        </div>
-      </TooltipTrigger>
-      <TooltipContent>
-        Switch to {is24Hour ? 12 : 24}-hour format
-      </TooltipContent>
-    </Tooltip>
+    <div
+      role='system-date-time'
+      className='text-sm cursor-default select-none'
+      onClick={is24HourHandler}
+    >
+      {formattedTime}
+    </div>
   ) : (
     <Skeleton className='h-[20px] w-[130px] rounded-full' />
   );

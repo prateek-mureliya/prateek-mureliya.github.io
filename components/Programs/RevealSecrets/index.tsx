@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SystemIcon from "../../Programs/system-icon";
-import Secret from "@/public/images/icon/secret.png";
+import SystemIcon, { SystemIconProps } from "../../Programs/system-icon";
 import {
   Dialog,
   DialogContent,
@@ -19,18 +18,12 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormMessage,
 } from "../../UI/form";
 import { Input } from "../../UI/input";
 import HackedSecrets from "./hacked-secrets";
-
-const icon = {
-  logo: Secret,
-  title: "Secret",
-};
 
 const formSchema = z.object({
   secret: z
@@ -43,7 +36,7 @@ const formSchema = z.object({
     }),
 });
 
-export default function RevealSecrets() {
+export default function RevealSecrets(props: SystemIconProps) {
   const [ishacked, setIshacked] = useState(false);
   const [open, setOpen] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,31 +47,26 @@ export default function RevealSecrets() {
   });
 
   const onSubmit = () => {
-    handleDialog(false); // close dialog
+    closeDialog(); // close dialog
     setIshacked(true); // show success message to hacker
   };
 
-  const handleDialog = (state: boolean) => {
-    setOpen(state); // close dialog
+  const closeDialog = () => {
+    setOpen(false); // close dialog
     form.reset({ secret: "" }); // reset form input and errors
   };
 
   return (
     <>
-      <Dialog open={open} onOpenChange={handleDialog}>
+      <Dialog open={open} onOpenChange={closeDialog}>
         <DialogTrigger asChild>
-          <SystemIcon
-            key={icon.title}
-            logo={icon.logo}
-            title={icon.title}
-            onDoubleClick={() => handleDialog(true)}
-          />
+          <SystemIcon {...props} onDoubleClick={() => setOpen(true)} />
         </DialogTrigger>
         <DialogContent hideHeader>
           <DialogHeader>
             <DialogTitle>TOP SECRET</DialogTitle>
             <DialogDescription>
-              Shhh... Top Secret Stuff Goes Here 👇 👇 👇
+              Shhh... Secret Stuff Goes Here 👇 👇 👇
             </DialogDescription>
           </DialogHeader>
           <Form {...form}>
@@ -95,12 +83,11 @@ export default function RevealSecrets() {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription />
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <DialogFooter>
+              <DialogFooter className='mt-4'>
                 <Button variant={"default"} type='submit'>
                   Submit
                 </Button>
