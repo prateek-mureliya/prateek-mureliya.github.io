@@ -2,11 +2,11 @@ import { cn } from "@/lib/utils";
 import { BasicProps } from "@/types/basic-props";
 
 export type WindowBodyProps = {
-  isMaximize: boolean;
+  isMaximize?: boolean;
 };
 
 export default function WindowBody({
-  isMaximize,
+  isMaximize = false,
   className,
   children,
 }: WindowBodyProps & BasicProps) {
