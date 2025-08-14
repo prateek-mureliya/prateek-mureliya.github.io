@@ -61,7 +61,7 @@ export default function DigitalClock() {
   return mounted ? (
     <div
       role='system-date-time'
-      className='text-sm cursor-default select-none'
+      className='text-sm cursor-default select-none ml-3'
       onClick={is24HourHandler}
     >
       {formattedTime}

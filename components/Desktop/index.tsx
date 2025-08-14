@@ -4,10 +4,7 @@ import { StaticImageData } from "next/image";
 import SystemIcon from "../Programs/system-icon";
 import { RevealSecrets } from "../Programs";
 import AboutMeIcon from "@/public/images/icon/about-me.png";
-import TerminalIcon from "@/public/images/icon/terminal.png";
-import SocialIcon from "@/public/images/icon/social.png";
 import SecretIcon from "@/public/images/icon/secret.png";
-import RecycleBinIcon from "@/public/images/icon/recycle-bin.png";
 import { useProcessContext } from "@/contexts/process-manager";
 
 type TDesktopButtonBase = {
@@ -35,46 +32,16 @@ const desktopButtons: TDesktopButton[] = [
     id: "aboutme",
     title: "About Me",
     icon: AboutMeIcon,
-    x: 150,
-    y: 60,
-    width: 280,
-    height: 250,
-  },
-  {
-    type: "window",
-    id: "terminal",
-    title: "Terminal",
-    icon: TerminalIcon,
-    x: 150,
-    y: 60,
-    width: 280,
-    height: 250,
-  },
-  {
-    type: "window",
-    id: "social",
-    title: "Social",
-    icon: SocialIcon,
-    x: 150,
-    y: 60,
-    width: 280,
-    height: 250,
+    x: 345,
+    y: 85,
+    width: 845,
+    height: 472,
   },
   {
     type: "dialog",
     id: "secret",
     title: "Secret",
     icon: SecretIcon,
-  },
-  {
-    type: "window",
-    id: "recyclebin",
-    title: "Recycle Bin",
-    icon: RecycleBinIcon,
-    x: 150,
-    y: 60,
-    width: 280,
-    height: 250,
   },
 ];
 

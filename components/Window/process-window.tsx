@@ -141,7 +141,7 @@ export default function ProcessWindow({
         transition={{ duration: 0.3 }}
         exit='exit'
         className={cn(
-          "w-full h-full rounded-xl border border-border bg-background overflow-hidden"
+          "w-full h-full rounded-xl border border-border bg-background overflow-hidden flex flex-col"
         )}
         onAnimationComplete={(definition) => {
           if (definition === "minimized") setIsAnimationComplete(true);

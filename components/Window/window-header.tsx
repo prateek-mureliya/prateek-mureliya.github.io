@@ -1,12 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { BasicProps } from "@/types/basic-props";
 
 type WindowHeaderProps = {
   onDoubleClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  className?: string;
-  children: React.ReactNode;
-};
+} & BasicProps;
 
 export default function WindowHeader({
   onDoubleClick,

@@ -1,11 +1,7 @@
 import { cn } from "@/lib/utils";
+import { BasicProps } from "@/types/basic-props";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Minus, MoveDiagonal, XIcon } from "lucide-react";
-
-type WindowActionButtonProps = {
-  className?: string;
-  children?: React.ReactNode;
-};
 
 const buttonVariants = cva("size-4 sm:size-3 rounded-full", {
   variants: {
@@ -36,7 +32,7 @@ function WindowActionButton({
 export function WindowActionClose({
   children,
   ...props
-}: React.ComponentProps<"button"> & WindowActionButtonProps) {
+}: React.ComponentProps<"button"> & BasicProps) {
   return (
     <WindowActionButton {...props} variant={"close"}>
       <XIcon
@@ -51,7 +47,7 @@ export function WindowActionClose({
 export function WindowActionMinimize({
   children,
   ...props
-}: React.ComponentProps<"button"> & WindowActionButtonProps) {
+}: React.ComponentProps<"button"> & BasicProps) {
   return (
     <WindowActionButton {...props} variant={"minimize"}>
       <Minus
@@ -66,7 +62,7 @@ export function WindowActionMinimize({
 export function WindowActionMaximize({
   children,
   ...props
-}: React.ComponentProps<"button"> & WindowActionButtonProps) {
+}: React.ComponentProps<"button"> & BasicProps) {
   return (
     <WindowActionButton {...props} variant={"maximize"}>
       <MoveDiagonal

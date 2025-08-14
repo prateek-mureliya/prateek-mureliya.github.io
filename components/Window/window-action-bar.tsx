@@ -1,13 +1,7 @@
 import { cn } from "@/lib/utils";
+import { BasicProps } from "@/types/basic-props";
 
-type WindowActionBarProps = {
-  className?: string;
-  children: React.ReactNode;
-};
-export default function WindowActionBar({
-  className,
-  children,
-}: WindowActionBarProps) {
+export default function WindowActionBar({ className, children }: BasicProps) {
   return (
     <div className={cn("flex flex-row gap-x-3 sm:gap-x-2 w-fit", className)}>
       {children}

@@ -1,8 +1,24 @@
-type WindowBodyProps = {
-  children: React.ReactNode;
-  className?: string;
+import { cn } from "@/lib/utils";
+import { BasicProps } from "@/types/basic-props";
+
+export type WindowBodyProps = {
+  isMaximize: boolean;
 };
 
-export default function WindowBody({ className, children }: WindowBodyProps) {
-  return <div className={className}>{children}</div>;
+export default function WindowBody({
+  isMaximize,
+  className,
+  children,
+}: WindowBodyProps & BasicProps) {
+  return (
+    <div
+      className={cn(
+        "flex-1 overflow-auto",
+        className,
+        isMaximize ? "pb-22" : ""
+      )}
+    >
+      {children}
+    </div>
+  );
 }

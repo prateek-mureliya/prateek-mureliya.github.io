@@ -190,8 +190,9 @@ const bringToFront = (
 
 const home = (processes: TProcessProps[]) => {
   if (processes.every((p) => p.isMinimized)) {
-    const focusId = processes.reduce((max, obj) =>
-      obj.style.zIndex > max.style.zIndex ? obj : max
+    const focusId = processes.reduce(
+      (max, obj) => (obj.style.zIndex > max.style.zIndex ? obj : max),
+      { style: { zIndex: 0 } } as TProcessProps
     ).id;
 
     return processes.map((p) => ({
