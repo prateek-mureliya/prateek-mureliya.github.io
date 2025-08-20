@@ -1,8 +1,9 @@
 "use client";
 
 import { StaticImageData } from "next/image";
-import { createContext, ReactNode, useContext, useReducer } from "react";
+import { createContext, JSX, ReactNode, useContext, useReducer } from "react";
 import { isMobile } from "react-device-detect";
+import { WindowBodyProps } from "@/components/Window/window-body";
 
 enum ProcessState {
   open,
@@ -18,6 +19,8 @@ type TProcess = {
   y: number;
   width: number;
   height: number;
+  link?: string;
+  window: (props: WindowBodyProps) => JSX.Element;
 };
 
 type TProcessProps = TProcess & {

@@ -1,7 +1,6 @@
 "use client";
 
 import { AnimatePresence } from "motion/react";
-import { AboutMe } from "../Programs";
 import { useProcessContext } from "@/contexts/process-manager";
 import ProcessWindow from "../Window/process-window";
 
@@ -25,7 +24,7 @@ export default function ProcessManager() {
           onMaximizeRestore={() => handleMaximized(id)}
           onFocus={() => handleFocus(id, props.focus)}
         >
-          <AboutMe isMaximize={props.isMaximized} />
+          <props.window {...props} />
         </ProcessWindow>
       ))}
     </AnimatePresence>

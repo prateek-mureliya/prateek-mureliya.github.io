@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { BasicProps } from "@/types/basic-props";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Minus, MoveDiagonal, XIcon } from "lucide-react";
+import { Button } from "../UI/button";
+import Link from "next/link";
 
 const buttonVariants = cva("size-4 sm:size-3 rounded-full", {
   variants: {
@@ -34,7 +36,7 @@ export function WindowActionClose({
   ...props
 }: React.ComponentProps<"button"> & BasicProps) {
   return (
-    <WindowActionButton {...props} variant={"close"}>
+    <WindowActionButton {...props} variant={"close"} title='Close'>
       <XIcon
         className='text-red-900 invisible group-hover:visible size-4 sm:size-3'
         strokeWidth={2}
@@ -49,7 +51,7 @@ export function WindowActionMinimize({
   ...props
 }: React.ComponentProps<"button"> & BasicProps) {
   return (
-    <WindowActionButton {...props} variant={"minimize"}>
+    <WindowActionButton {...props} variant={"minimize"} title='Minimize'>
       <Minus
         className='text-yellow-900 invisible group-hover:visible size-4 sm:size-3'
         strokeWidth={2}
@@ -64,12 +66,26 @@ export function WindowActionMaximize({
   ...props
 }: React.ComponentProps<"button"> & BasicProps) {
   return (
-    <WindowActionButton {...props} variant={"maximize"}>
+    <WindowActionButton {...props} variant={"maximize"} title='Maximize'>
       <MoveDiagonal
         className='text-green-900 invisible group-hover:visible size-4 sm:size-3'
         strokeWidth={2}
       />
       {children}
     </WindowActionButton>
+  );
+}
+
+export function WindowActionExternalLink({
+  linkURL,
+  className,
+  children,
+}: { linkURL: string } & BasicProps) {
+  return (
+    <Button asChild size={"xs"} variant={"outline"} className={className}>
+      <Link href={linkURL} target='_blank'>
+        {children}
+      </Link>
+    </Button>
   );
 }

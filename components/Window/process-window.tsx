@@ -10,6 +10,7 @@ import WindowHeaderTitle, {
 import WindowActionBar from "./window-action-bar";
 import {
   WindowActionClose,
+  WindowActionExternalLink,
   WindowActionMaximize,
   WindowActionMinimize,
 } from "./window-action-button";
@@ -25,6 +26,7 @@ type WindowProps = {
   isMaximized: boolean;
   showMaximized: boolean;
   focus: boolean;
+  link?: string;
   onClose: () => void;
   onMinimize: () => void;
   onMaximizeRestore: () => void;
@@ -64,6 +66,7 @@ export default function ProcessWindow({
   isMaximized,
   showMaximized,
   focus,
+  link,
   onClose,
   onMinimize,
   onMaximizeRestore,
@@ -164,6 +167,12 @@ export default function ProcessWindow({
           </WindowActionBar>
 
           <WindowHeaderTitle title={title} icon={icon} />
+
+          {link && (
+            <WindowActionExternalLink linkURL={link}>
+              View
+            </WindowActionExternalLink>
+          )}
         </WindowHeader>
 
         {children}

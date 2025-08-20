@@ -12,6 +12,7 @@ export type SystemIconProps = {
   title: string;
   x: number;
   y: number;
+  viewer?: StaticImageData;
   onDoubleClick?: () => void;
 };
 
@@ -31,6 +32,7 @@ export default function SystemIcon({
   title,
   x,
   y,
+  viewer,
   onDoubleClick,
 }: SystemIconProps) {
   const [gridColumn, setGridColumn] = useState(x);
@@ -124,14 +126,26 @@ export default function SystemIcon({
         }}
       >
         <figure className='flex flex-col place-items-center'>
-          <Image
-            alt={title}
-            src={icon}
-            width={48}
-            height={48}
-            priority
-            className='pointer-events-none'
-          />
+          <picture className='relative'>
+            <Image
+              alt={title}
+              src={icon}
+              width={48}
+              height={48}
+              priority
+              className='pointer-events-none'
+            />
+            {viewer && (
+              <Image
+                alt={title}
+                src={viewer}
+                width={26}
+                height={26}
+                priority
+                className='absolute -right-2 -bottom-1 pointer-events-none'
+              />
+            )}
+          </picture>
           <figcaption className='text-xs text-shadow-xs text-center pt-2 sm:pt-1 select-none'>
             {title}
           </figcaption>
