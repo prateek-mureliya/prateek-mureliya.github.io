@@ -4,7 +4,7 @@ import { TreeColor } from "@/types/tree";
 
 export const BORDER_COLOR: { [key: string]: string } = {
   Yellow: "border-yellow-800 dark:border-yellow-400",
-  Blue: "border-blue-800 dark:border-blue-400",
+  Purple: "border-purple-800 dark:border-purple-400",
   Green: "border-green-800 dark:border-green-400",
 };
 

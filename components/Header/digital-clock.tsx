@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Skeleton } from "../UI/skeleton";
 import { useLocalStorage } from "@/hook/useLocalStorage";
+import { cn } from "@/lib/utils";
 
 export default function DigitalClock() {
   const [time, setTime] = useState<Date>(new Date());
@@ -58,15 +59,18 @@ export default function DigitalClock() {
     setIs24Hour(!is24Hour);
   };
 
+  const className =
+    "self-center col-start-2 justify-self-center cursor-default select-none";
+
   return mounted ? (
     <div
       role='system-date-time'
-      className='text-sm cursor-default select-none ml-3'
+      className={cn("text-sm h-fit", className)}
       onClick={is24HourHandler}
     >
       {formattedTime}
     </div>
   ) : (
-    <Skeleton className='h-[20px] w-[130px] rounded-full' />
+    <Skeleton className={cn("h-[20px] w-[140px] rounded-full", className)} />
   );
 }

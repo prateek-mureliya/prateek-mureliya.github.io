@@ -1,9 +1,13 @@
+"use client";
+
 import WindowBody, { WindowBodyProps } from "../../Window/window-body";
 import Avatar from "./Avatar";
 import AboutFooter from "./AboutFooter";
 import {
+  BadgeCheck,
   CalendarDays,
   Cog,
+  ContactRound,
   Container,
   Cpu,
   Gpu,
@@ -15,15 +19,17 @@ import {
   PencilRuler,
   Terminal,
   TrendingUp,
+  Volume2,
 } from "lucide-react";
 import { Branch, Branches, Tree, TreeRoot, TreeView } from "../../UI/TreeView";
 import { TColor } from "@/types/tree";
 import { TLucideIcon } from "@/types/lucide-icon";
+import { TextLoop } from "@/components/UI/text-loop";
 
 type TBaseTreeData = {
   icon: TLucideIcon;
   title: string;
-  details: string;
+  details: React.ReactNode;
 };
 
 type TTreeData = TBaseTreeData & {
@@ -43,8 +49,26 @@ const TREE_DATA: TTreeData[] = [
     color: "Yellow",
     icon: Laptop,
     title: "OS",
-    details: "Prateek Kumar @ v2.0",
+    details: <OSName />,
     branches: [
+      {
+        icon: ContactRound,
+        title: "Iam",
+        details: (
+          <TextLoop
+            words={[
+              "Software Engineer",
+              "Backend Developer",
+              "Building scalable backend systems",
+              "Optimizing system performance",
+              "Managing databases effectively",
+              "Writing clean and maintainable code",
+              "Debugging and troubleshooting complex systems",
+            ]}
+            className='text-muted-foreground'
+          />
+        ),
+      },
       {
         icon: Cog,
         title: "Kernel",
@@ -68,7 +92,7 @@ const TREE_DATA: TTreeData[] = [
     ],
   },
   {
-    color: "Blue",
+    color: "Purple",
     icon: Leaf,
     title: "Resolution",
     details: "Focused | Punctual | Self-Motivated",
@@ -115,9 +139,27 @@ const TREE_DATA: TTreeData[] = [
   },
 ];
 
-export default function AboutMe({ isMaximize }: WindowBodyProps) {
+function OSName() {
+  const handlePlay = () => {
+    const audio = new Audio("/media/Prateek_Kumar_Voice.mp3");
+    audio.play();
+  };
+
   return (
-    <WindowBody isMaximize={isMaximize} className='flex flex-col p-4'>
+    <span>
+      Prateek Kumar
+      <BadgeCheck className='inline size-4 ml-1 text-blue-800 dark:text-blue-400' />
+      <Volume2
+        onClick={handlePlay}
+        className='inline size-4 ml-1 text-muted-foreground hover:text-foreground'
+      />
+    </span>
+  );
+}
+
+export default function AboutMe({ isMaximized }: WindowBodyProps) {
+  return (
+    <WindowBody isMaximized={isMaximized} className='flex flex-col p-4'>
       <div className='flex flex-1 flex-col sm:flex-row sm:max-w-210 mx-auto'>
         <div className='flex justify-center w-full sm:w-80'>
           <Avatar className='sm:mt-8 size-30 sm:size-50' />
@@ -134,9 +176,10 @@ export default function AboutMe({ isMaximize }: WindowBodyProps) {
                     key={branch.title}
                     icon={branch.icon}
                     title={branch.title}
-                    details={branch.details}
                     color={root.color}
-                  />
+                  >
+                    {branch.details}
+                  </Branch>
                 ))}
               </Branches>
             </Tree>

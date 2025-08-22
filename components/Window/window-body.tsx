@@ -2,12 +2,12 @@ import { cn } from "@/lib/utils";
 import { BasicProps } from "@/types/basic-props";
 
 export type WindowBodyProps = {
-  isMaximize?: boolean;
+  isMaximized?: boolean;
   link?: string;
 };
 
 export default function WindowBody({
-  isMaximize = false,
+  isMaximized = false,
   className,
   children,
 }: WindowBodyProps & BasicProps) {
@@ -16,11 +16,11 @@ export default function WindowBody({
       className={cn(
         "flex-1 overflow-auto",
         className,
-        isMaximize ? "pb-0" : ""
+        isMaximized ? "pb-0" : ""
       )}
     >
       {children}
-      {isMaximize && <div className='min-h-22' />}
+      {isMaximized && <div className='min-h-22' />}
     </div>
   );
 }

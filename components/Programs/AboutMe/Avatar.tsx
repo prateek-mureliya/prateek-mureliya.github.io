@@ -11,6 +11,7 @@ export default function Avatar({ className }: BasicProps) {
         src={ProfileImg}
         alt='profile'
         className='h-full block shadow-xl rounded-full'
+        placeholder='blur'
       />
       <motion.div
         className='w-full h-full rounded-full absolute top-0 left-0 border-2 border-dashed border-foreground'

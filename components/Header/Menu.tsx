@@ -35,17 +35,15 @@ export default function Menu() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <NavigationMenu viewport={false}>
+    <NavigationMenu viewport={false} className='col-start-3 justify-self-end'>
       <NavigationMenuList>
         <NavigationMenuItem asChild>
           <DropdownMenu>
-            <DropdownMenuTrigger
-              className={cn(navigationMenuTriggerStyle(), "py-2 px-3")}
-            >
+            <DropdownMenuTrigger className={cn(navigationMenuTriggerStyle())}>
               <Sun className='size-4 block dark:hidden' />
               <Moon className='size-4 hidden dark:block' />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent onCloseAutoFocus={(e) => e.preventDefault()}>
               <DropdownMenuLabel>Appearance</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
@@ -67,13 +65,13 @@ export default function Menu() {
         </NavigationMenuItem>
         <NavigationMenuItem asChild>
           <Dialog>
-            <DialogTrigger
-              className={cn(navigationMenuTriggerStyle(), "py-2 px-3")}
-              asChild
-            >
+            <DialogTrigger className={cn(navigationMenuTriggerStyle(), "ml-1")}>
               <Power className='size-4' />
             </DialogTrigger>
-            <DialogContent hideHeader>
+            <DialogContent
+              hideHeader
+              onCloseAutoFocus={(e) => e.preventDefault()}
+            >
               <DialogHeader>
                 <DialogTitle>Are you sure you want to shut down?</DialogTitle>
                 <DialogDescription>

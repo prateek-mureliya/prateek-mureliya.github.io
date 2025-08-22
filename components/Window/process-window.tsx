@@ -15,6 +15,7 @@ import {
   WindowActionMinimize,
 } from "./window-action-button";
 import { cn } from "@/lib/utils";
+import { BorderBeam } from "../UI/border-beam";
 
 type WindowProps = {
   x: number;
@@ -144,7 +145,7 @@ export default function ProcessWindow({
         transition={{ duration: 0.3 }}
         exit='exit'
         className={cn(
-          "w-full h-full rounded-xl border border-border bg-background overflow-hidden flex flex-col"
+          "relative w-full h-full rounded-xl border border-border bg-background overflow-hidden flex flex-col"
         )}
         onAnimationComplete={(definition) => {
           if (definition === "minimized") setIsAnimationComplete(true);
@@ -166,7 +167,11 @@ export default function ProcessWindow({
             )}
           </WindowActionBar>
 
-          <WindowHeaderTitle title={title} icon={icon} />
+          <WindowHeaderTitle
+            title={title}
+            icon={icon}
+            className='col-start-2 justify-self-center'
+          />
 
           {link && (
             <WindowActionExternalLink linkURL={link}>
@@ -176,6 +181,15 @@ export default function ProcessWindow({
         </WindowHeader>
 
         {children}
+
+        {focus && (
+          <BorderBeam
+            duration={20}
+            size={300}
+            borderWidth={2}
+            className='from-yellow-800 dark:from-yellow-400 via-purple-800 dark:via-purple-400 to-transparent'
+          />
+        )}
       </motion.div>
     </Rnd>
   );

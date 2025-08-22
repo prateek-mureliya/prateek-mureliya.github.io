@@ -1,4 +1,4 @@
-export type TColor = "Yellow" | "Blue" | "Green";
+export type TColor = "Yellow" | "Purple" | "Green";
 
 export type TreeColor = {
   color: color

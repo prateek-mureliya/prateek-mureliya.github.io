@@ -132,6 +132,7 @@ export default function SystemIcon({
               src={icon}
               width={48}
               height={48}
+              placeholder='blur'
               priority
               className='pointer-events-none'
             />

@@ -15,7 +15,7 @@ export default function WindowHeader({
   return (
     <div
       className={cn(
-        "flex flex-row items-center border-b border-border px-4 py-3 bg-muted select-none",
+        "grid grid-cols-[1fr_auto_1fr] border-b border-border px-4 py-3 bg-muted select-none",
         className
       )}
       onDoubleClick={onDoubleClick}

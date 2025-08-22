@@ -14,7 +14,7 @@ export default function WindowHeaderTitle({
   return (
     <div
       className={cn(
-        "flex flex-row items-end justify-center gap-x-1 w-full mr-13",
+        "flex flex-row items-center col-start-2 justify-self-center gap-x-1",
         className
       )}
     >

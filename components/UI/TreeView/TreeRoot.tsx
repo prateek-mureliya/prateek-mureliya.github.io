@@ -9,7 +9,7 @@ type TreeRootProps = TreeColor & {
 
 export const TEXT_COLOR: { [key: string]: string } = {
   Yellow: "text-yellow-800 dark:text-yellow-400",
-  Blue: "text-blue-800 dark:text-blue-400",
+  Purple: "text-purple-800 dark:text-purple-400",
   Green: "text-green-800 dark:text-green-400",
 };
 
@@ -20,7 +20,7 @@ export default function TreeRoot({
   children,
 }: TreeRootProps) {
   return (
-    <div className='text-sm'>
+    <div className='text-sm flex'>
       <span className={`font-bold ${TEXT_COLOR[color]}`}>
         <Icon
           strokeWidth={3}
@@ -28,7 +28,7 @@ export default function TreeRoot({
         />
         &nbsp;{title}&nbsp;&nbsp;
       </span>
-      <span>{children}</span>
+      {children}
     </div>
   );
 }

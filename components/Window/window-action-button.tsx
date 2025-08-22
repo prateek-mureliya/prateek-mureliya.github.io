@@ -82,7 +82,12 @@ export function WindowActionExternalLink({
   children,
 }: { linkURL: string } & BasicProps) {
   return (
-    <Button asChild size={"xs"} variant={"outline"} className={className}>
+    <Button
+      asChild
+      size={"xs"}
+      variant={"outline"}
+      className={cn("col-start-3 justify-self-end", className)}
+    >
       <Link href={linkURL} target='_blank'>
         {children}
       </Link>

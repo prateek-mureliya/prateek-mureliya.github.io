@@ -5,9 +5,9 @@ const DynamicPDFViewer = dynamic(() => import("../../UI/pdf-viewer"), {
   ssr: false,
 });
 
-export default function PDFWindow({ isMaximize, link = "" }: WindowBodyProps) {
+export default function PDFWindow({ isMaximized, link = "" }: WindowBodyProps) {
   return (
-    <WindowBody isMaximize={isMaximize}>
+    <WindowBody isMaximized={isMaximized} className='relative'>
       <DynamicPDFViewer pdfURL={link} />
     </WindowBody>
   );
