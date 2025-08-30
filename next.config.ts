@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { GITHUB_URL } from "./lib/constants";
 
 const nextConfig: NextConfig = {
   output: "export",
@@ -7,7 +8,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   env:{
-    GITHUB_PROFILE: "https://github.com/prateek-mureliya",
+    GITHUB_PROFILE: GITHUB_URL,
     SECRET: "pass123",
   }
 };

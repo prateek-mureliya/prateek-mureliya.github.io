@@ -10,9 +10,11 @@ export default function WindowBody({
   isMaximized = false,
   className,
   children,
-}: WindowBodyProps & BasicProps) {
+  ...props
+}: WindowBodyProps & BasicProps & React.ComponentProps<"div">) {
   return (
     <div
+      {...props}
       className={cn(
         "flex-1 overflow-auto",
         className,

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SystemIcon, { SystemIconProps } from "../../Programs/system-icon";
+import DesktopIcon, { DesktopIconProps } from "../../Desktop/desktop-icon";
 import {
   Dialog,
   DialogContent,
@@ -36,7 +36,7 @@ const formSchema = z.object({
     }),
 });
 
-export default function RevealSecrets(props: SystemIconProps) {
+export default function RevealSecrets(props: DesktopIconProps) {
   const [ishacked, setIshacked] = useState(false);
   const [open, setOpen] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -60,7 +60,7 @@ export default function RevealSecrets(props: SystemIconProps) {
     <>
       <Dialog open={open} onOpenChange={closeDialog}>
         <DialogTrigger asChild>
-          <SystemIcon {...props} onDoubleClick={() => setOpen(true)} />
+          <DesktopIcon {...props} onDoubleClick={() => setOpen(true)} />
         </DialogTrigger>
         <DialogContent hideHeader>
           <DialogHeader>

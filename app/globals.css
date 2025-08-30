@@ -204,3 +204,19 @@
     grid-template-rows: repeat(auto-fill, 74px);
   }
 }
+
+@utility grid-cols-folder {
+  grid-template-columns: repeat(auto-fit, 158px);
+
+  @variant sm {
+    grid-template-columns: repeat(auto-fit, 175px);
+  }
+}
+
+@utility grid-rows-folder {
+  grid-auto-rows: 158px;
+
+  @variant sm {
+    grid-auto-rows: 175px;
+  }
+}

@@ -51,16 +51,20 @@ export default function PDFViewer({ pdfURL }: PDFViewerProps) {
   const [width, setWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    function handleResize() {
-      if (containerRef.current) {
-        setWidth(containerRef.current.offsetWidth);
+    if (!containerRef.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width } = entry.contentRect;
+        setWidth(width);
       }
-    }
+    });
 
-    handleResize(); // set initial width
-    window.addEventListener("resize", handleResize);
+    observer.observe(containerRef.current);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -71,6 +75,7 @@ export default function PDFViewer({ pdfURL }: PDFViewerProps) {
         loading={onLoading}
         error={onError}
         noData={onNoData}
+        externalLinkTarget='_blank'
       >
         {Array.from(new Array(numPages), (_, index) => (
           <Page

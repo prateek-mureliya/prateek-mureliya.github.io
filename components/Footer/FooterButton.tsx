@@ -28,10 +28,8 @@ export default function FooterButton({
         <Image
           alt={title}
           src={icon}
-          width={22}
-          height={22}
           priority
-          className='pointer-events-none'
+          className='pointer-events-none size-5.5'
         />
         {focus && (
           <BorderBeam

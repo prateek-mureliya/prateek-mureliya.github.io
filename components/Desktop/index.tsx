@@ -1,40 +1,17 @@
 "use client";
 
-import { StaticImageData } from "next/image";
-import { JSX } from "react";
-import SystemIcon from "../Programs/system-icon";
+import DesktopIcon from "./desktop-icon";
 import { useProcessContext } from "@/contexts/process-manager";
-import { WindowBodyProps } from "../Window/window-body";
 import { RevealSecrets } from "../Programs";
 import AdobeIcon from "@/public/images/icon/adobe.png";
 import AboutMeIcon from "@/public/images/icon/about-me.png";
 import SecretIcon from "@/public/images/icon/secret.png";
+import ContactUsIcon from "@/public/images/icon/contact-us.png";
 import ResumePreview from "@/public/images/resume-preview.png";
-import { AboutMe, PDFWindow } from "../Programs";
+import { AboutMe, PDFWindow, ContactUs } from "../Programs";
+import { TProcessButton, TProcessButtonWindow } from "@/types/process-button";
 
-type TDesktopButtonBase = {
-  id: string;
-  title: string;
-  icon: StaticImageData;
-  iconX?: number;
-  iconY?: number;
-  viewer?: StaticImageData;
-};
-type TDesktopButtonDialog = { type: "dialog" };
-type TDesktopButtonWindow = {
-  type: "window";
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  link?: string;
-  window: (props: WindowBodyProps) => JSX.Element;
-};
-
-type TDesktopButton = TDesktopButtonBase &
-  (TDesktopButtonDialog | TDesktopButtonWindow);
-
-const desktopButtons: TDesktopButton[] = [
+const desktopButtons: TProcessButton[] = [
   {
     type: "window",
     id: "aboutme",
@@ -58,6 +35,17 @@ const desktopButtons: TDesktopButton[] = [
     height: 450,
     link: "media/Prateek_Kumar_SeniorSoftwareEngineer_Resume.pdf",
     window: PDFWindow,
+  },
+  {
+    type: "window",
+    id: "contactus",
+    title: "Contact Us",
+    icon: ContactUsIcon,
+    x: 450,
+    y: 150,
+    width: 640,
+    height: 438,
+    window: ContactUs,
   },
   {
     type: "dialog",
@@ -95,9 +83,9 @@ export default function Desktop() {
                 />
               );
             case "window":
-              const props = others as TDesktopButtonWindow;
+              const props = others as TProcessButtonWindow;
               return (
-                <SystemIcon
+                <DesktopIcon
                   key={id}
                   icon={icon}
                   title={title}

@@ -24,7 +24,7 @@ import {
 import { Branch, Branches, Tree, TreeRoot, TreeView } from "../../UI/TreeView";
 import { TColor } from "@/types/tree";
 import { TLucideIcon } from "@/types/lucide-icon";
-import { TextLoop } from "@/components/UI/text-loop";
+import { TextLoop } from "../../UI/text-loop";
 
 type TBaseTreeData = {
   icon: TLucideIcon;

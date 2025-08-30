@@ -7,7 +7,7 @@ import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import { isMobile } from "react-device-detect";
 
-export type SystemIconProps = {
+export type DesktopIconProps = {
   icon: StaticImageData;
   title: string;
   x: number;
@@ -27,14 +27,14 @@ const ICON_WIDTH_SIZE = isMobile ? 83 : 74;
 const ICON_HEIGHT_SIZE = isMobile ? 90 : 74;
 const GRID_PADDING = isMobile ? 16 : 8;
 
-export default function SystemIcon({
+export default function DesktopIcon({
   icon,
   title,
   x,
   y,
   viewer,
   onDoubleClick,
-}: SystemIconProps) {
+}: DesktopIconProps) {
   const [gridColumn, setGridColumn] = useState(x);
   const [gridRow, setGridRow] = useState(y);
   const [placeholder, setPlaceholder] = useState<TPlaceholder>(null);
@@ -130,20 +130,16 @@ export default function SystemIcon({
             <Image
               alt={title}
               src={icon}
-              width={48}
-              height={48}
               placeholder='blur'
               priority
-              className='pointer-events-none'
+              className='pointer-events-none size-12'
             />
             {viewer && (
               <Image
                 alt={title}
                 src={viewer}
-                width={26}
-                height={26}
                 priority
-                className='absolute -right-2 -bottom-1 pointer-events-none'
+                className='absolute -right-2 -bottom-1 pointer-events-none size-6.5'
               />
             )}
           </picture>
