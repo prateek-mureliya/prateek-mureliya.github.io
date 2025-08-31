@@ -19,7 +19,12 @@ export default function WindowHeaderTitle({
       )}
     >
       {icon && (
-        <Image alt={title} src={icon} priority className='select-none size-5' />
+        <Image
+          alt={title}
+          src={icon}
+          placeholder='blur'
+          className='select-none size-5'
+        />
       )}
       <span className='text-xs select-none'>{title}</span>
     </div>

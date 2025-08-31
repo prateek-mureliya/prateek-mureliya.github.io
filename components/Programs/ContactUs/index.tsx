@@ -14,7 +14,7 @@ const SIDEBAR_MENU: TSidebarMenu = {
       content: SocialLinks,
     },
     {
-      title: "Contact Us",
+      title: "Contact Form",
       icon: MailOpen,
       content: ContactForm,
     },

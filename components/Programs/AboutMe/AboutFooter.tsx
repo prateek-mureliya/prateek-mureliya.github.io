@@ -1,3 +1,5 @@
+import { AUTHOR_NAME } from "@/lib/constants";
+
 export default function AboutFooter() {
   const currentYear = new Date().getFullYear();
 
@@ -8,7 +10,7 @@ export default function AboutFooter() {
         <span className='absolute animate-ping'>❤️</span>
         <span>❤️</span>
       </span>
-      by Prateek Kumar — © {currentYear}
+      by {AUTHOR_NAME} — © {currentYear}
     </div>
   );
 }

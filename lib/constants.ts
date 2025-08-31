@@ -1,3 +1,10 @@
+// Portfolio meta data
+export const SITE_TITLE = "Prateek's Portfolio"
+export const SITE_DESCRIPTION = "Explore Prateek's interactive online portfolio designed like a modern web OS. Discover projects, skills, and experience through a beautiful, desktop-style interface. Fast, intuitive, and uniquely personal."
+
+// Author name
+export const AUTHOR_NAME = "Prateek Kumar"
+
 // header fooler z index
 export const HEADER_FOOTER_Z_INDEX = 80;
 
@@ -23,3 +30,7 @@ export const FACEBOOK_URL = `https://www.facebook.com/${FACEBOOK_USERNAME}`;
 
 export const X_USERNAME = "pkmureliya";
 export const X_URL = `https://x.com/${X_USERNAME}`;
+
+// github hosted sites
+export const GITHUB_SITE_URL = "https://prateek-mureliya.github.io"
+export const OLD_SITE_URI = "/old-profile-site"

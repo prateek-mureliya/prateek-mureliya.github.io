@@ -28,7 +28,7 @@ export default function FooterButton({
         <Image
           alt={title}
           src={icon}
-          priority
+          placeholder='blur'
           className='pointer-events-none size-5.5'
         />
         {focus && (

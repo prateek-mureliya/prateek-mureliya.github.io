@@ -3,11 +3,11 @@ import { ThemeProvider } from "@/contexts/theme-provider";
 import { ProcessContextProvider } from "@/contexts/process-manager";
 import "./globals.css";
 import { Toaster } from "@/components/UI/sonner";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Prateek's Portfolio",
-  description:
-    "Explore Prateek's interactive online portfolio designed like a modern web OS. Discover projects, skills, and experience through a beautiful, desktop-style interface. Fast, intuitive, and uniquely personal.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
 };
 
 export default function RootLayout({

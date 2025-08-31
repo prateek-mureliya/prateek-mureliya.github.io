@@ -18,7 +18,7 @@ export function WindowIconCard({ title, icon, viewer }: TProcessButtonBase) {
         src={icon}
         placeholder='blur'
         priority
-        className='pointer-events-none size-28 sm:size-33'
+        className='pointer-events-none select-none size-28 sm:size-33'
       />
       {viewer && (
         <Image
@@ -26,7 +26,7 @@ export function WindowIconCard({ title, icon, viewer }: TProcessButtonBase) {
           src={viewer}
           placeholder='blur'
           priority
-          className='absolute -right-2 -bottom-2 pointer-events-none size-11.5'
+          className='absolute -right-2 -bottom-2 pointer-events-none select-none size-11.5'
         />
       )}
     </picture>
@@ -43,11 +43,21 @@ export function LinkIconCard({
     <PinContainer icon={icon} title={linkTitle} href={link}>
       <div className='border flex flex-col rounded-lg h-full overflow-hidden group'>
         <h1 className='flex items-center text-[10px] sm:text-xs p-2 group-hover:invisible'>
-          <Image alt={linkTitle} src={icon} className='mr-1 mt-[1px] size-3' />
+          <Image
+            alt={linkTitle}
+            src={icon}
+            placeholder='blur'
+            className='mr-1 mt-[1px] size-3'
+          />
           <span>{linkTitle}</span>
         </h1>
         <div className='flex-1 overflow-hidden'>
-          <Image alt={linkTitle!} src={viewer!} className='w-full h-full' />
+          <Image
+            alt={linkTitle!}
+            src={viewer!}
+            placeholder='blur'
+            className='w-full h-full'
+          />
         </div>
       </div>
     </PinContainer>

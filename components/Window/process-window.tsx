@@ -89,13 +89,16 @@ export default function ProcessWindow({
     }
   };
 
-  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleDoubleClick = (
+    e: React.MouseEvent<HTMLDivElement>,
+    handler: () => void
+  ) => {
     e.stopPropagation();
     if (clickTimeout.current) {
       clearTimeout(clickTimeout.current);
       clickTimeout.current = null;
     }
-    onMaximizeRestore();
+    handler();
   };
 
   const handleClick = (
@@ -152,10 +155,11 @@ export default function ProcessWindow({
           else setIsAnimationComplete(false);
         }}
         onClick={handleFocusClick}
+        onDoubleClick={(e) => handleDoubleClick(e, () => {})}
       >
         <WindowHeader
           className={cn("window-header", focus ? "bg-background" : "")}
-          onDoubleClick={handleDoubleClick}
+          onDoubleClick={(e) => handleDoubleClick(e, onMaximizeRestore)}
         >
           <WindowActionBar className='group'>
             <WindowActionClose onClick={(e) => handleClick(e, onClose)} />

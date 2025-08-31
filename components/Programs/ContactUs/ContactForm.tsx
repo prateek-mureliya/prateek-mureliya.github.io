@@ -15,7 +15,7 @@ import { Input } from "../../UI/input";
 import { Button } from "../../UI/button";
 import { Textarea } from "../../UI/textarea";
 import { toast } from "sonner";
-import { Loader } from "lucide-react";
+import { Loader, SendHorizonal } from "lucide-react";
 import {
   CONTACT_FORM_URL,
   NAME_FIELD,
@@ -27,11 +27,11 @@ type ContactFormProps = TFolderContent;
 
 const formSchema = z.object({
   name: z.string().min(3, {
-    message: "Name must be at least 3 characters.",
+    message: "Boost your name: 3+ characters",
   }),
-  email: z.string().email("Invalid email address."),
+  email: z.string().email("This email looks suspicious"),
   message: z.string().min(10, {
-    message: "Message should be at least 10 characters.",
+    message: "Stretch it! 10 characters minimum",
   }),
 });
 
@@ -86,7 +86,7 @@ export default function ContactForm({ value, isMaximized }: ContactFormProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='sm:px-15 space-y-4 mx-auto'
+          className='sm:max-w-160 sm:px-15 space-y-4 mx-auto'
         >
           <h1 className='font-bold text-lg'>Get in Touch</h1>
           <FormField
@@ -140,6 +140,7 @@ export default function ContactForm({ value, isMaximized }: ContactFormProps) {
             type='submit'
             variant={"secondary"}
             disabled={form.formState.isSubmitting}
+            className='w-full'
           >
             {form.formState.isSubmitting ? (
               <span className='flex items-center'>
@@ -147,7 +148,10 @@ export default function ContactForm({ value, isMaximized }: ContactFormProps) {
                 Sending...
               </span>
             ) : (
-              <span className='flex items-center'>Send</span>
+              <span className='flex items-center'>
+                <SendHorizonal className='mr-1' />
+                Send
+              </span>
             )}
           </Button>
         </form>

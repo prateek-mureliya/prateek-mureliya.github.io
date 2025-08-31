@@ -6,9 +6,10 @@ import { RevealSecrets } from "../Programs";
 import AdobeIcon from "@/public/images/icon/adobe.png";
 import AboutMeIcon from "@/public/images/icon/about-me.png";
 import SecretIcon from "@/public/images/icon/secret.png";
+import SnapBinIcon from "@/public/images/icon/snap-bin.png";
 import ContactUsIcon from "@/public/images/icon/contact-us.png";
 import ResumePreview from "@/public/images/resume-preview.png";
-import { AboutMe, PDFWindow, ContactUs } from "../Programs";
+import { AboutMe, PDFWindow, SnapBin, ContactUs } from "../Programs";
 import { TProcessButton, TProcessButtonWindow } from "@/types/process-button";
 
 const desktopButtons: TProcessButton[] = [
@@ -43,9 +44,20 @@ const desktopButtons: TProcessButton[] = [
     icon: ContactUsIcon,
     x: 450,
     y: 150,
-    width: 640,
-    height: 438,
+    width: 665,
+    height: 450,
     window: ContactUs,
+  },
+  {
+    type: "window",
+    id: "snapbin",
+    title: "Snap Bin",
+    icon: SnapBinIcon,
+    x: 345,
+    y: 85,
+    width: 665,
+    height: 450,
+    window: SnapBin,
   },
   {
     type: "dialog",

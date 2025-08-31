@@ -69,7 +69,13 @@ export const PinPerspective = ({
         <div className='absolute top-0 inset-x-0  flex justify-center'>
           <div className='relative flex space-x-2 items-center z-10 rounded-full bg-background ring-1 ring-foreground/10 '>
             <span className='relative z-20 flex items-center text-xs font-bold px-2 pt-1 pb-2'>
-              <Image alt={title} src={icon} className='mr-1 mt-[1px] size-3' />
+              <Image
+                alt={title}
+                src={icon}
+                placeholder='blur'
+                priority
+                className='mr-1 mt-[1px] size-3'
+              />
               <span>{title}</span>
             </span>
 

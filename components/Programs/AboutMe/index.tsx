@@ -25,6 +25,7 @@ import { Branch, Branches, Tree, TreeRoot, TreeView } from "../../UI/TreeView";
 import { TColor } from "@/types/tree";
 import { TLucideIcon } from "@/types/lucide-icon";
 import { TextLoop } from "../../UI/text-loop";
+import { AUTHOR_NAME } from "@/lib/constants";
 
 type TBaseTreeData = {
   icon: TLucideIcon;
@@ -147,7 +148,7 @@ function OSName() {
 
   return (
     <span>
-      Prateek Kumar
+      {AUTHOR_NAME}
       <BadgeCheck className='inline size-4 ml-1 text-blue-800 dark:text-blue-400' />
       <Volume2
         onClick={handlePlay}
