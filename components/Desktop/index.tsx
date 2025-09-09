@@ -8,8 +8,9 @@ import AboutMeIcon from "@/public/images/icon/about-me.png";
 import SecretIcon from "@/public/images/icon/secret.png";
 import SnapBinIcon from "@/public/images/icon/snap-bin.png";
 import ContactUsIcon from "@/public/images/icon/contact-us.png";
+import TerminalIcon from "@/public/images/icon/terminal.png";
 import ResumePreview from "@/public/images/resume-preview.png";
-import { AboutMe, PDFWindow, SnapBin, ContactUs } from "../Programs";
+import { AboutMe, PDFWindow, SnapBin, ContactUs, Terminal } from "../Programs";
 import { TProcessButton, TProcessButtonWindow } from "@/types/process-button";
 
 const desktopButtons: TProcessButton[] = [
@@ -23,6 +24,17 @@ const desktopButtons: TProcessButton[] = [
     width: 845,
     height: 475,
     window: AboutMe,
+  },
+  {
+    type: "window",
+    id: "terminal",
+    title: "Terminal",
+    icon: TerminalIcon,
+    x: 345,
+    y: 85,
+    width: 845,
+    height: 475,
+    window: Terminal,
   },
   {
     type: "window",
@@ -53,8 +65,8 @@ const desktopButtons: TProcessButton[] = [
     id: "snapbin",
     title: "Snap Bin",
     icon: SnapBinIcon,
-    x: 345,
-    y: 85,
+    x: 350,
+    y: 215,
     width: 665,
     height: 450,
     window: SnapBin,

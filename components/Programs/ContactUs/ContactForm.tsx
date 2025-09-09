@@ -26,13 +26,28 @@ import {
 type ContactFormProps = TFolderContent;
 
 const formSchema = z.object({
-  name: z.string().min(3, {
-    message: "Boost your name: 3+ characters",
-  }),
-  email: z.string().email("This email looks suspicious"),
-  message: z.string().min(10, {
-    message: "Stretch it! 10 characters minimum",
-  }),
+  name: z
+    .string()
+    .nonempty({
+      message: "What should we call you?",
+    })
+    .min(3, {
+      message: "Boost your name: 3+ characters",
+    }),
+  email: z
+    .string()
+    .nonempty({
+      message: "Where can we reach you?",
+    })
+    .email("This email looks suspicious"),
+  message: z
+    .string()
+    .nonempty({
+      message: "Drop your thoughts here",
+    })
+    .min(10, {
+      message: "Stretch it! 10 characters minimum",
+    }),
 });
 
 export default function ContactForm({ value, isMaximized }: ContactFormProps) {

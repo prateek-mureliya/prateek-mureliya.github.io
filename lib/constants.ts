@@ -4,6 +4,7 @@ export const SITE_DESCRIPTION = "Explore Prateek's interactive online portfolio 
 
 // Author name
 export const AUTHOR_NAME = "Prateek Kumar"
+export const AUTHOR_USER = "mureliya"
 
 // header fooler z index
 export const HEADER_FOOTER_Z_INDEX = 80;
