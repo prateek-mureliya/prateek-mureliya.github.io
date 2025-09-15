@@ -24,6 +24,7 @@ import {
 } from "../../UI/form";
 import { Input } from "../../UI/input";
 import HackedSecrets from "./hacked-secrets";
+import { SECRET } from "@/lib/constants";
 
 const formSchema = z.object({
   secret: z
@@ -31,7 +32,7 @@ const formSchema = z.object({
     .nonempty({
       message: "No secret? No fun.",
     })
-    .refine(async (secret) => secret === process.env.SECRET, {
+    .refine(async (secret) => secret === SECRET, {
       message: "Wrong secret! Try harder.",
     }),
 });

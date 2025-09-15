@@ -1,5 +1,6 @@
 "use client";
 
+import { SECRET } from "@/lib/constants";
 import { useEffect } from "react";
 
 export default function ConsoleMessage() {
@@ -34,7 +35,7 @@ Happy hacking! 💻🔥
           "color: green; font-size: 20px; font-weight: bold;"
         );
         console.log(
-          "🔑 The secret password is: %c" + process.env.SECRET,
+          "🔑 The secret password is: %c" + SECRET,
           "color: red; font-weight: bold;"
         );
       };

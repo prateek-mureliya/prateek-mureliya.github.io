@@ -7,10 +7,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  env:{
-    GITHUB_PROFILE: GITHUB_URL,
-    SECRET: "pass123",
-  }
 };
 
 export default nextConfig;

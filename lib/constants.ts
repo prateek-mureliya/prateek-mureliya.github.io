@@ -1,16 +1,29 @@
 // Portfolio meta data
-export const SITE_TITLE = "Prateek's Portfolio"
-export const SITE_DESCRIPTION = "Explore Prateek's interactive online portfolio designed like a modern web OS. Discover projects, skills, and experience through a beautiful, desktop-style interface. Fast, intuitive, and uniquely personal."
+export const SITE_TITLE = "Prateek's Portfolio";
+export const SITE_DESCRIPTION =
+  "Explore Prateek's interactive online portfolio designed like a modern web OS. Discover projects, skills, and experience through a beautiful, desktop-style interface. Fast, intuitive, and uniquely personal.";
+
+export const JOINING_DATE = "2018-12-05";
 
 // Author name
-export const AUTHOR_NAME = "Prateek Kumar"
-export const AUTHOR_USER = "mureliya"
+export const AUTHOR_NAME = "Prateek Kumar";
+export const AUTHOR_USER = "mureliya";
+export const AUTHOR_ROLES = [
+  "Software Engineer",
+  "Backend Developer",
+  "Building scalable backend systems",
+  "Optimizing system performance",
+  "Managing databases effectively",
+  "Writing clean and maintainable code",
+  "Debug & troubleshoot complex systems",
+];
 
 // header fooler z index
 export const HEADER_FOOTER_Z_INDEX = 80;
 
 // google contact us form
-export const FORM_ID = "1FAIpQLSdSJ-_-qsfRZQXmFd8fMdJaRjnYj6pYb1-Gwn6DbnE_2oKLlw";
+export const FORM_ID =
+  "1FAIpQLSdSJ-_-qsfRZQXmFd8fMdJaRjnYj6pYb1-Gwn6DbnE_2oKLlw";
 export const CONTACT_FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
 export const NAME_FIELD = "entry.734120986";
 export const EMAIL_FIELD = "entry.503406970";
@@ -33,5 +46,8 @@ export const X_USERNAME = "pkmureliya";
 export const X_URL = `https://x.com/${X_USERNAME}`;
 
 // github hosted sites
-export const GITHUB_SITE_URL = "https://prateek-mureliya.github.io"
-export const OLD_SITE_URI = "/old-profile-site"
+export const GITHUB_SITE_URL = "https://prateek-mureliya.github.io";
+export const OLD_SITE_URI = "/old-profile-site";
+
+// SECRET easter egg
+export const SECRET = "pass123";

@@ -30,6 +30,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../UI/dropdown-menu";
+import { GITHUB_URL } from "@/lib/constants";
 
 export default function Menu() {
   const { theme, setTheme } = useTheme();
@@ -81,7 +82,7 @@ export default function Menu() {
               </DialogHeader>
               <DialogFooter>
                 <Button variant={"default"} asChild>
-                  <Link href={process.env.GITHUB_PROFILE}>
+                  <Link href={GITHUB_URL}>
                     <ExternalLink /> Continue
                   </Link>
                 </Button>
