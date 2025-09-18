@@ -1,9 +1,11 @@
 import { JSX } from "react";
 import { TCommandBase } from "@/types/terminal";
+import Help from "./help";
 import pwd, { help as pwdHelp } from "./pwd";
 import ls, { help as lsHelp } from "./ls";
 import clear, { help as clearHelp } from "./clear";
 import cd, { help as cdHelp } from "./cd";
+import welcome, { help as welcomeHelp } from "./welcome";
 import {
   FileNotAllow,
   InvalidOptions,
@@ -13,12 +15,17 @@ import {
   PermissionDenied,
   SingleFolderOnly,
 } from "./errors";
-import Help from "./help";
 import { getAbsolutePath, getDirectory, isValidPath } from "../fs-object";
 import { isNotEmptyArray } from "@/lib/utils";
 
-const COMMANDS = { pwd, ls, clear, cd };
-const HELP = { pwd: pwdHelp, ls: lsHelp, clear: clearHelp, cd: cdHelp };
+const COMMANDS = { pwd, ls, clear, cd, welcome };
+const HELP = {
+  pwd: pwdHelp,
+  ls: lsHelp,
+  clear: clearHelp,
+  cd: cdHelp,
+  welcome: welcomeHelp,
+};
 
 type TCommands = keyof typeof COMMANDS;
 

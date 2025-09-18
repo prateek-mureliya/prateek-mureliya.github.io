@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { GITHUB_URL } from "./lib/constants";
 
 const nextConfig: NextConfig = {
   output: "export",

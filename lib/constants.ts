@@ -9,7 +9,7 @@ export const JOINING_DATE = "2018-12-05";
 export const AUTHOR_NAME = "Prateek Kumar";
 export const AUTHOR_USER = "mureliya";
 export const AUTHOR_ROLES = [
-  "Software Engineer",
+  "Senior Software Engineer",
   "Backend Developer",
   "Building scalable backend systems",
   "Optimizing system performance",

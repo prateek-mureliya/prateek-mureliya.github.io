@@ -8,10 +8,25 @@ import Cursor, { TFromSubmitArgs } from "./Cursor";
 import CommandResponse from "./commands";
 import { getAbsolutePath } from "./fs-object";
 
+const currentBranch = "main";
+const initPath = ["home", AUTHOR_USER, "portfolio"];
+const initHistory: TCommand = {
+  path: initPath,
+  actualCommand: "welcome",
+  currentBranch: currentBranch,
+  response: memo(CommandResponse),
+  cmd: "welcome",
+  options: [],
+  files: [],
+  folders: [],
+  showHelp: false,
+};
+
 export default function Terminal({ isMaximized }: WindowBodyProps) {
-  const [history, sethistory] = useState<TCommand[]>([]);
-  const [path, setPath] = useState(["home", AUTHOR_USER, "portfolio"]);
-  const currentBranch = "main";
+  const [history, sethistory] = useState<TCommand[]>([
+    { ...initHistory, time: new Date() },
+  ]);
+  const [path, setPath] = useState(initPath);
 
   const addHistory = useCallback((newHistory: TCommand) => {
     sethistory((prev) => [...prev, newHistory]);
