@@ -1,68 +1,51 @@
-import { isNotEmptyArray } from "@/lib/utils";
-import { THelp } from "@/types/terminal";
+import { TCommandBase, THelp } from "@/types/terminal";
 
-type HelpProps = THelp;
+export const help: THelp = {
+  cmd: "help",
+  description:
+    ": Displays a list of available commands with their descriptions",
+  options: {},
+  itemType: "NOTHING",
+};
 
-export default function Help({
-  cmd,
-  description,
-  options,
-  itemType,
-  aliases,
-}: HelpProps) {
-  const items = {
-    NOTHING: "",
-    MULT_FILE_DIR: "[Files/Directories]...",
-    SINGLE_DIR: "[Directory]",
-  }[itemType];
+const AVAILABLE_COMMANDS = [
+  {
+    cmd: "welcome",
+    desc: "Show the welcome message",
+  },
+  {
+    cmd: "cd",
+    desc: "Navigate to a directory",
+  },
+  {
+    cmd: "ls",
+    desc: "List all the items in a directory",
+  },
+  {
+    cmd: "pwd",
+    desc: "Show your current working directory",
+  },
+  {
+    cmd: "clear",
+    desc: "Clear the terminal",
+  },
+  {
+    cmd: "help",
+    desc: "Show this help menu",
+  },
+];
 
+export default function Help({}: TCommandBase) {
   return (
-    <>
-      <div>
-        <span className='bg-muted text-foreground font-bold border px-1 shadow-2xl rounded-xs'>
-          {cmd}
-        </span>{" "}
-        {description}
-      </div>
-      <div className='mt-2'>
-        <span className='text-red-500'>Usage:</span> {cmd}{" "}
-        {isNotEmptyArray(Object.keys(options)) && (
-          <span>
-            [<span className='text-blue-500'>OPTIONS</span>]
-          </span>
-        )}
-        {items}
-      </div>
-      {isNotEmptyArray(Object.keys(options)) && (
-        <div className='mt-2'>
-          <div className='text-red-500'>OPTIONS:</div>
-          <table>
-            <tbody>
-              {Object.entries(options).map(([key, description]) => (
-                <tr key={key}>
-                  <td className='whitespace-nowrap pr-4 align-top'>{key}</td>
-                  <td className='text-muted-foreground'>{description}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    <div className='overflow-x-auto'>
+      <div className='mb-2'>Available commands:</div>
+      {AVAILABLE_COMMANDS.map((c) => (
+        <div key={c.cmd} className='flex'>
+          <div className='min-w-18'>{c.cmd}</div>
+          <div className='min-w-5'>→</div>
+          <div className='whitespace-nowrap'>{c.desc}</div>
         </div>
-      )}
-      {aliases && isNotEmptyArray(Object.keys(aliases)) && (
-        <div className='mt-2'>
-          <div className='text-red-500'>Aliases:</div>
-          <table>
-            <tbody>
-              {Object.entries(aliases).map(([key, description]) => (
-                <tr key={key}>
-                  <td className='whitespace-nowrap pr-4 align-top'>{key}</td>
-                  <td className='text-muted-foreground'>{description}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </>
+      ))}
+    </div>
   );
 }

@@ -1,10 +1,11 @@
 import { JSX } from "react";
 import { TCommandBase } from "@/types/terminal";
-import Help from "./help";
+import CmdHelp from "./cmd-help";
 import pwd, { help as pwdHelp } from "./pwd";
 import ls, { help as lsHelp } from "./ls";
 import clear, { help as clearHelp } from "./clear";
 import cd, { help as cdHelp } from "./cd";
+import help, { help as helpHelp } from "./help";
 import welcome, { help as welcomeHelp } from "./welcome";
 import {
   FileNotAllow,
@@ -18,13 +19,14 @@ import {
 import { getAbsolutePath, getDirectory, isValidPath } from "../fs-object";
 import { isNotEmptyArray } from "@/lib/utils";
 
-const COMMANDS = { pwd, ls, clear, cd, welcome };
+const COMMANDS = { pwd, ls, clear, cd, help, welcome };
 const HELP = {
   pwd: pwdHelp,
   ls: lsHelp,
   clear: clearHelp,
   cd: cdHelp,
   welcome: welcomeHelp,
+  help: helpHelp,
 };
 
 type TCommands = keyof typeof COMMANDS;
@@ -66,9 +68,15 @@ export default function CommandResponse(props: TCommandBase) {
         isNotEmptyArray(files) ||
         isNotEmptyArray(folders))
     ) {
-      response = <NoArgs cmd={cmd} />;
+      response = <NoArgs cmd={cmd} onClick={props.onFormSubmit} />;
     } else if (isNotEmptyArray(invalidOptions)) {
-      response = <InvalidOptions cmd={cmd} invalidOptions={invalidOptions} />;
+      response = (
+        <InvalidOptions
+          cmd={cmd}
+          invalidOptions={invalidOptions}
+          onClick={props.onFormSubmit}
+        />
+      );
     } else if (
       isNotEmptyArray(invalidFiles) ||
       isNotEmptyArray(invalidFolders)
@@ -81,11 +89,13 @@ export default function CommandResponse(props: TCommandBase) {
         />
       );
     } else if (showHelp) {
-      response = <Help {...help} />;
+      response = <CmdHelp {...help} />;
     } else if (itemType === "SINGLE_DIR" && isNotEmptyArray(files)) {
-      response = <FileNotAllow cmd={cmd} files={files} />;
+      response = (
+        <FileNotAllow cmd={cmd} files={files} onClick={props.onFormSubmit} />
+      );
     } else if (itemType === "SINGLE_DIR" && folders.length > 1) {
-      response = <SingleFolderOnly cmd={cmd} />;
+      response = <SingleFolderOnly cmd={cmd} onClick={props.onFormSubmit} />;
     } else if (["clear", "cd"].includes(cmd)) {
       if (cmd == "cd") {
         if (!folders[0]) folders.push("~/portfolio");

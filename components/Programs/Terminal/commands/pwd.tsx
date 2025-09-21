@@ -3,7 +3,7 @@ import { TCommandBase, THelp } from "@/types/terminal";
 
 export const help: THelp = {
   cmd: "pwd",
-  description: ": Print the name of the current working directory",
+  description: ": Show your current working directory",
   options: {},
   itemType: "NOTHING",
 };

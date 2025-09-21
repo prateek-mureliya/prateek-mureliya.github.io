@@ -1,22 +1,25 @@
 import { TCmdError } from "@/types/terminal";
+import HelpSuggestion from "./help-suggestion";
+import BasicError from "./basic-error";
+import Path from "./path";
 
 type FileNotAllowProps = TCmdError & {
   files: string[];
 };
 
-export default function FileNotAllow({ cmd, files }: FileNotAllowProps) {
+export default function FileNotAllow({
+  cmd,
+  files,
+  onClick,
+}: FileNotAllowProps) {
   return (
     <>
       {files.map((filePath) => (
-        <div key={filePath}>
-          <span className='text-orange-500'>{cmd}</span>:
-          <span className='text-green-700 ml-2'>&#39;{filePath}&#39;</span>: Not
-          a directory
-          <br />
-          Try <span className='text-green-700'>&#39;{cmd} --help&#39;</span> for
-          more information.
-        </div>
+        <BasicError key={filePath} cmd={cmd}>
+          <Path>{filePath}</Path>: Not a directory
+        </BasicError>
       ))}
+      <HelpSuggestion command={cmd} onClick={onClick} />
     </>
   );
 }

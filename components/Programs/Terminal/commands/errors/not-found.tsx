@@ -1,10 +1,14 @@
 import { TCmdError } from "@/types/terminal";
+import BasicError from "./basic-error";
 
-export default function NotFound({ cmd }: TCmdError) {
+type NotFoundProps = TCmdError;
+
+export default function NotFound({ cmd }: NotFoundProps) {
   return (
-    <span>
-      <span className='text-orange-500'>{cmd}</span>: command not found
-      <br /> Tip: Maybe it exists in an alternate universe.
-    </span>
+    <BasicError cmd={cmd}>
+      command not found
+      <br />
+      Tip: Maybe it exists in an alternate universe.
+    </BasicError>
   );
 }

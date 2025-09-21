@@ -1,3 +1,5 @@
+import { BasicOnClick } from "./basic-props";
+
 export type TCommandBase = {
   path: string[];
   cmd?: string;
@@ -5,6 +7,11 @@ export type TCommandBase = {
   files?: string[];
   folders?: string[];
   showHelp: boolean;
+  onFormSubmit?: (cmd) => void;
+};
+
+export type TFromSubmitArgs = {
+  actualCommand: string;
 };
 
 export type TCommand = {
@@ -14,6 +21,7 @@ export type TCommand = {
   response?: React.MemoExoticComponent<
     (props: TCommandBase) => React.JSX.Element | undefined
   >;
+  onSubmit?: (args: TFromSubmitArgs) => void;
 } & TCommandBase;
 
 type THelpType = {
@@ -28,4 +36,4 @@ export type THelp = {
   aliases?: THelpType;
 };
 
-export type TCmdError = { cmd: string };
+export type TCmdError = BasicOnClick & { cmd: string };

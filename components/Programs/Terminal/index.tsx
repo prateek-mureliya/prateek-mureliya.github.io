@@ -2,9 +2,9 @@
 
 import React, { memo, useCallback, useState } from "react";
 import { AUTHOR_USER } from "@/lib/constants";
-import { TCommand } from "@/types/terminal";
+import { TCommand, TFromSubmitArgs } from "@/types/terminal";
 import WindowBody, { WindowBodyProps } from "../../Window/window-body";
-import Cursor, { TFromSubmitArgs } from "./Cursor";
+import Cursor from "./Cursor";
 import CommandResponse from "./commands";
 import { getAbsolutePath } from "./fs-object";
 
@@ -34,14 +34,22 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
 
   const handleSubmit = ({ actualCommand }: TFromSubmitArgs) => {
     const parts = actualCommand.split(/\s+/);
-    const cmd = parts[0];
+    let cmd = parts[0];
 
     const optionsSet = new Set<string>();
     const filesSet = new Set<string>();
     const foldersSet = new Set<string>();
     let showHelp = false;
 
-    for (const part of parts) {
+    if (cmd === "ll") {
+      cmd = "ls";
+      optionsSet.add("-l");
+    } else if (cmd === "help" && parts.length > 1) {
+      cmd = parts[1];
+      showHelp = true;
+    }
+
+    for (const part of parts.slice(1)) {
       if (part == "--help" || part == "—help") {
         showHelp = true;
       } else if (part.startsWith("-")) {
@@ -90,7 +98,7 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
   return (
     <WindowBody isMaximized={isMaximized} className='p-2 font-mono text-sm'>
       {history.map((values, index) => (
-        <Cursor key={index} {...values} />
+        <Cursor key={index} {...values} onSubmit={handleSubmit} />
       ))}
       <Cursor
         path={path}

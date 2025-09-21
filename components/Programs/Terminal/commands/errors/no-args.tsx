@@ -1,13 +1,14 @@
 import { TCmdError } from "@/types/terminal";
+import HelpSuggestion from "./help-suggestion";
+import BasicError from "./basic-error";
 
-export default function NoArgs({ cmd }: TCmdError) {
+type NoArgsProps = TCmdError;
+
+export default function NoArgs({ cmd, onClick }: NoArgsProps) {
   return (
-    <span>
-      <span className='text-orange-500'>{cmd}</span>: command does not take any
-      arguments.
-      <br />
-      Try <span className='text-green-700'>&#39;{cmd} --help&#39;</span> for
-      more information.
-    </span>
+    <BasicError cmd={cmd}>
+      command does not take any arguments.
+      <HelpSuggestion command={cmd} onClick={onClick} />
+    </BasicError>
   );
 }

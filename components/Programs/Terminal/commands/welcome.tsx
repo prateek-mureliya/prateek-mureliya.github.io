@@ -1,6 +1,7 @@
 import { AUTHOR_NAME, AUTHOR_ROLES } from "@/lib/constants";
 import { PixelatedCanvas } from "../../../UI/pixelated-canvas";
 import { TCommandBase, THelp } from "@/types/terminal";
+import SuggestionAction from "./errors/suggestion-action";
 
 export const help: THelp = {
   cmd: "welcome",
@@ -9,10 +10,10 @@ export const help: THelp = {
   itemType: "NOTHING",
 };
 
-export default function Welcome({}: TCommandBase) {
+export default function Welcome({ onFormSubmit }: TCommandBase) {
   return (
     <>
-      <div className='inline-block px-4 py-2 border border-foreground rounded-xl relative before:absolute before:rounded-full before:w-4 before:h-4 before:-bottom-8 before:left-8 before:border after:absolute after:rounded-full after:w-2 after:h-2 after:-bottom-12 after:left-14 after:border'>
+      <div className='inline-block px-4 py-2 border border-foreground rounded-xl relative before:absolute before:rounded-full before:w-4 before:h-4 before:-bottom-8 before:left-8 before:border before:border-foreground after:absolute after:rounded-full after:w-2 after:h-2 after:-bottom-12 after:left-14 after:border after:border-foreground'>
         <div>
           Hi, I&#39;m {AUTHOR_NAME} — a {AUTHOR_ROLES[0]}.
         </div>
@@ -39,7 +40,8 @@ export default function Welcome({}: TCommandBase) {
         className='ml-6'
       />
       <div className='mt-4'>
-        Tip: Start with <span className='text-green-700'>&#39;help&#39;</span>{" "}
+        Tip: Start with
+        <SuggestionAction command='help' onClick={onFormSubmit} />
         if you&#39;re not sure where to go.
       </div>
     </>

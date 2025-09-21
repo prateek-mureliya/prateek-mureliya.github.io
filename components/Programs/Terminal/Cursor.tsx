@@ -12,9 +12,6 @@ import { getAbsolutePath, isFolder, isValidPath } from "./fs-object";
 
 type IconName = keyof typeof dynamicIconImports;
 type CursorProps = TCommand;
-export type TFromSubmitArgs = {
-  actualCommand: string;
-};
 
 function getTime(time: Date) {
   const hour = time.getHours().toString().padStart(2, "0");
@@ -106,7 +103,7 @@ export default function Cursor({
   currentBranch,
   onSubmit,
   ...props
-}: { onSubmit?: (args: TFromSubmitArgs) => void } & CursorProps) {
+}: CursorProps) {
   const [suggestionPath, setSuggestionPath] = useState(path);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const { register, handleSubmit, reset, setValue, setFocus, getValues } =
@@ -247,7 +244,13 @@ export default function Cursor({
         <div>
           <div>{"$ " + actualCommand}</div>
           <div className='pt-2 pb-4 first:pb-0'>
-            <Response path={path} {...props} />
+            <Response
+              path={path}
+              {...props}
+              onFormSubmit={(cmd) => {
+                onFormSubmit({ cmd });
+              }}
+            />
           </div>
         </div>
       )}

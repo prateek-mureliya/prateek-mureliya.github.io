@@ -18,6 +18,9 @@ export const help: THelp = {
     "-l": "shows detailed list of each items in a directory",
   },
   itemType: "MULT_FILE_DIR",
+  aliases: {
+    ll: "ls -l",
+  },
 };
 
 function Folder({ name, isProtacted, className, onClick }: ItemProps) {

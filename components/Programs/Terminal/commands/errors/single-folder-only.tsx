@@ -1,14 +1,17 @@
 import { TCmdError } from "@/types/terminal";
+import HelpSuggestion from "./help-suggestion";
+import BasicError from "./basic-error";
 
 type SingleFolderOnlyProps = TCmdError;
 
-export default function SingleFolderOnly({ cmd }: SingleFolderOnlyProps) {
+export default function SingleFolderOnly({
+  cmd,
+  onClick,
+}: SingleFolderOnlyProps) {
   return (
-    <div>
-      <span className='text-orange-500'>{cmd}</span>: provide only one directory
-      <br />
-      Try <span className='text-green-700'>&#39;{cmd} --help&#39;</span> for
-      more information.
-    </div>
+    <BasicError cmd={cmd}>
+      provide only one directory
+      <HelpSuggestion command={cmd} onClick={onClick} />
+    </BasicError>
   );
 }

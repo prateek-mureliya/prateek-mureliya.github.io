@@ -1,6 +1,8 @@
 import { TCmdError } from "@/types/terminal";
+import BasicError from "./basic-error";
+import Path from "./path";
 
-type InvalidPathProps = TCmdError & {
+type PermissionDeniedProps = TCmdError & {
   path: string;
   pathType: "directory" | "file";
 };
@@ -9,13 +11,12 @@ export default function PermissionDenied({
   cmd,
   path,
   pathType,
-}: InvalidPathProps) {
+}: PermissionDeniedProps) {
   return (
-    <span>
-      <span className='text-orange-500'>{cmd}</span>: cannot open
+    <BasicError cmd={cmd}>
+      cannot open
       {" " + pathType + " "}
-      <span className='text-green-700'>&#39;{path}&#39;</span>: Permission
-      denied
-    </span>
+      <Path>{path}</Path>: Permission denied
+    </BasicError>
   );
 }
