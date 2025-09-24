@@ -1,14 +1,17 @@
+import { useMemo } from "react";
 import { cn, isEmptyArray, isNotEmptyArray } from "@/lib/utils";
 import { TCommandBase, THelp } from "@/types/terminal";
 import { getCurrentDir, getDirectories, getFiles, TFolder } from "../fs-object";
-import { useMemo } from "react";
 import { BasicOnClick, BasicProps } from "@/types/basic-props";
 import { PermissionDenied } from "./errors";
+import { IconType } from "react-icons/lib";
+import { PiFolderLight, PiFolderLock, PiFile } from "react-icons/pi";
 
 type ItemProps = BasicProps &
   BasicOnClick & {
     name: string;
     isProtacted: boolean;
+    icon?: IconType;
   };
 
 export const help: THelp = {
@@ -23,17 +26,24 @@ export const help: THelp = {
   },
 };
 
+const IconClassName = "inline-block align-text-top mr-1";
+
 function Folder({ name, isProtacted, className, onClick }: ItemProps) {
   return (
     <span
       className={cn(
-        "mr-4 text-blue-700 dark:text-blue-400 font-bold",
+        "mr-4 inline-block text-blue-700 dark:text-blue-400 font-bold",
         isProtacted ? "text-red-700 dark:text-red-400" : "",
         className
       )}
       onClick={() => onClick && onClick(name + "/")}
     >
-      {name + "/"}
+      {isProtacted ? (
+        <PiFolderLock className={IconClassName} />
+      ) : (
+        <PiFolderLight className={IconClassName} />
+      )}
+      <span>{name + "/"}</span>
     </span>
   );
 }
@@ -53,16 +63,27 @@ function DetailedFolder(props: ItemProps) {
   );
 }
 
-function File({ name, isProtacted, className, onClick }: ItemProps) {
+function File({
+  name,
+  isProtacted,
+  icon: Icon,
+  className,
+  onClick,
+}: ItemProps) {
   return (
     <span
       className={cn(
-        "mr-4",
+        "mr-4 inline-block",
         isProtacted ? "text-red-700 dark:text-red-400" : "",
         className
       )}
       onClick={() => onClick && onClick(name)}
     >
+      {Icon ? (
+        <Icon className={IconClassName} />
+      ) : (
+        <PiFile className={IconClassName} />
+      )}
       {name}
     </span>
   );
@@ -90,11 +111,12 @@ function LsSummaryView({
 }: { content: TFolder } & BasicProps & BasicOnClick) {
   return (
     <>
-      {content.dir.map(({ type, name, isProtacted = false }, index) =>
+      {content.dir.map(({ type, name, icon, isProtacted = false }, index) =>
         type === "folder" ? (
           <Folder
             key={index}
             name={name}
+            icon={icon}
             isProtacted={isProtacted}
             className={className}
             onClick={onClick}
@@ -103,6 +125,7 @@ function LsSummaryView({
           <File
             key={index}
             name={name}
+            icon={icon}
             isProtacted={isProtacted}
             className={className}
             onClick={onClick}
@@ -121,11 +144,12 @@ function LsDetailedView({
   return (
     <table className='w-full'>
       <tbody>
-        {content.dir.map(({ type, name, isProtacted = false }, index) =>
+        {content.dir.map(({ type, name, icon, isProtacted = false }, index) =>
           type === "folder" ? (
             <DetailedFolder
               key={index}
               name={name}
+              icon={icon}
               isProtacted={isProtacted}
               className={className}
               onClick={onClick}
@@ -134,6 +158,7 @@ function LsDetailedView({
             <DetailedFile
               key={index}
               name={name}
+              icon={icon}
               isProtacted={isProtacted}
               className={className}
               onClick={onClick}
@@ -189,7 +214,7 @@ export default function Ls({
   return (
     <>
       {isEmptyArray(files) && isEmptyArray(folders) && (
-        <div className='overflow-x-auto'>
+        <div className={isDetailed ? "overflow-x-auto" : ""}>
           <LsView
             isDetailed={isDetailed}
             content={currentDir}
@@ -200,7 +225,7 @@ export default function Ls({
       )}
 
       {isNotEmptyArray(files) && (
-        <div className='overflow-x-auto'>
+        <div className={isDetailed ? "overflow-x-auto" : ""}>
           <LsView
             isDetailed={isDetailed}
             content={fileObjects}
@@ -212,7 +237,13 @@ export default function Ls({
 
       {isNotEmptyArray(folders) &&
         folderObjects.map((folderObject, index) => (
-          <div key={index} className='mt-6 first:mt-0 overflow-x-auto'>
+          <div
+            key={index}
+            className={cn(
+              "mt-6 first:mt-0",
+              isDetailed ? "overflow-x-auto" : ""
+            )}
+          >
             <div
               className={cn(
                 "font-bold",
@@ -221,20 +252,22 @@ export default function Ls({
             >
               {folders[index]}: (total: {folderObject.dir.length})
             </div>
-            {folderObject.isProtacted ? (
-              <PermissionDenied
-                cmd={cmd}
-                path={folders[index]}
-                pathType='directory'
-              />
-            ) : (
-              <LsView
-                isDetailed={isDetailed}
-                content={folderObject}
-                className={className}
-                onClick={onClick}
-              />
-            )}
+            <div>
+              {folderObject.isProtacted ? (
+                <PermissionDenied
+                  cmd={cmd}
+                  path={folders[index]}
+                  pathType='directory'
+                />
+              ) : (
+                <LsView
+                  isDetailed={isDetailed}
+                  content={folderObject}
+                  className={className}
+                  onClick={onClick}
+                />
+              )}
+            </div>
           </div>
         ))}
     </>

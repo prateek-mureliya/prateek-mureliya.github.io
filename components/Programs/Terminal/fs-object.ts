@@ -1,9 +1,19 @@
 import { AUTHOR_USER } from "@/lib/constants";
 import { joinPath } from "@/lib/utils";
+import { IconType } from "react-icons/lib";
+import { ImFilePdf } from "react-icons/im";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 type TMeta = {
   name: string;
   isProtacted?: boolean;
+  icon?: IconType;
 };
 
 export type TFile = TMeta & {
@@ -55,26 +65,32 @@ const $usr: TFolder = {
 const $resume_pdf: TFile = {
   type: "file",
   name: "resume.pdf",
+  icon: ImFilePdf,
 };
 const $facebook_connect: TFile = {
   type: "file",
   name: "facebook.connect",
+  icon: FaFacebook,
 };
 const $github_connect: TFile = {
   type: "file",
   name: "github.connect",
+  icon: FaGithub,
 };
 const $instagram_connect: TFile = {
   type: "file",
   name: "instagram.connect",
+  icon: FaInstagram,
 };
 const $linkedin_connect: TFile = {
   type: "file",
   name: "linkedin.connect",
+  icon: FaLinkedin,
 };
 const $twitter_connect: TFile = {
   type: "file",
   name: "twitter.connect",
+  icon: FaXTwitter,
 };
 const $social: TFolder = {
   type: "folder",

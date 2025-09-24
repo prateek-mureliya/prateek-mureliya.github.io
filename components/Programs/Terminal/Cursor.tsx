@@ -136,27 +136,40 @@ function CaretContainer({
 const fieldName = "cmd";
 const formSchema = z.object({ [fieldName]: z.string() });
 
-function ActualCommand({ fieldValue }: { fieldValue: string }) {
+function ActualCommand({
+  fieldValue,
+  isBlink = true,
+}: {
+  fieldValue?: string;
+  isBlink?: boolean;
+}) {
   return (
-    <span className='ml-2'>
-      {fieldValue ? (
-        <>
-          {fieldValue}
-          <span className='animate-blink select-none' aria-hidden='true'>
-            |
-          </span>
-        </>
-      ) : (
-        <>
-          <span className='animate-blink select-none' aria-hidden='true'>
-            |
-          </span>
-          <span className='text-muted-foreground select-none'>
-            type your command here
-          </span>
-        </>
-      )}
-    </span>
+    <>
+      <span>$</span>
+      <span className='ml-2 inline-block whitespace-break-spaces'>
+        {fieldValue ? (
+          <>
+            {fieldValue}
+            {isBlink && (
+              <span
+                className='border-r border-r-foreground animate-blink select-none'
+                aria-hidden='true'
+              />
+            )}
+          </>
+        ) : (
+          <>
+            <span
+              className='border-r border-r-foreground animate-blink select-none'
+              aria-hidden='true'
+            />
+            <span className='text-muted-foreground select-none'>
+              type your command here
+            </span>
+          </>
+        )}
+      </span>
+    </>
   );
 }
 
@@ -245,7 +258,6 @@ function CommandForm({
             onChange={onChange}
             onFocus={onChange}
           />
-          <span>$</span>
           <ActualCommand fieldValue={fieldValue} />
         </label>
       </form>
@@ -275,7 +287,7 @@ function CommandForm({
               } else {
                 newValue = `${value.slice(
                   0,
-                  parts.length === 2 && value.indexOf("/") === -1
+                  parts.length >= 2 && value.indexOf("/") === -1
                     ? value.lastIndexOf(" ") + 1
                     : value.lastIndexOf("/") + 1
                 )}${name}`;
@@ -311,8 +323,7 @@ function DialogCommandForm({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger onClick={() => setOpen(true)}>
         <div className='flex'>
-          <span>$</span>
-          <ActualCommand fieldValue='' />
+          <ActualCommand />
         </div>
       </DialogTrigger>
       <DialogContent hideHeader className='sm:w-128 p-2 font-mono text-sm'>
@@ -351,8 +362,7 @@ export default function Cursor({
       {Response && (
         <div>
           <div className='flex'>
-            <span>$</span>
-            <span className='ml-2'>{actualCommand}</span>
+            <ActualCommand fieldValue={actualCommand} isBlink={false} />
           </div>
           <div className='pt-2 pb-4 first:pb-0'>
             <Response
