@@ -21,7 +21,7 @@ import {
   Status,
   Tool,
   Uptime,
-} from "../../os-info";
+} from "../../constants/os-info";
 
 type TTreeData = TBaseTreeData & {
   color: TColor;
@@ -55,7 +55,7 @@ const TREE_DATA: TTreeData[] = [
 export default function AboutMe({ isMaximized }: WindowBodyProps) {
   return (
     <WindowBody isMaximized={isMaximized} className='flex flex-col p-4'>
-      <div className='flex flex-1 flex-col sm:flex-row sm:max-w-211 mx-auto'>
+      <div className='flex flex-1 flex-col sm:flex-row sm:max-w-228 mx-auto'>
         <div className='flex justify-center w-full sm:w-80'>
           <Avatar className='sm:mt-8 size-30 sm:size-50' />
         </div>

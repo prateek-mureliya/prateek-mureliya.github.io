@@ -42,9 +42,9 @@ import {
 } from "react-icons/fa6";
 import { GrMysql } from "react-icons/gr";
 import { AUTHOR_NAME, AUTHOR_ROLES } from "@/lib/constants";
-import { TextLoop } from "./UI/text-loop";
+import { TextLoop } from "../UI/text-loop";
 import { calYearExperience } from "@/lib/utils";
-import BadgeContainer from "./UI/badge-container";
+import BadgeContainer from "../UI/badge-container";
 
 const ENVIRONMENT: TBadgeData[] = [
   {
@@ -136,7 +136,7 @@ const TOOLS: TBadgeData[] = [
   },
   {
     icon: FaAws,
-    title: "AWS Cloud",
+    title: "AWS Cloud (ELB, EC2, SQS, RDS, S3 and etc)",
   },
 ];
 
