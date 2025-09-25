@@ -21,8 +21,8 @@ import {
   INSTAGRAM_USERNAME,
   LINKEDIN_URL,
   LINKEDIN_USERNAME,
-  X_URL,
-  X_USERNAME,
+  XTwitter_URL,
+  XTwitter_USERNAME,
 } from "@/lib/constants";
 
 type SocialLinksProps = TFolderContent;
@@ -70,8 +70,8 @@ const FILES: TProcessButton[] = [
     title: "Twitter / X",
     icon: XIcon,
     viewer: XPreview,
-    linkTitle: `@${X_USERNAME}`,
-    link: X_URL,
+    linkTitle: `@${XTwitter_USERNAME}`,
+    link: XTwitter_URL,
   },
 ];
 

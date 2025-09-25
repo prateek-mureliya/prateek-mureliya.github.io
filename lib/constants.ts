@@ -42,8 +42,8 @@ export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_USERNAME}`;
 export const FACEBOOK_USERNAME = "prateek.mureliya";
 export const FACEBOOK_URL = `https://www.facebook.com/${FACEBOOK_USERNAME}`;
 
-export const X_USERNAME = "pkmureliya";
-export const X_URL = `https://x.com/${X_USERNAME}`;
+export const XTwitter_USERNAME = "pkmureliya";
+export const XTwitter_URL = `https://x.com/${XTwitter_USERNAME}`;
 
 // github hosted sites
 export const GITHUB_SITE_URL = "https://prateek-mureliya.github.io";

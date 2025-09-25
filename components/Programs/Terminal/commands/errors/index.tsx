@@ -5,6 +5,9 @@ import InvalidPath from "./invalid-path";
 import FileNotAllow from "./file-not-allow";
 import SingleFolderOnly from "./single-folder-only";
 import PermissionDenied from "./permission-denied";
+import FolderNotAllow from "./folder-not-allow";
+import SingleFileOnly from "./single-file-only";
+import SuggestionAction from "./suggestion-action";
 
 export {
   NotFound,
@@ -14,4 +17,7 @@ export {
   FileNotAllow,
   SingleFolderOnly,
   PermissionDenied,
+  FolderNotAllow,
+  SingleFileOnly,
+  SuggestionAction,
 };

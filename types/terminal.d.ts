@@ -32,8 +32,12 @@ export type THelp = {
   cmd: string;
   description: string;
   options: THelpType;
-  itemType: "NOTHING" | "MULT_FILE_DIR" | "SINGLE_DIR";
+  itemType: "NOTHING" | "MULT_FILE_DIR" | "SINGLE_DIR" | "SINGLE_FILE";
   aliases?: THelpType;
 };
 
 export type TCmdError = BasicOnClick & { cmd: string };
+
+export type TSuggestionAction = BasicOnClick & {
+  command: string;
+};

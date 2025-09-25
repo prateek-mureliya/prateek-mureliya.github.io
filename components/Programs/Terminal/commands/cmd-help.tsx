@@ -14,6 +14,7 @@ export default function CmdHelp({
     NOTHING: "",
     MULT_FILE_DIR: "[Files/Directories]...",
     SINGLE_DIR: "[Directory]",
+    SINGLE_FILE: "[FILE]",
   }[itemType];
 
   return (

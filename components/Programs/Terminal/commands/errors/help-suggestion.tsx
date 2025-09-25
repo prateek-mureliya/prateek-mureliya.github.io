@@ -1,9 +1,7 @@
-import { BasicOnClick } from "@/types/basic-props";
 import SuggestionAction from "./suggestion-action";
+import { TSuggestionAction } from "@/types/terminal";
 
-type SuggestionActionProps = BasicOnClick & {
-  command: string;
-};
+type SuggestionActionProps = TSuggestionAction;
 
 export default function HelpSuggestion({
   command,

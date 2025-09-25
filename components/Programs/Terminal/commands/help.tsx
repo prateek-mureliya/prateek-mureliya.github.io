@@ -14,6 +14,10 @@ const AVAILABLE_COMMANDS = [
     desc: "Show the welcome message",
   },
   {
+    cmd: "cat",
+    desc: "Use to view content of a file",
+  },
+  {
     cmd: "cd",
     desc: "Navigate to a directory",
   },
@@ -41,7 +45,7 @@ export default function Help({}: TCommandBase) {
       <div className='mb-2'>Available commands:</div>
       {AVAILABLE_COMMANDS.map((c) => (
         <div key={c.cmd} className='flex'>
-          <div className='min-w-18'>{c.cmd}</div>
+          <div className='min-w-18 text-red-500'>{c.cmd}</div>
           <div className='min-w-5'>→</div>
           <div className='whitespace-nowrap'>{c.desc}</div>
         </div>

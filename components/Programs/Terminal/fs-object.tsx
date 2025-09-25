@@ -1,23 +1,46 @@
-import { AUTHOR_USER } from "@/lib/constants";
+import { JSX } from "react";
 import { joinPath } from "@/lib/utils";
 import { IconType } from "react-icons/lib";
-import { ImFilePdf } from "react-icons/im";
+import Link from "next/link";
 import {
   FaFacebook,
   FaGithub,
   FaInstagram,
   FaLinkedin,
   FaXTwitter,
+  FaRegUser,
 } from "react-icons/fa6";
+import { ImFilePdf } from "react-icons/im";
+import {
+  AUTHOR_USER,
+  FACEBOOK_URL,
+  GITHUB_URL,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+  XTwitter_URL,
+} from "@/lib/constants";
+
+function CatLink({ href }: { href: string }) {
+  return (
+    <Link
+      href={href}
+      target='_blank'
+      className='hover:underline cursor-pointer'
+    >
+      {href}
+    </Link>
+  );
+}
 
 type TMeta = {
   name: string;
   isProtacted?: boolean;
-  icon?: IconType;
 };
 
 export type TFile = TMeta & {
   type: "file";
+  icon?: IconType;
+  content?: JSX.Element;
 };
 
 export type TFolder = TMeta & {
@@ -62,6 +85,11 @@ const $usr: TFolder = {
   dir: [],
 };
 
+const $about_me_run: TFile = {
+  type: "file",
+  name: "about-me.run",
+  icon: FaRegUser,
+};
 const $resume_pdf: TFile = {
   type: "file",
   name: "resume.pdf",
@@ -71,26 +99,31 @@ const $facebook_connect: TFile = {
   type: "file",
   name: "facebook.connect",
   icon: FaFacebook,
+  content: <CatLink href={FACEBOOK_URL} />,
 };
 const $github_connect: TFile = {
   type: "file",
   name: "github.connect",
   icon: FaGithub,
+  content: <CatLink href={GITHUB_URL} />,
 };
 const $instagram_connect: TFile = {
   type: "file",
   name: "instagram.connect",
   icon: FaInstagram,
+  content: <CatLink href={INSTAGRAM_URL} />,
 };
 const $linkedin_connect: TFile = {
   type: "file",
   name: "linkedin.connect",
   icon: FaLinkedin,
+  content: <CatLink href={LINKEDIN_URL} />,
 };
 const $twitter_connect: TFile = {
   type: "file",
   name: "twitter.connect",
   icon: FaXTwitter,
+  content: <CatLink href={XTwitter_URL} />,
 };
 const $social: TFolder = {
   type: "folder",
@@ -106,7 +139,7 @@ const $social: TFolder = {
 const $portfolio: TFolder = {
   type: "folder",
   name: "portfolio",
-  dir: [$resume_pdf, $social],
+  dir: [$about_me_run, $resume_pdf, $social],
 };
 const $user: TFolder = {
   type: "folder",
@@ -132,6 +165,7 @@ const fsObject: TFileSystem = {
   "/home": $home,
   "/home/#USER#": $user,
   "/home/#USER#/portfolio": $portfolio,
+  "/home/#USER#/portfolio/about-me.run": $about_me_run,
   "/home/#USER#/portfolio/resume.pdf": $resume_pdf,
   "/home/#USER#/portfolio/social": $social,
   "/home/#USER#/portfolio/social/facebook.connect": $facebook_connect,

@@ -10,7 +10,7 @@ import { PiFolderLight, PiFolderLock, PiFile } from "react-icons/pi";
 type ItemProps = BasicProps &
   BasicOnClick & {
     name: string;
-    isProtacted: boolean;
+    isProtacted?: boolean;
     icon?: IconType;
   };
 
@@ -111,22 +111,18 @@ function LsSummaryView({
 }: { content: TFolder } & BasicProps & BasicOnClick) {
   return (
     <>
-      {content.dir.map(({ type, name, icon, isProtacted = false }, index) =>
-        type === "folder" ? (
+      {content.dir.map((props, index) =>
+        props.type === "folder" ? (
           <Folder
             key={index}
-            name={name}
-            icon={icon}
-            isProtacted={isProtacted}
+            {...props}
             className={className}
             onClick={onClick}
           />
         ) : (
           <File
             key={index}
-            name={name}
-            icon={icon}
-            isProtacted={isProtacted}
+            {...props}
             className={className}
             onClick={onClick}
           />
@@ -144,22 +140,18 @@ function LsDetailedView({
   return (
     <table className='w-full'>
       <tbody>
-        {content.dir.map(({ type, name, icon, isProtacted = false }, index) =>
-          type === "folder" ? (
+        {content.dir.map((props, index) =>
+          props.type === "folder" ? (
             <DetailedFolder
               key={index}
-              name={name}
-              icon={icon}
-              isProtacted={isProtacted}
+              {...props}
               className={className}
               onClick={onClick}
             />
           ) : (
             <DetailedFile
               key={index}
-              name={name}
-              icon={icon}
-              isProtacted={isProtacted}
+              {...props}
               className={className}
               onClick={onClick}
             />
