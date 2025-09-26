@@ -14,6 +14,10 @@ const AVAILABLE_COMMANDS = [
     desc: "Show the welcome message",
   },
   {
+    cmd: "open",
+    desc: "Use to open a file",
+  },
+  {
     cmd: "cat",
     desc: "Use to view content of a file",
   },

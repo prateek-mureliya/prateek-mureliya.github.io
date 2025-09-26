@@ -8,6 +8,7 @@ import PermissionDenied from "./permission-denied";
 import FolderNotAllow from "./folder-not-allow";
 import SingleFileOnly from "./single-file-only";
 import SuggestionAction from "./suggestion-action";
+import FileRequired from "./file-required";
 
 export {
   NotFound,
@@ -20,4 +21,5 @@ export {
   FolderNotAllow,
   SingleFileOnly,
   SuggestionAction,
+  FileRequired,
 };

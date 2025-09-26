@@ -4,6 +4,14 @@ import { useState, useEffect, useMemo } from "react";
 import { Skeleton } from "../UI/skeleton";
 import { useLocalStorage } from "@/hook/useLocalStorage";
 import { cn } from "@/lib/utils";
+import {
+  getAMPM,
+  getDate,
+  getDay,
+  getHours,
+  getMinutes,
+  getMonth,
+} from "@/lib/date-utils";
 
 export default function DigitalClock() {
   const [time, setTime] = useState<Date>(new Date());
@@ -22,35 +30,12 @@ export default function DigitalClock() {
   const formattedTime = useMemo<string>(() => {
     if (!mounted) return "";
 
-    const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][
-      time.getDay()
-    ];
-
-    const month = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ][time.getMonth()];
-
-    const date = time.getDate().toString().padStart(2, "0");
-    const hh = time.getHours();
-
-    const hours = is24Hour
-      ? hh.toString().padStart(2, "0")
-      : (hh % 12 || 12).toString().padStart(2, "0");
-
-    const minutes = time.getMinutes().toString().padStart(2, "0");
-
-    const ampm = is24Hour ? "" : hh > 11 ? " PM" : " AM";
+    const day = getDay(time);
+    const month = getMonth(time);
+    const date = getDate(time);
+    const hours = getHours(time, is24Hour);
+    const minutes = getMinutes(time);
+    const ampm = getAMPM(time, is24Hour);
 
     return `${day}, ${date} ${month}, ${hours}:${minutes}${ampm}`;
   }, [time, is24Hour, mounted]);

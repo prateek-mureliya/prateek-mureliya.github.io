@@ -159,10 +159,12 @@ function ActualCommand({
           </>
         ) : (
           <>
-            <span
-              className='border-r border-r-foreground animate-blink select-none'
-              aria-hidden='true'
-            />
+            {isBlink && (
+              <span
+                className='border-r border-r-foreground animate-blink select-none'
+                aria-hidden='true'
+              />
+            )}
             <span className='text-muted-foreground select-none'>
               type your command here
             </span>
@@ -201,7 +203,7 @@ function CommandForm({
   const onFormSubmit = (data: z.infer<typeof formSchema>) => {
     if (onSubmit) {
       onSubmit({
-        actualCommand: data.cmd.trim().toLowerCase(),
+        actualCommand: data.cmd.trim(),
       });
       reset();
       setSuggestionPath(path);

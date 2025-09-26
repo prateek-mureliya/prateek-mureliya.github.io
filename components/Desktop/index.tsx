@@ -1,82 +1,25 @@
 "use client";
-
 import DesktopIcon from "./desktop-icon";
 import { useProcessContext } from "@/contexts/process-manager";
-import { RevealSecrets } from "../Programs";
-import AdobeIcon from "@/public/images/icon/adobe.png";
-import AboutMeIcon from "@/public/images/icon/about-me.png";
-import SecretIcon from "@/public/images/icon/secret.png";
-import SnapBinIcon from "@/public/images/icon/snap-bin.png";
-import ContactUsIcon from "@/public/images/icon/contact-us.png";
-import TerminalIcon from "@/public/images/icon/terminal.png";
-import ResumePreview from "@/public/images/resume-preview.png";
-import { AboutMe, PDFWindow, SnapBin, ContactUs, Terminal } from "../Programs";
-import { TProcessButton, TProcessButtonWindow } from "@/types/process-button";
+import { ABOUT_ME } from "../constants/app-icons/about-me";
+import { TERMINAL } from "../constants/app-icons/terminal";
+import { RESUME_PDF } from "../constants/app-icons/resume-pdf";
+import { CONTACT_US } from "../constants/app-icons/contact-us";
+import { SNAP_BIN } from "../constants/app-icons/snap-bin";
+import { SECRET } from "../constants/app-icons/sceret";
+import {
+  TProcessButton,
+  TProcessButtonDialog,
+  TProcessButtonWindow,
+} from "@/types/process-button";
 
 const desktopButtons: TProcessButton[] = [
-  {
-    type: "window",
-    id: "aboutme",
-    title: "About Me",
-    icon: AboutMeIcon,
-    x: 258,
-    y: 62,
-    width: 1020,
-    height: 515,
-    window: AboutMe,
-  },
-  {
-    type: "window",
-    id: "terminal",
-    title: "Terminal",
-    icon: TerminalIcon,
-    x: 345,
-    y: 85,
-    width: 845,
-    height: 475,
-    window: Terminal,
-  },
-  {
-    type: "window",
-    id: "resume",
-    title: "Resume",
-    icon: ResumePreview,
-    viewer: AdobeIcon,
-    x: 205,
-    y: 155,
-    width: 680,
-    height: 450,
-    link: "media/Prateek_Kumar_SeniorSoftwareEngineer_Resume.pdf",
-    window: PDFWindow,
-  },
-  {
-    type: "window",
-    id: "contactus",
-    title: "Contact Us",
-    icon: ContactUsIcon,
-    x: 450,
-    y: 150,
-    width: 665,
-    height: 450,
-    window: ContactUs,
-  },
-  {
-    type: "window",
-    id: "snapbin",
-    title: "Snap Bin",
-    icon: SnapBinIcon,
-    x: 350,
-    y: 215,
-    width: 665,
-    height: 450,
-    window: SnapBin,
-  },
-  {
-    type: "dialog",
-    id: "secret",
-    title: "Secret",
-    icon: SecretIcon,
-  },
+  ABOUT_ME,
+  TERMINAL,
+  RESUME_PDF,
+  CONTACT_US,
+  SNAP_BIN,
+  SECRET,
 ];
 
 export default function Desktop() {
@@ -97,8 +40,9 @@ export default function Desktop() {
         }) => {
           switch (type) {
             case "dialog":
+              const dialogProps = others as TProcessButtonDialog;
               return (
-                <RevealSecrets
+                <dialogProps.popup
                   key={id}
                   icon={icon}
                   title={title}
@@ -107,7 +51,7 @@ export default function Desktop() {
                 />
               );
             case "window":
-              const props = others as TProcessButtonWindow;
+              const windowProps = others as TProcessButtonWindow;
               return (
                 <DesktopIcon
                   key={id}
@@ -121,7 +65,7 @@ export default function Desktop() {
                       id,
                       icon: viewer || icon,
                       title,
-                      ...props,
+                      ...windowProps,
                     })
                   }
                 />

@@ -8,8 +8,10 @@ import cd, { help as cdHelp } from "./cd";
 import help, { help as helpHelp } from "./help";
 import welcome, { help as welcomeHelp } from "./welcome";
 import cat, { help as catHelp } from "./cat";
+import open, { help as openHelp } from "./open";
 import {
   FileNotAllow,
+  FileRequired,
   FolderNotAllow,
   InvalidOptions,
   InvalidPath,
@@ -22,7 +24,7 @@ import {
 import { getAbsolutePath, getDirectory, isValidPath } from "../fs-object";
 import { isNotEmptyArray } from "@/lib/utils";
 
-const COMMANDS = { pwd, ls, clear, cd, help, welcome, cat };
+const COMMANDS = { pwd, ls, clear, cd, help, welcome, cat, open };
 const HELP = {
   pwd: pwdHelp,
   ls: lsHelp,
@@ -31,6 +33,7 @@ const HELP = {
   welcome: welcomeHelp,
   help: helpHelp,
   cat: catHelp,
+  open: openHelp,
 };
 
 type TCommands = keyof typeof COMMANDS;
@@ -104,6 +107,8 @@ export default function CommandResponse(props: TCommandBase) {
       );
     } else if (itemType === "SINGLE_FILE" && files.length > 1) {
       response = <SingleFileOnly cmd={cmd} onClick={props.onFormSubmit} />;
+    } else if (itemType === "SINGLE_FILE" && files.length == 0) {
+      response = <FileRequired cmd={cmd} onClick={props.onFormSubmit} />;
     } else if (itemType === "SINGLE_DIR" && isNotEmptyArray(files)) {
       response = (
         <FileNotAllow cmd={cmd} files={files} onClick={props.onFormSubmit} />

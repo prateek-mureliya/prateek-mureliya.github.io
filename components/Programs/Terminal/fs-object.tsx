@@ -1,7 +1,4 @@
-import { JSX } from "react";
 import { joinPath } from "@/lib/utils";
-import { IconType } from "react-icons/lib";
-import Link from "next/link";
 import {
   FaFacebook,
   FaGithub,
@@ -9,6 +6,8 @@ import {
   FaLinkedin,
   FaXTwitter,
   FaRegUser,
+  FaLink,
+  FaImage,
 } from "react-icons/fa6";
 import { ImFilePdf } from "react-icons/im";
 import {
@@ -17,69 +16,56 @@ import {
   GITHUB_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
+  OLD_SITE_URL,
   XTwitter_URL,
 } from "@/lib/constants";
-
-function CatLink({ href }: { href: string }) {
-  return (
-    <Link
-      href={href}
-      target='_blank'
-      className='hover:underline cursor-pointer'
-    >
-      {href}
-    </Link>
-  );
-}
-
-type TMeta = {
-  name: string;
-  isProtacted?: boolean;
-};
-
-export type TFile = TMeta & {
-  type: "file";
-  icon?: IconType;
-  content?: JSX.Element;
-};
-
-export type TFolder = TMeta & {
-  type: "folder";
-  dir: TFileSystemData[];
-};
-
-export type TFileSystemData = TFile | TFolder;
-
-type TFileSystem = {
-  [key: string]: TFileSystemData;
-};
+import { TFile, TFileSystemData, TFolder } from "@/types/terminal";
+import { RESUME_PDF } from "../../constants/app-icons/resume-pdf";
+import { RESUME2021_PDF } from "../../constants/app-icons/resume-2021-pdf";
+import { RESUME2016_PDF } from "../../constants/app-icons/resume-2016-pdf";
+import { ABOUT_ME } from "../../constants/app-icons/about-me";
 
 const $bin: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "bin",
   isProtacted: true,
   dir: [],
 };
 const $etc: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "etc",
   isProtacted: true,
   dir: [],
 };
 const $mnt: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "mnt",
   isProtacted: true,
   dir: [],
 };
 const $tmp: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "tmp",
   isProtacted: true,
   dir: [],
 };
 const $usr: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "usr",
   isProtacted: true,
   dir: [],
@@ -87,46 +73,80 @@ const $usr: TFolder = {
 
 const $about_me_run: TFile = {
   type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 14, 11:27 AM GMT+5:30",
   name: "about-me.run",
   icon: FaRegUser,
+  fileType: "process",
+  process: ABOUT_ME,
 };
 const $resume_pdf: TFile = {
   type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 20, 6:26 PM GMT+5:30",
   name: "resume.pdf",
   icon: ImFilePdf,
+  fileType: "process",
+  process: RESUME_PDF,
 };
+
 const $facebook_connect: TFile = {
   type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 4:58 AM GMT+5:30",
   name: "facebook.connect",
   icon: FaFacebook,
-  content: <CatLink href={FACEBOOK_URL} />,
+  fileType: "link",
+  href: FACEBOOK_URL,
 };
 const $github_connect: TFile = {
   type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 4:58 AM GMT+5:30",
   name: "github.connect",
   icon: FaGithub,
-  content: <CatLink href={GITHUB_URL} />,
+  fileType: "link",
+  href: GITHUB_URL,
 };
 const $instagram_connect: TFile = {
   type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 4:58 AM GMT+5:30",
   name: "instagram.connect",
   icon: FaInstagram,
-  content: <CatLink href={INSTAGRAM_URL} />,
+  fileType: "link",
+  href: INSTAGRAM_URL,
 };
 const $linkedin_connect: TFile = {
   type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 4:58 AM GMT+5:30",
   name: "linkedin.connect",
   icon: FaLinkedin,
-  content: <CatLink href={LINKEDIN_URL} />,
+  fileType: "link",
+  href: LINKEDIN_URL,
 };
 const $twitter_connect: TFile = {
   type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 4:58 AM GMT+5:30",
   name: "twitter.connect",
   icon: FaXTwitter,
-  content: <CatLink href={XTwitter_URL} />,
+  fileType: "link",
+  href: XTwitter_URL,
 };
 const $social: TFolder = {
   type: "folder",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 4:58 AM GMT+5:30",
   name: "social",
   dir: [
     $facebook_connect,
@@ -136,28 +156,98 @@ const $social: TFolder = {
     $twitter_connect,
   ],
 };
+
+const $decoration_only_png: TFile = {
+  type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 7:14 PM GMT+5:30",
+  name: "decoration-only.png",
+  icon: FaImage,
+  fileType: "none",
+  isProtacted: true,
+};
+const $old_portfolio_connect: TFile = {
+  type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 7:14 PM GMT+5:30",
+  name: "old-portfolio.connect",
+  icon: FaLink,
+  fileType: "link",
+  href: OLD_SITE_URL,
+};
+const $resume_2021_pdf: TFile = {
+  type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 7:14 PM GMT+5:30",
+  name: "Prateek_Kumar_SoftwareEngineer_2021.pdf",
+  icon: ImFilePdf,
+  fileType: "process",
+  process: RESUME2021_PDF,
+};
+const $resume_2016_pdf: TFile = {
+  type: "file",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 7:14 PM GMT+5:30",
+  name: "Prateek_Kumar_Fresher_2016.pdf",
+  icon: ImFilePdf,
+  fileType: "process",
+  process: RESUME2016_PDF,
+};
+const $snap_bin: TFolder = {
+  type: "folder",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Aug 31, 7:14 PM GMT+5:30",
+  name: "snap-bin",
+  dir: [
+    $decoration_only_png,
+    $resume_2021_pdf,
+    $old_portfolio_connect,
+    $resume_2016_pdf,
+  ],
+};
+
 const $portfolio: TFolder = {
   type: "folder",
+  owner: "mureliya",
+  group: "dev",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "portfolio",
-  dir: [$about_me_run, $resume_pdf, $social],
+  dir: [$about_me_run, $resume_pdf, $social, $snap_bin],
 };
 const $user: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: AUTHOR_USER,
   dir: [$portfolio],
 };
 const $home: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "home",
   dir: [$user],
 };
 
 const $root: TFolder = {
   type: "folder",
+  owner: "root",
+  group: "root",
+  createdAt: "Jul 3, 1:58 PM GMT+5:30",
   name: "root",
   dir: [$bin, $etc, $home, $mnt, $tmp, $usr],
 };
 
+type TFileSystem = {
+  [key: string]: TFileSystemData;
+};
 const fsObject: TFileSystem = {
   "/": $root,
   "/bin": $bin,
@@ -173,6 +263,14 @@ const fsObject: TFileSystem = {
   "/home/#USER#/portfolio/social/instagram.connect": $instagram_connect,
   "/home/#USER#/portfolio/social/linkedin.connect": $linkedin_connect,
   "/home/#USER#/portfolio/social/twitter.connect": $twitter_connect,
+  "/home/#USER#/portfolio/snap-bin": $snap_bin,
+  "/home/#USER#/portfolio/snap-bin/decoration-only.png": $decoration_only_png,
+  "/home/#USER#/portfolio/snap-bin/Prateek_Kumar_SoftwareEngineer_2021.pdf":
+    $resume_2021_pdf,
+  "/home/#USER#/portfolio/snap-bin/old-portfolio.connect":
+    $old_portfolio_connect,
+  "/home/#USER#/portfolio/snap-bin/Prateek_Kumar_Fresher_2016.pdf":
+    $resume_2016_pdf,
   "/mnt": $mnt,
   "/tmp": $tmp,
   "/usr": $usr,

@@ -34,7 +34,7 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
 
   const handleSubmit = ({ actualCommand }: TFromSubmitArgs) => {
     const parts = actualCommand.split(/\s+/);
-    let cmd = parts[0];
+    let cmd = parts[0].toLowerCase();
 
     const optionsSet = new Set<string>();
     const filesSet = new Set<string>();
@@ -54,7 +54,7 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
         showHelp = true;
       } else if (part.startsWith("-")) {
         for (const ch of part.slice(1)) {
-          optionsSet.add("-" + ch);
+          optionsSet.add("-" + ch.toLowerCase());
         }
       } else if (part.match(/\.[a-zA-Z0-9]+$/)) {
         filesSet.add(part);
@@ -98,7 +98,12 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
   return (
     <WindowBody isMaximized={isMaximized} className='p-2 font-mono text-sm'>
       {history.map((values, index) => (
-        <Cursor key={index} {...values} onSubmit={handleSubmit} />
+        <Cursor
+          key={index}
+          {...values}
+          onSubmit={handleSubmit}
+          isLastCmd={index < history.length - 1}
+        />
       ))}
       <Cursor
         path={path}

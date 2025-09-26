@@ -46,8 +46,9 @@ export const XTwitter_USERNAME = "pkmureliya";
 export const XTwitter_URL = `https://x.com/${XTwitter_USERNAME}`;
 
 // github hosted sites
-export const GITHUB_SITE_URL = "https://prateek-mureliya.github.io";
-export const OLD_SITE_URI = "/old-profile-site";
+const GITHUB_SITE_URL = "https://prateek-mureliya.github.io";
+export const OLD_SITE_URI = "/old-portfolio-site";
+export const OLD_SITE_URL = `${GITHUB_SITE_URL}${OLD_SITE_URI}`;
 
 // SECRET easter egg
 export const SECRET = "pass123";

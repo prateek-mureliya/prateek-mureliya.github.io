@@ -1,18 +1,19 @@
 import { useMemo } from "react";
 import { cn, isEmptyArray, isNotEmptyArray } from "@/lib/utils";
-import { TCommandBase, THelp } from "@/types/terminal";
-import { getCurrentDir, getDirectories, getFiles, TFolder } from "../fs-object";
+import {
+  TCommandBase,
+  THelp,
+  TFolder,
+  TFileSystemMeta,
+} from "@/types/terminal";
+import { getCurrentDir, getDirectories, getFiles } from "../fs-object";
 import { BasicOnClick, BasicProps } from "@/types/basic-props";
 import { PermissionDenied } from "./errors";
 import { IconType } from "react-icons/lib";
 import { PiFolderLight, PiFolderLock, PiFile } from "react-icons/pi";
+import { terminalDateFormat } from "@/lib/date-utils";
 
-type ItemProps = BasicProps &
-  BasicOnClick & {
-    name: string;
-    isProtacted?: boolean;
-    icon?: IconType;
-  };
+type ItemProps = BasicProps & BasicOnClick & TFileSystemMeta;
 
 export const help: THelp = {
   cmd: "ls",
@@ -52,10 +53,12 @@ function DetailedFolder(props: ItemProps) {
     <tr>
       <td className='min-w-25 w-25'>drwxr-xr-x</td>
       <td className='min-w-8 w-8'>2</td>
-      <td className='min-w-21 w-21'>mureliya</td>
-      <td className='min-w-11 w-11'>dev</td>
+      <td className='min-w-21 w-21'>{props.owner}</td>
+      <td className='min-w-11 w-11'>{props.group}</td>
       <td className='min-w-14 w-14'>4096</td>
-      <td className='min-w-27 w-27'>Sep 1 21:21</td>
+      <td className='min-w-27 w-27'>
+        {terminalDateFormat(new Date(props.createdAt))}
+      </td>
       <td className='whitespace-nowrap'>
         <Folder {...props} />
       </td>
@@ -69,7 +72,7 @@ function File({
   icon: Icon,
   className,
   onClick,
-}: ItemProps) {
+}: ItemProps & { icon?: IconType }) {
   return (
     <span
       className={cn(
@@ -88,15 +91,17 @@ function File({
     </span>
   );
 }
-function DetailedFile(props: ItemProps) {
+function DetailedFile(props: ItemProps & { icon?: IconType }) {
   return (
     <tr>
       <td className='min-w-25 w-25'>-rw-r--r--</td>
       <td className='min-w-8 w-8'>1</td>
-      <td className='min-w-21 w-21'>mureliya</td>
-      <td className='min-w-11 w-11'>dev</td>
+      <td className='min-w-21 w-21'>{props.owner}</td>
+      <td className='min-w-11 w-11'>{props.group}</td>
       <td className='min-w-14 w-14'>1024</td>
-      <td className='min-w-27 w-27'>Sep 1 21:21</td>
+      <td className='min-w-27 w-27'>
+        {terminalDateFormat(new Date(props.createdAt))}
+      </td>
       <td className='whitespace-nowrap'>
         <File {...props} />
       </td>
@@ -193,6 +198,9 @@ export default function Ls({
   const fileObjects: TFolder = useMemo(
     () => ({
       type: "folder",
+      owner: "root",
+      group: "root",
+      createdAt: "Jul 3, 1:58 PM GMT+5:30",
       name: "dummy",
       dir: getFiles(path, files),
     }),
