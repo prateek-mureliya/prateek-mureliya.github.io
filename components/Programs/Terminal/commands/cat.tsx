@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export const help: THelp = {
   cmd: "cat",
-  description: "stands for concatenate is used to view file",
+  description: "use to view content of a file",
   options: {},
   itemType: "SINGLE_FILE",
 };

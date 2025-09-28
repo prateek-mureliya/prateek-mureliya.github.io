@@ -17,6 +17,7 @@ import {
   DialogTrigger,
 } from "../../UI/dialog";
 import { isMobile } from "react-device-detect";
+import { useLocalStorage } from "@/hook/useLocalStorage";
 
 type IconName = keyof typeof dynamicIconImports;
 type CursorProps = TCommand;
@@ -182,6 +183,8 @@ function CommandForm({
   path: string[];
   onSubmit?: (args: TFromSubmitArgs) => void;
 }) {
+  const [storedHistory] = useLocalStorage<string[]>("storedHistory", []);
+  const [historyIdx, setHistoryIdx] = useState(storedHistory.length);
   const [suggestionPath, setSuggestionPath] = useState(path);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const {
@@ -208,6 +211,7 @@ function CommandForm({
       reset();
       setSuggestionPath(path);
       setShowSuggestions(false);
+      setHistoryIdx(storedHistory.length);
     }
   };
 
@@ -247,6 +251,28 @@ function CommandForm({
     }
   };
 
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // support Ctrl on Windows/Linux and Cmd on macOS
+    const mod = e.ctrlKey || e.metaKey;
+    const key = e.key.toLowerCase();
+    if (mod && key == "l") {
+      e.preventDefault();
+      onFormSubmit({ cmd: "clear" });
+    } else if (key === "arrowup" && historyIdx > 0) {
+      e.preventDefault();
+      setValue(fieldName, storedHistory[historyIdx - 1]);
+      setFocus(fieldName);
+      setHistoryIdx((prev) => prev - 1);
+    } else if (key === "arrowdown" && historyIdx <= storedHistory.length) {
+      e.preventDefault();
+      setValue(fieldName, storedHistory[historyIdx + 1]);
+      setFocus(fieldName);
+      if (historyIdx < storedHistory.length) setHistoryIdx((prev) => prev + 1);
+    } else if (["arrowleft", "arrowright"].includes(key)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onFormSubmit)} className='w-full'>
@@ -257,6 +283,7 @@ function CommandForm({
             autoFocus
             autoComplete='off'
             {...register(fieldName)}
+            onKeyDown={onKeyDown}
             onChange={onChange}
             onFocus={onChange}
           />

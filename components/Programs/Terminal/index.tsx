@@ -1,12 +1,13 @@
 "use client";
 
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { AUTHOR_USER } from "@/lib/constants";
 import { TCommand, TFromSubmitArgs } from "@/types/terminal";
 import WindowBody, { WindowBodyProps } from "../../Window/window-body";
 import Cursor from "./Cursor";
 import CommandResponse from "./commands";
 import { getAbsolutePath } from "./fs-object";
+import { useLocalStorage } from "@/hook/useLocalStorage";
 
 const currentBranch = "main";
 const initPath = ["home", AUTHOR_USER, "portfolio"];
@@ -23,6 +24,8 @@ const initHistory: TCommand = {
 };
 
 export default function Terminal({ isMaximized }: WindowBodyProps) {
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+  const [, setStoredHistory] = useLocalStorage<string[]>("storedHistory", []);
   const [history, sethistory] = useState<TCommand[]>([
     { ...initHistory, time: new Date() },
   ]);
@@ -31,6 +34,10 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
   const addHistory = useCallback((newHistory: TCommand) => {
     sethistory((prev) => [...prev, newHistory]);
   }, []);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [history]);
 
   const handleSubmit = ({ actualCommand }: TFromSubmitArgs) => {
     const parts = actualCommand.split(/\s+/);
@@ -93,6 +100,13 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
       }
       addHistory(newHistory);
     }
+
+    if (actualCommand && actualCommand !== "clear") {
+      setStoredHistory((prev) => [
+        ...prev.slice(Math.max(prev.length - 9, 0)),
+        actualCommand,
+      ]);
+    }
   };
 
   return (
@@ -111,6 +125,8 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
         currentBranch={currentBranch}
         onSubmit={handleSubmit}
       />
+
+      <div ref={bottomRef} className='h-6'></div>
     </WindowBody>
   );
 }

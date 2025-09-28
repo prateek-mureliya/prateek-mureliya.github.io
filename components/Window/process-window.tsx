@@ -15,7 +15,6 @@ import {
   WindowActionMinimize,
 } from "./window-action-button";
 import { cn } from "@/lib/utils";
-import { BorderBeam } from "../UI/border-beam";
 
 type WindowProps = {
   x: number;
@@ -185,15 +184,6 @@ export default function ProcessWindow({
         </WindowHeader>
 
         {children}
-
-        {focus && (
-          <BorderBeam
-            duration={20}
-            size={300}
-            borderWidth={2}
-            className='from-yellow-800 dark:from-yellow-400 via-purple-800 dark:via-purple-400 to-transparent'
-          />
-        )}
       </motion.div>
     </Rnd>
   );

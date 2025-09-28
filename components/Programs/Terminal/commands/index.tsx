@@ -9,6 +9,7 @@ import help, { help as helpHelp } from "./help";
 import welcome, { help as welcomeHelp } from "./welcome";
 import cat, { help as catHelp } from "./cat";
 import open, { help as openHelp } from "./open";
+import history, { help as historyHelp } from "./history";
 import {
   FileNotAllow,
   FileRequired,
@@ -24,7 +25,7 @@ import {
 import { getAbsolutePath, getDirectory, isValidPath } from "../fs-object";
 import { isNotEmptyArray } from "@/lib/utils";
 
-const COMMANDS = { pwd, ls, clear, cd, help, welcome, cat, open };
+const COMMANDS = { pwd, ls, clear, cd, help, welcome, cat, open, history };
 const HELP = {
   pwd: pwdHelp,
   ls: lsHelp,
@@ -34,6 +35,7 @@ const HELP = {
   help: helpHelp,
   cat: catHelp,
   open: openHelp,
+  history: historyHelp,
 };
 
 type TCommands = keyof typeof COMMANDS;

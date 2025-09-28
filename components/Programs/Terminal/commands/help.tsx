@@ -38,8 +38,27 @@ const AVAILABLE_COMMANDS = [
     desc: "Clear the terminal",
   },
   {
+    cmd: "history",
+    desc: "Used to display last 10 commands",
+  },
+  {
     cmd: "help",
     desc: "Show this help menu",
+  },
+];
+
+const KEYBOARD_SHORTCUTS = [
+  {
+    cmd: "Ctrl + l",
+    desc: "Clear the terminal",
+  },
+  {
+    cmd: "Aroow Up",
+    desc: "Move back in history",
+  },
+  {
+    cmd: "Arrow Down",
+    desc: "Move forward in history",
   },
 ];
 
@@ -50,6 +69,15 @@ export default function Help({}: TCommandBase) {
       {AVAILABLE_COMMANDS.map((c) => (
         <div key={c.cmd} className='flex'>
           <div className='min-w-18 text-red-500'>{c.cmd}</div>
+          <div className='min-w-5'>→</div>
+          <div className='whitespace-nowrap'>{c.desc}</div>
+        </div>
+      ))}
+
+      <div className='mt-3 mb-2'>Keyboard Shortcuts:</div>
+      {KEYBOARD_SHORTCUTS.map((c) => (
+        <div key={c.cmd} className='flex'>
+          <div className='min-w-21 text-red-500'>{c.cmd}</div>
           <div className='min-w-5'>→</div>
           <div className='whitespace-nowrap'>{c.desc}</div>
         </div>
