@@ -1,5 +1,6 @@
 import ConsoleMessage from "@/components/console-message";
 import SplashCursor from "@/components/UI/splash-cursor";
+import WelcomeMessage from "@/components/welcome-message";
 import Header from "@/components/Header";
 import Wallpaper from "@/components/Wallpaper";
 import Desktop from "@/components/Desktop";
@@ -16,6 +17,7 @@ export default function Home() {
       <Footer />
       <ProcessManager />
       <SplashCursor />
+      <WelcomeMessage />
     </>
   );
 }
