@@ -7,9 +7,9 @@ export const TERMINAL: TProcessButton = {
   id: "terminal",
   title: "Terminal",
   icon: TerminalIcon,
-  x: 345,
-  y: 85,
-  width: 845,
+  x: 490,
+  y: 90,
+  width: 795,
   height: 475,
   window: Terminal,
 };

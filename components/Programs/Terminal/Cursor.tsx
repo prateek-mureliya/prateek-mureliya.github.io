@@ -18,6 +18,7 @@ import {
 } from "../../UI/dialog";
 import { isMobile } from "react-device-detect";
 import { useLocalStorage } from "@/hook/useLocalStorage";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 type IconName = keyof typeof dynamicIconImports;
 type CursorProps = TCommand;
@@ -355,9 +356,14 @@ function DialogCommandForm({
           <ActualCommand />
         </div>
       </DialogTrigger>
-      <DialogContent hideHeader className='sm:w-128 p-2 font-mono text-sm'>
+      <DialogContent
+        hideHeader
+        className='sm:w-128 p-2 font-mono text-sm'
+        onCloseAutoFocus={(e) => e.preventDefault()}
+      >
         <DialogHeader className='hidden'>
           <DialogTitle>hidden title</DialogTitle>
+          <DialogDescription>hidden desciption</DialogDescription>
         </DialogHeader>
         <CaretContainer path={path} currentBranch={currentBranch} />
         <CommandForm path={path} onSubmit={onFormSubmit} />
