@@ -1,11 +1,38 @@
 "use client";
 import { useState } from "react";
 import BlurText from "./UI/blur-text";
+import { toast } from "sonner";
+import { useLocalStorage } from "@/hook/useLocalStorage";
 
 export default function WelcomeMessage() {
+  const [readInstruction, setReadInstruction] = useLocalStorage(
+    "readInstruction",
+    false
+  );
   const [count, setCount] = useState(0);
   const handleAnimationComplete = () => {
-    setCount((prev) => prev + 1);
+    setTimeout(() => {
+      setCount((prev) => prev + 1);
+    }, 700);
+  };
+
+  const handleToast = () => {
+    toast.warning("Instruction", {
+      description: (
+        <span>
+          Use&nbsp;
+          <pre className='font-bold inline-block bg-white/20 px-1 rounded-sm'>
+            double click
+          </pre>
+          &nbsp; to open any application
+        </span>
+      ),
+      duration: 30000,
+      cancel: {
+        label: "close",
+        onClick: () => setReadInstruction(true),
+      },
+    });
   };
 
   return (
@@ -18,12 +45,12 @@ export default function WelcomeMessage() {
     >
       {count == 0 && (
         <BlurText
-          text='hello 👋'
+          text='Hello 👋'
           delay={150}
           animateBy='words'
           direction='bottom'
           onAnimationComplete={handleAnimationComplete}
-          className='flex justify-center items-center h-screen text-7xl'
+          className='flex justify-center items-center h-dvh text-7xl'
         />
       )}
       {count === 1 && (
@@ -33,7 +60,7 @@ export default function WelcomeMessage() {
           animateBy='words'
           direction='bottom'
           onAnimationComplete={handleAnimationComplete}
-          className='flex justify-center items-center h-screen text-7xl'
+          className='flex justify-center items-center h-dvh text-7xl'
         />
       )}
       {count === 2 && (
@@ -50,6 +77,7 @@ export default function WelcomeMessage() {
             delay={150}
             animateBy='words'
             direction='bottom'
+            onAnimationComplete={readInstruction ? undefined : handleToast}
             className='sm:max-w-250 text-center inline-block mt-2 sm:mt-4 text-xl sm:text-3xl text-secondary-foreground bg-secondary'
           />
         </>

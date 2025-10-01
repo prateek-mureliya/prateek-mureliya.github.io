@@ -76,19 +76,26 @@ export default function ContactForm({ value, isMaximized }: ContactFormProps) {
       form.reset({ name: "", email: "", message: "" });
 
       toast.success("Your email has been sent successfully", {
-        description: `Thanks ${data.name}, We’ll respond as quickly as possible`,
-        duration: 3000,
-        richColors: true,
-        closeButton: true,
+        description: (
+          <span>
+            Thanks <span className='font-bold'>{data.name}</span>, We&#39;ll
+            respond as quickly as possible
+          </span>
+        ),
+        cancel: {
+          label: "close",
+          onClick: () => {},
+        },
       });
     } catch (err) {
       console.error("Error submitting form", err);
 
       toast.error("Unable to send your email", {
         description: `Please ensure all required fields are filled correctly`,
-        duration: 3000,
-        richColors: true,
-        closeButton: true,
+        cancel: {
+          label: "close",
+          onClick: () => {},
+        },
       });
     }
   };

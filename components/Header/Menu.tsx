@@ -76,8 +76,8 @@ export default function Menu() {
               <DialogHeader>
                 <DialogTitle>Are you sure you want to shut down?</DialogTitle>
                 <DialogDescription>
-                  You’re about to be redirected to my GitHub profile! 🚀 Come
-                  explore my work, projects, and passion! 💻✨
+                  You&#39;re about to be redirected to my GitHub profile! 🚀
+                  Come explore my work, projects, and passion! 💻✨
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>

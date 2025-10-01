@@ -38,8 +38,12 @@ const Loader = ({
         if (count >= steps) {
           clearInterval(interval);
           setProgress(100);
-          setDone(true);
-          if (onFinish) onFinish();
+          if (onFinish) {
+            setTimeout(() => {
+              setDone(true);
+              onFinish();
+            }, 300);
+          }
         }
       }, intervalTime);
 
