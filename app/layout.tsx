@@ -4,6 +4,7 @@ import { ProcessContextProvider } from "@/contexts/process-manager";
 import "./globals.css";
 import { Toaster } from "@/components/UI/sonner";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/constants";
+import { HackedContextProvider } from "@/contexts/hacked";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -24,7 +25,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ProcessContextProvider>{children}</ProcessContextProvider>
+          <ProcessContextProvider>
+            <HackedContextProvider>{children}</HackedContextProvider>
+          </ProcessContextProvider>
+
           <Toaster
             position={"top-center"}
             duration={10000}

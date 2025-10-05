@@ -25,6 +25,7 @@ import {
 import { Input } from "../../UI/input";
 import HackedSecrets from "./hacked-secrets";
 import { SECRET } from "@/lib/constants";
+import { useHackedContext } from "@/contexts/hacked";
 
 const formSchema = z.object({
   secret: z
@@ -38,7 +39,8 @@ const formSchema = z.object({
 });
 
 export default function RevealSecrets(props: DesktopIconProps) {
-  const [ishacked, setIshacked] = useState(false);
+  const { setIsHacked } = useHackedContext();
+  const [isSuccess, setIsSuccess] = useState(false);
   const [open, setOpen] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,7 +51,8 @@ export default function RevealSecrets(props: DesktopIconProps) {
 
   const onSubmit = () => {
     closeDialog(); // close dialog
-    setIshacked(true); // show success message to hacker
+    setIsSuccess(true); // show success message to hacker
+    setIsHacked(true); // mark is hacked true
   };
 
   const closeDialog = () => {
@@ -97,8 +100,8 @@ export default function RevealSecrets(props: DesktopIconProps) {
           </Form>
         </DialogContent>
       </Dialog>
-      {ishacked && (
-        <HackedSecrets defaultOpen onOpenChange={() => setIshacked(false)} />
+      {isSuccess && (
+        <HackedSecrets defaultOpen onOpenChange={() => setIsSuccess(false)} />
       )}
     </>
   );

@@ -42,7 +42,9 @@ type ProcessContextType = {
   handleHome: () => void;
 };
 
-const ProcessContext = createContext<ProcessContextType | undefined>(undefined);
+const ProcessContext = createContext<ProcessContextType>(
+  {} as ProcessContextType
+);
 
 // Actions
 type ProcessOpen = { type: "open"; payload: TProcess };
