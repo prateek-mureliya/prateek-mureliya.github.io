@@ -3,8 +3,11 @@ import { useState } from "react";
 import BlurText from "./UI/blur-text";
 import { toast } from "sonner";
 import { useLocalStorage } from "@/hook/useLocalStorage";
+import { useProcessContext } from "@/contexts/process-manager";
+import { ABOUT_ME } from "./constants/app-icons/about-me";
 
 export default function WelcomeMessage() {
+  const { handleOpen } = useProcessContext();
   const [readInstruction, setReadInstruction] = useLocalStorage(
     "readInstruction",
     false
@@ -14,6 +17,11 @@ export default function WelcomeMessage() {
     setTimeout(() => {
       setCount((prev) => prev + 1);
     }, 700);
+  };
+
+  const handleToastClose = () => {
+    setReadInstruction(true);
+    if (ABOUT_ME.type === "window") handleOpen({ ...ABOUT_ME });
   };
 
   const handleToast = () => {
@@ -28,9 +36,10 @@ export default function WelcomeMessage() {
         </span>
       ),
       duration: 30000,
+      onDismiss: handleToastClose,
       cancel: {
         label: "close",
-        onClick: () => setReadInstruction(true),
+        onClick: handleToastClose,
       },
     });
   };
