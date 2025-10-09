@@ -2,6 +2,24 @@
 export const SITE_TITLE = "Prateek's Portfolio";
 export const SITE_DESCRIPTION =
   "Explore Prateek's interactive online portfolio designed like a modern web OS. Discover projects, skills, and experience through a beautiful, desktop-style interface. Fast, intuitive, and uniquely personal.";
+export const SITE_KEYWORDS = [
+  "portfolio",
+  "desktop style portfolio",
+  "desktop UI",
+  "software engineer",
+  "developer portfolio",
+  "creative portfolio",
+  "modern web design",
+  "personal website",
+  "digital portfolio",
+  "developer showcase",
+  "interactive portfolio",
+  "web developer",
+  "minimal design",
+  "creative showcase",
+  "operating system style",
+  "draggable windows",
+];
 
 export const JOINING_DATE = "2018-12-05";
 
@@ -46,7 +64,7 @@ export const XTwitter_USERNAME = "pkmureliya";
 export const XTwitter_URL = `https://x.com/${XTwitter_USERNAME}`;
 
 // github hosted sites
-const GITHUB_SITE_URL = "https://prateek-mureliya.github.io";
+export const GITHUB_SITE_URL = "https://prateek-mureliya.github.io";
 export const OLD_SITE_URI = "/old-portfolio-site";
 export const OLD_SITE_URL = `${GITHUB_SITE_URL}${OLD_SITE_URI}`;
 

@@ -3,12 +3,20 @@ import { ThemeProvider } from "@/contexts/theme-provider";
 import { ProcessContextProvider } from "@/contexts/process-manager";
 import "./globals.css";
 import { Toaster } from "@/components/UI/sonner";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/constants";
+import {
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  SITE_KEYWORDS,
+  GITHUB_SITE_URL,
+} from "@/lib/constants";
 import { HackedContextProvider } from "@/contexts/hacked";
+import { URL } from "node:url";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  metadataBase: new URL(GITHUB_SITE_URL),
 };
 
 export default function RootLayout({
