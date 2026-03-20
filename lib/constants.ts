@@ -1,7 +1,7 @@
 // Portfolio meta data
-export const SITE_TITLE = "Prateek's Portfolio";
+export const SITE_TITLE = "Prateek Kumar | Interactive Web OS Portfolio";
 export const SITE_DESCRIPTION =
-  "Explore Prateek's interactive online portfolio designed like a modern web OS. Discover projects, skills, and experience through a beautiful, desktop-style interface. Fast, intuitive, and uniquely personal.";
+  "Explore Prateek Kumar's online portfolio — a web OS-style site to view his projects, skills, and experience in a clean, fast, and easy interface.";
 export const SITE_KEYWORDS = [
   "portfolio",
   "desktop style portfolio",
