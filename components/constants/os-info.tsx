@@ -1,4 +1,4 @@
-import { TBadgeData, TBaseTreeData } from "@/types/tree";
+import { TBadgeData, TBaseTreeData } from '@/types/tree';
 import {
   BadgeCheck,
   CalendarDays,
@@ -16,7 +16,7 @@ import {
   PencilRuler,
   TrendingUp,
   Volume2,
-} from "lucide-react";
+} from 'lucide-react';
 import {
   SiApachekafka,
   SiDocker,
@@ -31,211 +31,201 @@ import {
   SiRedis,
   SiSpringboot,
   SiTypescript,
-} from "react-icons/si";
-import {
-  FaArrowsRotate,
-  FaArrowsSplitUpAndLeft,
-  FaAws,
-  FaGitAlt,
-  FaJava,
-  FaPython,
-} from "react-icons/fa6";
-import { GrMysql } from "react-icons/gr";
-import { AUTHOR_NAME, AUTHOR_ROLES } from "@/lib/constants";
-import { TextLoop } from "../UI/text-loop";
-import { calYearExperience } from "@/lib/utils";
-import BadgeContainer from "../UI/badge-container";
+} from 'react-icons/si';
+import { FaArrowsRotate, FaArrowsSplitUpAndLeft, FaAws, FaGitAlt, FaJava, FaPython } from 'react-icons/fa6';
+import { GrMysql } from 'react-icons/gr';
+import { AUTHOR_NAME, AUTHOR_ROLES } from '@/lib/constants';
+import { TextLoop } from '../UI/text-loop';
+import { calYearExperience } from '@/lib/utils';
+import BadgeContainer from '../UI/badge-container';
 
 const ENVIRONMENT: TBadgeData[] = [
   {
     icon: FaArrowsSplitUpAndLeft,
-    title: "Agile",
+    title: 'Agile',
   },
   {
     icon: FaArrowsRotate,
-    title: "Scrum",
+    title: 'Scrum',
   },
 ];
 const BACKEND: TBadgeData[] = [
   {
     icon: FaJava,
-    title: "Java",
+    title: 'Java',
   },
   {
     icon: FaPython,
-    title: "Python",
+    title: 'Python',
   },
   {
     icon: SiSpringboot,
-    title: "SpringBoot",
+    title: 'SpringBoot',
   },
   {
     icon: SiFlask,
-    title: "Flask",
+    title: 'Flask',
   },
   {
     icon: SiFastapi,
-    title: "FastAPI",
+    title: 'FastAPI',
   },
 ];
 
 const FRONTEND: TBadgeData[] = [
   {
     icon: SiJavascript,
-    title: "Javascript",
+    title: 'Javascript',
   },
   {
     icon: SiTypescript,
-    title: "Typescript",
+    title: 'Typescript',
   },
   {
     icon: SiReact,
-    title: "React.js",
+    title: 'React.js',
   },
   {
     icon: SiNextdotjs,
-    title: "Next.js",
+    title: 'Next.js',
   },
 ];
 
 const DATABASE: TBadgeData[] = [
   {
     icon: GrMysql,
-    title: "MySql",
+    title: 'MySql',
   },
   {
     icon: SiMongodb,
-    title: "MongoDB",
+    title: 'MongoDB',
   },
   {
     icon: SiRedis,
-    title: "Redis",
+    title: 'Redis',
   },
   {
     icon: SiApachekafka,
-    title: "Kafka",
+    title: 'Kafka',
   },
   {
     icon: SiElasticsearch,
-    title: "Elasticsearch",
+    title: 'Elasticsearch',
   },
 ];
 
 const TOOLS: TBadgeData[] = [
   {
     icon: FaGitAlt,
-    title: "Git",
+    title: 'Git',
   },
   {
     icon: SiDocker,
-    title: "Docker",
+    title: 'Docker',
   },
   {
     icon: SiKubernetes,
-    title: "Kubernetes",
+    title: 'Kubernetes',
   },
   {
     icon: FaAws,
-    title: "AWS Cloud (ELB, EC2, SQS, RDS, S3 and etc)",
+    title: 'AWS Cloud (ELB, EC2, SQS, RDS, S3 and etc)',
   },
 ];
 
 export const OS: TBaseTreeData = {
   icon: Laptop,
-  title: "OS",
+  title: 'OS',
   details: <OSName />,
 };
 
 export const Iam: TBaseTreeData = {
   icon: ContactRound,
-  title: "Iam",
-  details: <TextLoop words={AUTHOR_ROLES} className='text-muted-foreground' />,
+  title: 'Iam',
+  details: <TextLoop words={AUTHOR_ROLES} className="text-muted-foreground" />,
 };
 
 export const Uptime: TBaseTreeData = {
   icon: CalendarDays,
-  title: "Uptime",
+  title: 'Uptime',
   details: `${calYearExperience()} Years (Continuous Integration)`,
 };
 
 export const Status: TBaseTreeData = {
   icon: TrendingUp,
-  title: "Status",
-  details: "Actively Building Cool Stuff",
+  title: 'Status',
+  details: 'Actively Building Cool Stuff',
 };
 
 export const Environment: TBaseTreeData = {
   icon: Container,
-  title: "Environment",
+  title: 'Environment',
   details: <BadgeContainer data={ENVIRONMENT} />,
 };
 
 export const Backend: TBaseTreeData = {
   icon: Cog,
-  title: "Backend",
+  title: 'Backend',
   details: <BadgeContainer data={BACKEND} />,
 };
 
 export const Frontend: TBaseTreeData = {
   icon: Palette,
-  title: "Frontend",
+  title: 'Frontend',
   details: <BadgeContainer data={FRONTEND} />,
 };
 
 export const Database: TBaseTreeData = {
   icon: DatabaseIcon,
-  title: "Database",
+  title: 'Database',
   details: <BadgeContainer data={DATABASE} />,
 };
 
 export const Tool: TBaseTreeData = {
   icon: PencilRuler,
-  title: "Tool",
+  title: 'Tool',
   details: <BadgeContainer data={TOOLS} />,
 };
 
 export const Resolution: TBaseTreeData = {
   icon: Leaf,
-  title: "Resolution",
-  details: "Focused | Punctual | Self-Motivated",
+  title: 'Resolution',
+  details: 'Focused | Punctual | Self-Motivated',
 };
 
 export const CPU: TBaseTreeData = {
   icon: Cpu,
-  title: "CPU",
-  details: "Multithreaded Thinking @ 5.0 GHz",
+  title: 'CPU',
+  details: 'Multithreaded Thinking @ 5.0 GHz',
 };
 
 export const GPU: TBaseTreeData = {
   icon: Gpu,
-  title: "GPU",
-  details: "Creative Vision Engine",
+  title: 'GPU',
+  details: 'Creative Vision Engine',
 };
 export const Memory: TBaseTreeData = {
   icon: MemoryStick,
-  title: "Memory",
-  details: "16GB + Unlimited Curiosity",
+  title: 'Memory',
+  details: '16GB + Unlimited Curiosity',
 };
 export const Disk: TBaseTreeData = {
   icon: HardDrive,
-  title: "Disk",
-  details: "1TB of Experience (SSD - Solid Skill Drive)",
+  title: 'Disk',
+  details: '1TB of Experience (SSD - Solid Skill Drive)',
 };
 
 function OSName() {
   const handlePlay = () => {
-    const audio = new Audio("/media/Prateek_Kumar_Voice.mp3");
+    const audio = new Audio('/media/Prateek_Kumar_Voice.mp3');
     audio.play();
   };
 
   return (
     <span>
       {AUTHOR_NAME}
-      <BadgeCheck className='inline size-4 ml-1 text-blue-800 dark:text-blue-400' />
-      <Volume2
-        onClick={handlePlay}
-        className='inline size-4 ml-1 text-muted-foreground hover:text-foreground'
-      />
+      <BadgeCheck className="inline size-4 ml-1 text-blue-800 dark:text-blue-400" />
+      <Volume2 onClick={handlePlay} className="inline size-4 ml-1 text-muted-foreground hover:text-foreground" />
     </span>
   );
 }

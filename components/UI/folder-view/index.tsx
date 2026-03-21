@@ -1,23 +1,18 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { SidebarProvider } from "../sidebar";
-import { Tabs } from "../tabs";
-import WindowBody, { WindowBodyProps } from "../../Window/window-body";
-import { TSidebarMenu } from "@/types/folder-view";
-import FolderSidebar from "./folder-sidebar";
+import { useEffect, useRef, useState } from 'react';
+import { SidebarProvider } from '../sidebar';
+import { Tabs } from '../tabs';
+import WindowBody, { WindowBodyProps } from '../../Window/window-body';
+import { TSidebarMenu } from '@/types/folder-view';
+import FolderSidebar from './folder-sidebar';
 
 type FolderViewProps = {
   isMaximized?: boolean;
 } & TSidebarMenu &
   WindowBodyProps;
 
-export default function FolderView({
-  activeTab,
-  defaultOpen = false,
-  menuOptions,
-  isMaximized,
-}: FolderViewProps) {
+export default function FolderView({ activeTab, defaultOpen = false, menuOptions, isMaximized }: FolderViewProps) {
   const [height, setHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 

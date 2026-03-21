@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import HomeIcon from "@/public/images/icon/home.png";
-import { HEADER_FOOTER_Z_INDEX } from "@/lib/constants";
-import { useProcessContext } from "@/contexts/process-manager";
-import { LimelightNav } from "../UI/lime-light-nav";
+import HomeIcon from '@/public/images/icon/home.png';
+import { HEADER_FOOTER_Z_INDEX } from '@/lib/constants';
+import { useProcessContext } from '@/contexts/process-manager';
+import { LimelightNav } from '../UI/lime-light-nav';
 
 export default function Footer() {
   const { processes, handleHome, handleOpen } = useProcessContext();
@@ -15,9 +15,9 @@ export default function Footer() {
     >
       <LimelightNav
         home={{
-          id: "Home",
+          id: 'Home',
           icon: HomeIcon,
-          label: "Desktop",
+          label: 'Desktop',
           focus: false,
           onClick: handleHome,
         }}

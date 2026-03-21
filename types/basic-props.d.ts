@@ -1,8 +1,8 @@
 export type BasicProps = {
-    className?: string;
-    children?: React.ReactNode;
+  className?: string;
+  children?: React.ReactNode;
 };
 
 export type BasicOnClick = {
-    onClick?: (name: string) => void;
+  onClick?: (name: string) => void;
 };

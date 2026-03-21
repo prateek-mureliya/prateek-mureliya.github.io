@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { StaticImageData } from "next/image";
-import { createContext, JSX, ReactNode, useContext, useReducer } from "react";
-import { isMobile } from "react-device-detect";
-import { WindowBodyProps } from "@/components/Window/window-body";
+import { StaticImageData } from 'next/image';
+import { createContext, JSX, ReactNode, useContext, useReducer } from 'react';
+import { isMobile } from 'react-device-detect';
+import { WindowBodyProps } from '@/components/Window/window-body';
 
 enum ProcessState {
   open,
@@ -42,19 +42,17 @@ type ProcessContextType = {
   handleHome: () => void;
 };
 
-const ProcessContext = createContext<ProcessContextType>(
-  {} as ProcessContextType
-);
+const ProcessContext = createContext<ProcessContextType>({} as ProcessContextType);
 
 // Actions
-type ProcessOpen = { type: "open"; payload: TProcess };
+type ProcessOpen = { type: 'open'; payload: TProcess };
 type ProcessOption = {
-  type: "close" | "minimized" | "maximized";
+  type: 'close' | 'minimized' | 'maximized';
   id: string;
 };
-type ProcessHome = { type: "home" };
+type ProcessHome = { type: 'home' };
 type ProcessFocus = {
-  type: "focus";
+  type: 'focus';
   id: string;
   isFocus: boolean;
 };
@@ -63,10 +61,8 @@ type ProcessActions = ProcessOpen | ProcessOption | ProcessHome | ProcessFocus;
 const BASE_Z_INDEX = 10;
 
 const normalizeZIndex = (processes: TProcessProps[], pid: string) => {
-  let focusId = "";
-  const sortedProcesses = [...processes]
-    .filter((p) => p.id !== pid)
-    .sort((a, b) => a.style.zIndex - b.style.zIndex);
+  let focusId = '';
+  const sortedProcesses = [...processes].filter((p) => p.id !== pid).sort((a, b) => a.style.zIndex - b.style.zIndex);
 
   const processesToZ: { [key: string]: number } = {};
   sortedProcesses.forEach((p, i) => {
@@ -132,10 +128,7 @@ const closeProcess = (processes: TProcessProps[], pid: string) => {
       ...p,
       focus: p.id === focusId,
       style: {
-        zIndex:
-          p.id === pid
-            ? BASE_Z_INDEX + processes_length - 1
-            : processesToZ[p.id],
+        zIndex: p.id === pid ? BASE_Z_INDEX + processes_length - 1 : processesToZ[p.id],
       },
     }));
 };
@@ -160,10 +153,7 @@ const maximizedProcess = (processes: TProcessProps[], pid: string) => {
     p.id === pid
       ? {
           ...p,
-          state:
-            p.state === ProcessState.maximized
-              ? ProcessState.open
-              : ProcessState.maximized,
+          state: p.state === ProcessState.maximized ? ProcessState.open : ProcessState.maximized,
           isMinimized: false,
           isMaximized: p.state !== ProcessState.maximized,
           style: {
@@ -175,11 +165,7 @@ const maximizedProcess = (processes: TProcessProps[], pid: string) => {
   );
 };
 
-const bringToFront = (
-  processes: TProcessProps[],
-  pid: string,
-  isFocus: boolean
-) => {
+const bringToFront = (processes: TProcessProps[], pid: string, isFocus: boolean) => {
   if (isFocus) return processes;
 
   const { processesToZ } = normalizeZIndex(processes, pid);
@@ -187,18 +173,16 @@ const bringToFront = (
     ...p,
     focus: p.id === pid,
     style: {
-      zIndex:
-        p.id === pid ? BASE_Z_INDEX + processes.length - 1 : processesToZ[p.id],
+      zIndex: p.id === pid ? BASE_Z_INDEX + processes.length - 1 : processesToZ[p.id],
     },
   }));
 };
 
 const home = (processes: TProcessProps[]) => {
   if (processes.every((p) => p.isMinimized)) {
-    const focusId = processes.reduce(
-      (max, obj) => (obj.style.zIndex > max.style.zIndex ? obj : max),
-      { style: { zIndex: 0 } } as TProcessProps
-    ).id;
+    const focusId = processes.reduce((max, obj) => (obj.style.zIndex > max.style.zIndex ? obj : max), {
+      style: { zIndex: 0 },
+    } as TProcessProps).id;
 
     return processes.map((p) => ({
       ...p,
@@ -222,28 +206,24 @@ const home = (processes: TProcessProps[]) => {
 
 const processReducer = (prev: TProcessProps[], action: ProcessActions) => {
   switch (action.type) {
-    case "open":
+    case 'open':
       return openProcess(prev, action.payload);
-    case "close":
+    case 'close':
       return closeProcess(prev, action.id);
-    case "minimized":
+    case 'minimized':
       return minimizedProcess(prev, action.id);
-    case "maximized":
+    case 'maximized':
       return maximizedProcess(prev, action.id);
-    case "focus":
+    case 'focus':
       return bringToFront(prev, action.id, action.isFocus);
-    case "home":
+    case 'home':
       return home(prev);
     default:
       return prev;
   }
 };
 
-export const ProcessContextProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+export const ProcessContextProvider = ({ children }: { children: ReactNode }) => {
   const [processes, dispatch] = useReducer(processReducer, []);
 
   return (
@@ -251,33 +231,33 @@ export const ProcessContextProvider = ({
       value={{
         processes,
         handleOpen: (payload: TProcess) => {
-          dispatch({ type: "open", payload });
+          dispatch({ type: 'open', payload });
         },
         handleClose: (id: string) => {
-          dispatch({ type: "close", id });
+          dispatch({ type: 'close', id });
         },
         handleMinimized: (id: string) => {
           dispatch({
-            type: "minimized",
+            type: 'minimized',
             id,
           });
         },
         handleMaximized: (id: string) => {
           if (!isMobile) {
             dispatch({
-              type: "maximized",
+              type: 'maximized',
               id,
             });
           }
         },
         handleHome: () => {
           dispatch({
-            type: "home",
+            type: 'home',
           });
         },
         handleFocus: (id: string, isFocus: boolean) => {
           dispatch({
-            type: "focus",
+            type: 'focus',
             id,
             isFocus,
           });
@@ -294,9 +274,7 @@ export const useProcessContext = () => {
   const context = useContext(ProcessContext);
 
   if (!context) {
-    throw new Error(
-      "useProcessContext must be used within a ProcessContextProvider"
-    );
+    throw new Error('useProcessContext must be used within a ProcessContextProvider');
   }
 
   return context;

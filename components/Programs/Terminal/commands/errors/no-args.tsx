@@ -1,6 +1,6 @@
-import { TCmdError } from "@/types/terminal";
-import HelpSuggestion from "./help-suggestion";
-import BasicError from "./basic-error";
+import { TCmdError } from '@/types/terminal';
+import HelpSuggestion from './help-suggestion';
+import BasicError from './basic-error';
 
 type NoArgsProps = TCmdError;
 

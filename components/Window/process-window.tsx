@@ -1,20 +1,18 @@
-"use client";
+'use client';
 
-import { Rnd } from "react-rnd";
-import { motion } from "motion/react";
-import { CSSProperties, useRef, useState } from "react";
-import WindowHeader from "./window-header";
-import WindowHeaderTitle, {
-  WindowHeaderTitleProps,
-} from "./window-header-title";
-import WindowActionBar from "./window-action-bar";
+import { Rnd } from 'react-rnd';
+import { motion } from 'motion/react';
+import { CSSProperties, useRef, useState } from 'react';
+import WindowHeader from './window-header';
+import WindowHeaderTitle, { WindowHeaderTitleProps } from './window-header-title';
+import WindowActionBar from './window-action-bar';
 import {
   WindowActionClose,
   WindowActionExternalLink,
   WindowActionMaximize,
   WindowActionMinimize,
-} from "./window-action-button";
-import { cn } from "@/lib/utils";
+} from './window-action-button';
+import { cn } from '@/lib/utils';
 
 type WindowProps = {
   x: number;
@@ -45,7 +43,7 @@ const windowVariants = {
   },
   minimized: {
     opacity: 0,
-    y: "100dvh",
+    y: '100dvh',
     scale: 0.5,
   },
   exit: {
@@ -88,10 +86,7 @@ export default function ProcessWindow({
     }
   };
 
-  const handleDoubleClick = (
-    e: React.MouseEvent<HTMLDivElement>,
-    handler: () => void
-  ) => {
+  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>, handler: () => void) => {
     e.stopPropagation();
     if (clickTimeout.current) {
       clearTimeout(clickTimeout.current);
@@ -100,10 +95,7 @@ export default function ProcessWindow({
     handler();
   };
 
-  const handleClick = (
-    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
-    handler: () => void
-  ) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>, handler: () => void) => {
     e.stopPropagation();
     handler();
   };
@@ -114,8 +106,8 @@ export default function ProcessWindow({
       size={
         isMaximized
           ? {
-              width: "100dvw",
-              height: "100dvh",
+              width: '100dvw',
+              height: '100dvh',
             }
           : size
       }
@@ -130,57 +122,45 @@ export default function ProcessWindow({
       }}
       enableResizing={!isMaximized}
       disableDragging={isMaximized}
-      dragHandleClassName='window-header'
-      cancel='.group'
-      className={cn(isMaximized ? "pt-11" : "")}
+      dragHandleClassName="window-header"
+      cancel=".group"
+      className={cn(isMaximized ? 'pt-11' : '')}
       style={
         {
           zIndex: style.zIndex,
-          display: isAnimationComplete && isMinimized ? "none" : "block",
+          display: isAnimationComplete && isMinimized ? 'none' : 'block',
         } as CSSProperties
       }
     >
       <motion.div
         variants={windowVariants}
-        initial='close'
-        animate={isMinimized ? "minimized" : "open"}
+        initial="close"
+        animate={isMinimized ? 'minimized' : 'open'}
         transition={{ duration: 0.3 }}
-        exit='exit'
+        exit="exit"
         className={cn(
-          "relative w-full h-full rounded-xl border border-border bg-background overflow-hidden flex flex-col"
+          'relative w-full h-full rounded-xl border border-border bg-background overflow-hidden flex flex-col'
         )}
         onAnimationComplete={(definition) => {
-          if (definition === "minimized") setIsAnimationComplete(true);
+          if (definition === 'minimized') setIsAnimationComplete(true);
           else setIsAnimationComplete(false);
         }}
         onClick={handleFocusClick}
         onDoubleClick={(e) => handleDoubleClick(e, () => {})}
       >
         <WindowHeader
-          className={cn("window-header", focus ? "bg-background" : "")}
+          className={cn('window-header', focus ? 'bg-background' : '')}
           onDoubleClick={(e) => handleDoubleClick(e, onMaximizeRestore)}
         >
-          <WindowActionBar className='group'>
+          <WindowActionBar className="group">
             <WindowActionClose onClick={(e) => handleClick(e, onClose)} />
             <WindowActionMinimize onClick={(e) => handleClick(e, onMinimize)} />
-            {showMaximized && (
-              <WindowActionMaximize
-                onClick={(e) => handleClick(e, onMaximizeRestore)}
-              />
-            )}
+            {showMaximized && <WindowActionMaximize onClick={(e) => handleClick(e, onMaximizeRestore)} />}
           </WindowActionBar>
 
-          <WindowHeaderTitle
-            title={title}
-            icon={icon}
-            className='col-start-2 justify-self-center'
-          />
+          <WindowHeaderTitle title={title} icon={icon} className="col-start-2 justify-self-center" />
 
-          {link && (
-            <WindowActionExternalLink linkURL={link}>
-              View
-            </WindowActionExternalLink>
-          )}
+          {link && <WindowActionExternalLink linkURL={link}>View</WindowActionExternalLink>}
         </WindowHeader>
 
         {children}

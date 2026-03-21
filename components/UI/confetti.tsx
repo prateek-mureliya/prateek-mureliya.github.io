@@ -1,8 +1,8 @@
-import confetti from "canvas-confetti";
+import confetti from 'canvas-confetti';
 
 export const handleSideCannons = (duration = 1) => {
   const end = Date.now() + duration * 1000;
-  const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
+  const colors = ['#a786ff', '#fd8bbc', '#eca184', '#f8deb1'];
 
   const frame = () => {
     if (Date.now() > end) return;
@@ -37,8 +37,7 @@ export const handleFireworks = () => {
   const animationEnd = Date.now() + duration;
   const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-  const randomInRange = (min: number, max: number) =>
-    Math.random() * (max - min) + min;
+  const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
   const interval = window.setInterval(() => {
     const timeLeft = animationEnd - Date.now();

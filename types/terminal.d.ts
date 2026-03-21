@@ -1,5 +1,5 @@
-import { IconType } from "react-icons/lib";
-import { BasicOnClick } from "./basic-props";
+import { IconType } from 'react-icons/lib';
+import { BasicOnClick } from './basic-props';
 
 // file system
 export type TFileSystemMeta = {
@@ -10,18 +10,18 @@ export type TFileSystemMeta = {
   isProtacted?: boolean;
 };
 
-type TFileTypeProcess = { fileType: "process"; process: TProcessButton };
-type TFileTypeLink = { fileType: "link"; href: string };
-type TFileTypeNone = { fileType: "none" };
+type TFileTypeProcess = { fileType: 'process'; process: TProcessButton };
+type TFileTypeLink = { fileType: 'link'; href: string };
+type TFileTypeNone = { fileType: 'none' };
 type TFileType = TFileTypeProcess | TFileTypeLink | TFileTypeNone;
 export type TFile = TFileSystemMeta &
   TFileType & {
-    type: "file";
+    type: 'file';
     icon?: IconType;
   };
 
 export type TFolder = TFileSystemMeta & {
-  type: "folder";
+  type: 'folder';
   dir: TFileSystemData[];
 };
 
@@ -47,9 +47,7 @@ export type TCommand = {
   currentBranch: string;
   time?: Date;
   actualCommand?: string;
-  response?: React.MemoExoticComponent<
-    (props: TCommandBase) => React.JSX.Element | undefined
-  >;
+  response?: React.MemoExoticComponent<(props: TCommandBase) => React.JSX.Element | undefined>;
   onSubmit?: (args: TFromSubmitArgs) => void;
 } & TCommandBase;
 
@@ -62,7 +60,7 @@ export type THelp = {
   cmd: string;
   description: string;
   options: THelpType;
-  itemType: "NOTHING" | "MULT_FILE_DIR" | "SINGLE_DIR" | "SINGLE_FILE";
+  itemType: 'NOTHING' | 'MULT_FILE_DIR' | 'SINGLE_DIR' | 'SINGLE_FILE';
   aliases?: THelpType;
 };
 

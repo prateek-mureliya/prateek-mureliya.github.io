@@ -1,21 +1,14 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useMemo } from "react";
-import { Skeleton } from "../UI/skeleton";
-import { useLocalStorage } from "@/hook/useLocalStorage";
-import { cn } from "@/lib/utils";
-import {
-  getAMPM,
-  getDate,
-  getDay,
-  getHours,
-  getMinutes,
-  getMonth,
-} from "@/lib/date-utils";
+import { useState, useEffect, useMemo } from 'react';
+import { Skeleton } from '../UI/skeleton';
+import { useLocalStorage } from '@/hook/useLocalStorage';
+import { cn } from '@/lib/utils';
+import { getAMPM, getDate, getDay, getHours, getMinutes, getMonth } from '@/lib/date-utils';
 
 export default function DigitalClock() {
   const [time, setTime] = useState<Date>(new Date());
-  const [is24Hour, setIs24Hour] = useLocalStorage("is24Hour", false);
+  const [is24Hour, setIs24Hour] = useLocalStorage('is24Hour', false);
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -28,7 +21,7 @@ export default function DigitalClock() {
   }, []);
 
   const formattedTime = useMemo<string>(() => {
-    if (!mounted) return "";
+    if (!mounted) return '';
 
     const day = getDay(time);
     const month = getMonth(time);
@@ -44,18 +37,13 @@ export default function DigitalClock() {
     setIs24Hour(!is24Hour);
   };
 
-  const className =
-    "self-center col-start-2 justify-self-center cursor-default select-none";
+  const className = 'self-center col-start-2 justify-self-center cursor-default select-none';
 
   return mounted ? (
-    <div
-      role='system-date-time'
-      className={cn("text-sm h-fit", className)}
-      onClick={is24HourHandler}
-    >
+    <div role="system-date-time" className={cn('text-sm h-fit', className)} onClick={is24HourHandler}>
       {formattedTime}
     </div>
   ) : (
-    <Skeleton className={cn("h-[20px] w-[140px] rounded-full", className)} />
+    <Skeleton className={cn('h-[20px] w-[140px] rounded-full', className)} />
   );
 }

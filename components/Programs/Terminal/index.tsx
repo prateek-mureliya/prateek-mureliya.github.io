@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { AUTHOR_USER } from "@/lib/constants";
-import { TCommand, TFromSubmitArgs } from "@/types/terminal";
-import WindowBody, { WindowBodyProps } from "../../Window/window-body";
-import Cursor from "./Cursor";
-import CommandResponse from "./commands";
-import { getAbsolutePath } from "./fs-object";
-import { useLocalStorage } from "@/hook/useLocalStorage";
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { AUTHOR_USER } from '@/lib/constants';
+import { TCommand, TFromSubmitArgs } from '@/types/terminal';
+import WindowBody, { WindowBodyProps } from '../../Window/window-body';
+import Cursor from './Cursor';
+import CommandResponse from './commands';
+import { getAbsolutePath } from './fs-object';
+import { useLocalStorage } from '@/hook/useLocalStorage';
 
-const currentBranch = "main";
-const initPath = ["home", AUTHOR_USER, "portfolio"];
+const currentBranch = 'main';
+const initPath = ['home', AUTHOR_USER, 'portfolio'];
 const initHistory: TCommand = {
   path: initPath,
-  actualCommand: "welcome",
+  actualCommand: 'welcome',
   currentBranch: currentBranch,
   response: memo(CommandResponse),
-  cmd: "welcome",
+  cmd: 'welcome',
   options: [],
   files: [],
   folders: [],
@@ -25,10 +25,8 @@ const initHistory: TCommand = {
 
 export default function Terminal({ isMaximized }: WindowBodyProps) {
   const bottomRef = useRef<HTMLDivElement | null>(null);
-  const [, setStoredHistory] = useLocalStorage<string[]>("storedHistory", []);
-  const [history, sethistory] = useState<TCommand[]>([
-    { ...initHistory, time: new Date() },
-  ]);
+  const [, setStoredHistory] = useLocalStorage<string[]>('storedHistory', []);
+  const [history, sethistory] = useState<TCommand[]>([{ ...initHistory, time: new Date() }]);
   const [path, setPath] = useState(initPath);
 
   const addHistory = useCallback((newHistory: TCommand) => {
@@ -36,7 +34,7 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
   }, []);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history]);
 
   const handleSubmit = ({ actualCommand }: TFromSubmitArgs) => {
@@ -48,20 +46,20 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
     const foldersSet = new Set<string>();
     let showHelp = false;
 
-    if (cmd === "ll") {
-      cmd = "ls";
-      optionsSet.add("-l");
-    } else if (cmd === "help" && parts.length > 1) {
+    if (cmd === 'll') {
+      cmd = 'ls';
+      optionsSet.add('-l');
+    } else if (cmd === 'help' && parts.length > 1) {
       cmd = parts[1];
       showHelp = true;
     }
 
     for (const part of parts.slice(1)) {
-      if (part == "--help" || part == "—help") {
+      if (part == '--help' || part == '—help') {
         showHelp = true;
-      } else if (part.startsWith("-")) {
+      } else if (part.startsWith('-')) {
         for (const ch of part.slice(1)) {
-          optionsSet.add("-" + ch.toLowerCase());
+          optionsSet.add('-' + ch.toLowerCase());
         }
       } else if (part.match(/\.[a-zA-Z0-9]+$/)) {
         filesSet.add(part);
@@ -88,45 +86,32 @@ export default function Terminal({ isMaximized }: WindowBodyProps) {
       showHelp: showHelp,
     };
 
-    if (cmd === "clear" && !response(newHistory)) {
+    if (cmd === 'clear' && !response(newHistory)) {
       sethistory([]);
     } else {
-      if (cmd === "cd" && !response(newHistory)) {
+      if (cmd === 'cd' && !response(newHistory)) {
         const changeDir = getAbsolutePath(path, folders[0])
-          .replace("#USER#", AUTHOR_USER)
-          .split("/")
-          .filter((x) => x !== "");
+          .replace('#USER#', AUTHOR_USER)
+          .split('/')
+          .filter((x) => x !== '');
         setPath(changeDir);
       }
       addHistory(newHistory);
     }
 
-    if (actualCommand && actualCommand !== "clear") {
-      setStoredHistory((prev) => [
-        ...prev.slice(Math.max(prev.length - 9, 0)),
-        actualCommand,
-      ]);
+    if (actualCommand && actualCommand !== 'clear') {
+      setStoredHistory((prev) => [...prev.slice(Math.max(prev.length - 9, 0)), actualCommand]);
     }
   };
 
   return (
-    <WindowBody isMaximized={isMaximized} className='p-2 font-mono text-sm'>
+    <WindowBody isMaximized={isMaximized} className="p-2 font-mono text-sm">
       {history.map((values, index) => (
-        <Cursor
-          key={index}
-          {...values}
-          onSubmit={handleSubmit}
-          isLastCmd={index < history.length - 1}
-        />
+        <Cursor key={index} {...values} onSubmit={handleSubmit} isLastCmd={index < history.length - 1} />
       ))}
-      <Cursor
-        path={path}
-        showHelp={false}
-        currentBranch={currentBranch}
-        onSubmit={handleSubmit}
-      />
+      <Cursor path={path} showHelp={false} currentBranch={currentBranch} onSubmit={handleSubmit} />
 
-      <div ref={bottomRef} className='h-6'></div>
+      <div ref={bottomRef} className="h-6"></div>
     </WindowBody>
   );
 }

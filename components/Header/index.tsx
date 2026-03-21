@@ -1,6 +1,6 @@
-import { HEADER_FOOTER_Z_INDEX } from "@/lib/constants";
-import DigitalClock from "./digital-clock";
-import NavigationMenu from "./Menu";
+import { HEADER_FOOTER_Z_INDEX } from '@/lib/constants';
+import DigitalClock from './digital-clock';
+import NavigationMenu from './Menu';
 
 export default function Header() {
   return (

@@ -1,31 +1,25 @@
-import z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { BasicProps } from "@/types/basic-props";
-import { cn, isEmptyArray, joinPath } from "@/lib/utils";
-import { DynamicIcon, dynamicIconImports } from "lucide-react/dynamic";
-import { AUTHOR_USER } from "@/lib/constants";
-import { TCommand, TFromSubmitArgs } from "@/types/terminal";
-import Ls from "./commands/ls";
-import { useState } from "react";
-import { getAbsolutePath, isFolder, isValidPath } from "./fs-object";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../../UI/dialog";
-import { isMobile } from "react-device-detect";
-import { useLocalStorage } from "@/hook/useLocalStorage";
-import { DialogDescription } from "@radix-ui/react-dialog";
+import z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { BasicProps } from '@/types/basic-props';
+import { cn, isEmptyArray, joinPath } from '@/lib/utils';
+import { DynamicIcon, dynamicIconImports } from 'lucide-react/dynamic';
+import { AUTHOR_USER } from '@/lib/constants';
+import { TCommand, TFromSubmitArgs } from '@/types/terminal';
+import Ls from './commands/ls';
+import { useState } from 'react';
+import { getAbsolutePath, isFolder, isValidPath } from './fs-object';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../../UI/dialog';
+import { isMobile } from 'react-device-detect';
+import { useLocalStorage } from '@/hook/useLocalStorage';
+import { DialogDescription } from '@radix-ui/react-dialog';
 
 type IconName = keyof typeof dynamicIconImports;
 type CursorProps = TCommand;
 
 function getTime(time: Date) {
-  const hour = time.getHours().toString().padStart(2, "0");
-  const minutes = time.getMinutes().toString().padStart(2, "0");
+  const hour = time.getHours().toString().padStart(2, '0');
+  const minutes = time.getMinutes().toString().padStart(2, '0');
   return `${hour}:${minutes}`;
 }
 
@@ -33,42 +27,42 @@ function getClock(time: Date): IconName {
   const hour = time.getHours() % 12;
   switch (hour) {
     case 1:
-      return "clock-1";
+      return 'clock-1';
     case 2:
-      return "clock-2";
+      return 'clock-2';
     case 3:
-      return "clock-3";
+      return 'clock-3';
     case 4:
-      return "clock-4";
+      return 'clock-4';
     case 5:
-      return "clock-5";
+      return 'clock-5';
     case 6:
-      return "clock-6";
+      return 'clock-6';
     case 7:
-      return "clock-7";
+      return 'clock-7';
     case 8:
-      return "clock-8";
+      return 'clock-8';
     case 9:
-      return "clock-9";
+      return 'clock-9';
     case 10:
-      return "clock-10";
+      return 'clock-10';
     case 11:
-      return "clock-11";
+      return 'clock-11';
     default:
-      return "clock-12";
+      return 'clock-12';
   }
 }
 
 function shortenPath(path: string[]) {
   let shortpath: string;
-  if (path.length > 1 && path[0] == "home" && path[1] == AUTHOR_USER) {
+  if (path.length > 1 && path[0] == 'home' && path[1] == AUTHOR_USER) {
     const userPath = path.slice(2);
     if (isEmptyArray(userPath)) {
-      shortpath = "~";
+      shortpath = '~';
     } else if (userPath.length > 2) {
       shortpath = `~/../${userPath[userPath.length - 1]}`;
     } else {
-      shortpath = "~/" + userPath.join("/");
+      shortpath = '~/' + userPath.join('/');
     }
   } else if (path.length > 2) {
     shortpath = `/${path[0]}/../${path[path.length - 1]}`;
@@ -78,98 +72,59 @@ function shortenPath(path: string[]) {
   return shortpath;
 }
 
-function Caret({
-  iconName,
-  className,
-  children,
-}: { iconName?: IconName } & BasicProps) {
+function Caret({ iconName, className, children }: { iconName?: IconName } & BasicProps) {
   return (
     <span
       className={cn(
-        "inline-block bg-muted first:rounded-s-full relative pr-1",
+        'inline-block bg-muted first:rounded-s-full relative pr-1',
         "before:absolute before:z-1 before:content-[''] before:-right-3.5 before:border-y-10 before:border-l-15 before:border-y-transparent before:border-l-muted",
-        children ? "pl-4" : "pl-2",
+        children ? 'pl-4' : 'pl-2',
         className
       )}
     >
-      {iconName && (
-        <DynamicIcon
-          name={iconName}
-          className='inline-block size-4 -mt-1 mr-1'
-        />
-      )}
+      {iconName && <DynamicIcon name={iconName} className="inline-block size-4 -mt-1 mr-1" />}
       {children ? children : <span>&nbsp;</span>}
     </span>
   );
 }
 
-function CaretContainer({
-  path,
-  time,
-  currentBranch,
-}: {
-  path: string[];
-  time?: Date;
-  currentBranch: string;
-}) {
+function CaretContainer({ path, time, currentBranch }: { path: string[]; time?: Date; currentBranch: string }) {
   return (
     <div>
-      <Caret className='bg-emerald-200 before:border-l-emerald-200 dark:bg-emerald-700 dark:before:border-l-emerald-700'>
+      <Caret className="bg-emerald-200 before:border-l-emerald-200 dark:bg-emerald-700 dark:before:border-l-emerald-700">
         {AUTHOR_USER}
       </Caret>
       <Caret
-        iconName='git-branch'
-        className='bg-sky-300 before:border-l-sky-300 dark:bg-sky-900 dark:before:border-l-sky-900'
+        iconName="git-branch"
+        className="bg-sky-300 before:border-l-sky-300 dark:bg-sky-900 dark:before:border-l-sky-900"
       >
         {currentBranch}
       </Caret>
-      <Caret className='bg-gray-300 before:border-l-gray-300 dark:bg-gray-600 dark:before:border-l-gray-600'>
+      <Caret className="bg-gray-300 before:border-l-gray-300 dark:bg-gray-600 dark:before:border-l-gray-600">
         {shortenPath(path)}
       </Caret>
-      {time ? (
-        <Caret iconName={getClock(time)}>{getTime(time)}</Caret>
-      ) : (
-        <Caret></Caret>
-      )}
+      {time ? <Caret iconName={getClock(time)}>{getTime(time)}</Caret> : <Caret></Caret>}
     </div>
   );
 }
 
-const fieldName = "cmd";
+const fieldName = 'cmd';
 const formSchema = z.object({ [fieldName]: z.string() });
 
-function ActualCommand({
-  fieldValue,
-  isBlink = true,
-}: {
-  fieldValue?: string;
-  isBlink?: boolean;
-}) {
+function ActualCommand({ fieldValue, isBlink = true }: { fieldValue?: string; isBlink?: boolean }) {
   return (
     <>
       <span>$</span>
-      <span className='ml-2 inline-block whitespace-break-spaces'>
+      <span className="ml-2 inline-block whitespace-break-spaces">
         {fieldValue ? (
           <>
             {fieldValue}
-            {isBlink && (
-              <span
-                className='border-r border-r-foreground animate-blink select-none'
-                aria-hidden='true'
-              />
-            )}
+            {isBlink && <span className="border-r border-r-foreground animate-blink select-none" aria-hidden="true" />}
           </>
         ) : (
           <>
-            {isBlink && (
-              <span
-                className='border-r border-r-foreground animate-blink select-none'
-                aria-hidden='true'
-              />
-            )}
-            <span className='text-muted-foreground select-none'>
-              type your command here
-            </span>
+            {isBlink && <span className="border-r border-r-foreground animate-blink select-none" aria-hidden="true" />}
+            <span className="text-muted-foreground select-none">type your command here</span>
           </>
         )}
       </span>
@@ -177,32 +132,18 @@ function ActualCommand({
   );
 }
 
-function CommandForm({
-  path,
-  onSubmit,
-}: {
-  path: string[];
-  onSubmit?: (args: TFromSubmitArgs) => void;
-}) {
-  const [storedHistory] = useLocalStorage<string[]>("storedHistory", []);
+function CommandForm({ path, onSubmit }: { path: string[]; onSubmit?: (args: TFromSubmitArgs) => void }) {
+  const [storedHistory] = useLocalStorage<string[]>('storedHistory', []);
   const [historyIdx, setHistoryIdx] = useState(storedHistory.length);
   const [suggestionPath, setSuggestionPath] = useState(path);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setValue,
-    setFocus,
-    getValues,
-    watch,
-  } = useForm<z.infer<typeof formSchema>>({
+  const { register, handleSubmit, reset, setValue, setFocus, getValues, watch } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      cmd: "",
+      cmd: '',
     },
   });
-  const fieldValue = watch(fieldName, "");
+  const fieldValue = watch(fieldName, '');
 
   const onFormSubmit = (data: z.infer<typeof formSchema>) => {
     if (onSubmit) {
@@ -225,11 +166,11 @@ function CommandForm({
       const inputPath = parts[parts.length - 1];
       const absolutePath = getAbsolutePath(path, inputPath);
       const fsObject = isValidPath(absolutePath);
-      const absolutePathParts = absolutePath.split("/").filter((p) => p !== "");
+      const absolutePathParts = absolutePath.split('/').filter((p) => p !== '');
 
       if (fsObject) {
         if (isFolder(fsObject)) {
-          setSuggestionPath(absolutePath.split("/").filter((p) => p !== ""));
+          setSuggestionPath(absolutePath.split('/').filter((p) => p !== ''));
           setShowSuggestions(true);
         } else if (showSuggestions) {
           setShowSuggestions(false);
@@ -237,12 +178,12 @@ function CommandForm({
       } else if (absolutePathParts.length == suggestionPath.length) {
         setSuggestionPath(
           absolutePath
-            .split("/")
-            .filter((p) => p !== "")
+            .split('/')
+            .filter((p) => p !== '')
             .slice(0, -1)
         );
         setShowSuggestions(true);
-      } else if (inputPath.startsWith("-") || inputPath.startsWith("—")) {
+      } else if (inputPath.startsWith('-') || inputPath.startsWith('—')) {
         setShowSuggestions(false);
       } else {
         setShowSuggestions(true);
@@ -256,33 +197,33 @@ function CommandForm({
     // support Ctrl on Windows/Linux and Cmd on macOS
     const mod = e.ctrlKey || e.metaKey;
     const key = e.key.toLowerCase();
-    if (mod && key == "l") {
+    if (mod && key == 'l') {
       e.preventDefault();
-      onFormSubmit({ cmd: "clear" });
-    } else if (key === "arrowup" && historyIdx > 0) {
+      onFormSubmit({ cmd: 'clear' });
+    } else if (key === 'arrowup' && historyIdx > 0) {
       e.preventDefault();
       setValue(fieldName, storedHistory[historyIdx - 1]);
       setFocus(fieldName);
       setHistoryIdx((prev) => prev - 1);
-    } else if (key === "arrowdown" && historyIdx <= storedHistory.length) {
+    } else if (key === 'arrowdown' && historyIdx <= storedHistory.length) {
       e.preventDefault();
       setValue(fieldName, storedHistory[historyIdx + 1]);
       setFocus(fieldName);
       if (historyIdx < storedHistory.length) setHistoryIdx((prev) => prev + 1);
-    } else if (["arrowleft", "arrowright"].includes(key)) {
+    } else if (['arrowleft', 'arrowright'].includes(key)) {
       e.preventDefault();
     }
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onFormSubmit)} className='w-full'>
-        <label className='flex'>
+      <form onSubmit={handleSubmit(onFormSubmit)} className="w-full">
+        <label className="flex">
           <input
-            type='text'
-            className='w-0 absolute -left-99999'
+            type="text"
+            className="w-0 absolute -left-99999"
             autoFocus
-            autoComplete='off'
+            autoComplete="off"
             {...register(fieldName)}
             onKeyDown={onKeyDown}
             onChange={onChange}
@@ -291,24 +232,21 @@ function CommandForm({
           <ActualCommand fieldValue={fieldValue} />
         </label>
       </form>
-      <div className={showSuggestions ? "block" : "hidden"}>
+      <div className={showSuggestions ? 'block' : 'hidden'}>
         <Ls
           path={suggestionPath}
           showHelp={false}
-          className='cursor-pointer select-none opacity-50 hover:underline hover:opacity-100'
+          className="cursor-pointer select-none opacity-50 hover:underline hover:opacity-100"
           onClick={(name) => {
             const value = getValues(fieldName);
 
             let newValue;
-            if (value.endsWith(" ") || value.endsWith("/")) {
+            if (value.endsWith(' ') || value.endsWith('/')) {
               newValue = `${value}${name}`;
-            } else if (
-              value.match(/^.*\s+[~.\/]$/) ||
-              value.match(/^.*\s+[.]{2}$/)
-            ) {
+            } else if (value.match(/^.*\s+[~.\/]$/) || value.match(/^.*\s+[.]{2}$/)) {
               newValue = `${value}/${name}`;
             } else {
-              const parts = value.split(" ");
+              const parts = value.split(' ');
               const lastReletivePath = parts.slice(-1).toString();
               const absolutePath = getAbsolutePath(path, lastReletivePath);
               const fsObject = isValidPath(absolutePath);
@@ -317,9 +255,9 @@ function CommandForm({
               } else {
                 newValue = `${value.slice(
                   0,
-                  parts.length >= 2 && value.indexOf("/") === -1
-                    ? value.lastIndexOf(" ") + 1
-                    : value.lastIndexOf("/") + 1
+                  parts.length >= 2 && value.indexOf('/') === -1
+                    ? value.lastIndexOf(' ') + 1
+                    : value.lastIndexOf('/') + 1
                 )}${name}`;
               }
             }
@@ -352,16 +290,12 @@ function DialogCommandForm({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger onClick={() => setOpen(true)}>
-        <div className='flex'>
+        <div className="flex">
           <ActualCommand />
         </div>
       </DialogTrigger>
-      <DialogContent
-        hideHeader
-        className='sm:w-128 p-2 font-mono text-sm'
-        onCloseAutoFocus={(e) => e.preventDefault()}
-      >
-        <DialogHeader className='hidden'>
+      <DialogContent hideHeader className="sm:w-128 p-2 font-mono text-sm" onCloseAutoFocus={(e) => e.preventDefault()}>
+        <DialogHeader className="hidden">
           <DialogTitle>hidden title</DialogTitle>
           <DialogDescription>hidden desciption</DialogDescription>
         </DialogHeader>
@@ -375,7 +309,7 @@ function DialogCommandForm({
 export default function Cursor({
   path,
   time,
-  actualCommand = "",
+  actualCommand = '',
   response: Response,
   currentBranch,
   onSubmit,
@@ -386,27 +320,17 @@ export default function Cursor({
       <CaretContainer path={path} currentBranch={currentBranch} time={time} />
       {!time &&
         (isMobile ? (
-          <DialogCommandForm
-            path={path}
-            currentBranch={currentBranch}
-            onSubmit={onSubmit}
-          />
+          <DialogCommandForm path={path} currentBranch={currentBranch} onSubmit={onSubmit} />
         ) : (
           <CommandForm path={path} onSubmit={onSubmit} />
         ))}
       {Response && (
         <div>
-          <div className='flex'>
+          <div className="flex">
             <ActualCommand fieldValue={actualCommand} isBlink={false} />
           </div>
-          <div className='pt-2 pb-4 first:pb-0'>
-            <Response
-              path={path}
-              {...props}
-              onFormSubmit={(cmd) =>
-                onSubmit && onSubmit({ actualCommand: cmd })
-              }
-            />
+          <div className="pt-2 pb-4 first:pb-0">
+            <Response path={path} {...props} onFormSubmit={(cmd) => onSubmit && onSubmit({ actualCommand: cmd })} />
           </div>
         </div>
       )}

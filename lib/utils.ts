@@ -1,13 +1,13 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-import { JOINING_DATE } from "./constants";
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { JOINING_DATE } from './constants';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export function joinPath(path: string[]) {
-  return "/" + path.join("/");
+  return '/' + path.join('/');
 }
 
 export function isEmptyArray(arr: unknown[]) {

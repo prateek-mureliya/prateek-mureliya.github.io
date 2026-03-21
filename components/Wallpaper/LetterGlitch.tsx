@@ -1,13 +1,13 @@
-"use client";
-import { useRef, useEffect } from "react";
+'use client';
+import { useRef, useEffect } from 'react';
 
 const LetterGlitch = ({
-  glitchColors = ["#2b4539", "#61dca3", "#61b3dc"],
+  glitchColors = ['#2b4539', '#61dca3', '#61b3dc'],
   glitchSpeed = 50,
   centerVignette = true,
   outerVignette = true,
   smooth = true,
-  characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789",
+  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789',
 }: {
   glitchColors?: string[];
   glitchSpeed?: number;
@@ -37,9 +37,7 @@ const LetterGlitch = ({
   const charHeight = 20;
 
   const getRandomChar = () => {
-    return lettersAndSymbols[
-      Math.floor(Math.random() * lettersAndSymbols.length)
-    ];
+    return lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)];
   };
 
   const getRandomColor = () => {
@@ -122,7 +120,7 @@ const LetterGlitch = ({
     const { width, height } = canvasRef.current!.getBoundingClientRect();
     ctx.clearRect(0, 0, width, height);
     ctx.font = `${fontSize}px monospace`;
-    ctx.textBaseline = "top";
+    ctx.textBaseline = 'top';
 
     letters.current.forEach((letter, index) => {
       const x = (index % grid.current.columns) * charWidth;
@@ -163,11 +161,7 @@ const LetterGlitch = ({
         const startRgb = hexToRgb(letter.color);
         const endRgb = hexToRgb(letter.targetColor);
         if (startRgb && endRgb) {
-          letter.color = interpolateColor(
-            startRgb,
-            endRgb,
-            letter.colorProgress
-          );
+          letter.color = interpolateColor(startRgb, endRgb, letter.colorProgress);
           needsRedraw = true;
         }
       }
@@ -197,7 +191,7 @@ const LetterGlitch = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    context.current = canvas.getContext("2d");
+    context.current = canvas.getContext('2d');
     resizeCanvas();
     animate();
 
@@ -212,23 +206,23 @@ const LetterGlitch = ({
       }, 100);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animationRef.current!);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [glitchSpeed, smooth]);
 
   return (
-    <div className='relative w-full h-full bg-background overflow-hidden'>
-      <canvas ref={canvasRef} className='block w-full h-full' />
+    <div className="relative w-full h-full bg-background overflow-hidden">
+      <canvas ref={canvasRef} className="block w-full h-full" />
       {outerVignette && (
-        <div className='absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(255,255,255,1)_100%)] dark:bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(0,0,0,1)_100%)]'></div>
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(255,255,255,1)_100%)] dark:bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(0,0,0,1)_100%)]"></div>
       )}
       {centerVignette && (
-        <div className='absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(255,255,255,0.8)_0%,_rgba(0,0,0,0)_60%)] dark:bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]'></div>
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(255,255,255,0.8)_0%,_rgba(0,0,0,0)_60%)] dark:bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]"></div>
       )}
     </div>
   );

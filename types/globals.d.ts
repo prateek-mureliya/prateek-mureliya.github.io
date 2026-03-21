@@ -2,7 +2,7 @@ export {};
 
 declare global {
   interface WindowEventMap {
-    "local-storage": CustomEvent;
+    'local-storage': CustomEvent;
   }
   interface Window {
     revealSecrets: () => void;

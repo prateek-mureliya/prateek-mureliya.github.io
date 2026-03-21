@@ -1,10 +1,10 @@
-import { TCommandBase, THelp } from "@/types/terminal";
+import { TCommandBase, THelp } from '@/types/terminal';
 
 export const help: THelp = {
-  cmd: "clear",
-  description: "stands for clear the terminal",
+  cmd: 'clear',
+  description: 'stands for clear the terminal',
   options: {},
-  itemType: "NOTHING",
+  itemType: 'NOTHING',
 };
 
 export default function Clear({}: TCommandBase) {

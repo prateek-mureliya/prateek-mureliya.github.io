@@ -1,7 +1,7 @@
-import { DesktopIconProps } from "@/components/Desktop/desktop-icon";
-import { WindowBodyProps } from "@/components/Window/window-body";
-import { StaticImageData } from "next/image";
-import { JSX } from "react";
+import { DesktopIconProps } from '@/components/Desktop/desktop-icon';
+import { WindowBodyProps } from '@/components/Window/window-body';
+import { StaticImageData } from 'next/image';
+import { JSX } from 'react';
 
 export type TProcessButtonBase = {
   id: string;
@@ -11,18 +11,18 @@ export type TProcessButtonBase = {
   iconY?: number;
   viewer?: StaticImageData;
 };
-export type TProcessButtonRaw = { type: "raw" };
+export type TProcessButtonRaw = { type: 'raw' };
 export type TProcessButtonDialog = {
-  type: "dialog";
+  type: 'dialog';
   popup: (props: DesktopIconProps) => JSX.Element;
 };
 export type TProcessButtonLink = {
-  type: "link";
+  type: 'link';
   linkTitle?: string;
   link: string;
 };
 export type TProcessButtonWindow = {
-  type: "window";
+  type: 'window';
   x: number;
   y: number;
   width: number;
@@ -32,9 +32,4 @@ export type TProcessButtonWindow = {
 };
 
 export type TProcessButton = TProcessButtonBase &
-  (
-    | TProcessButtonRaw
-    | TProcessButtonDialog
-    | TProcessButtonLink
-    | TProcessButtonWindow
-  );
+  (TProcessButtonRaw | TProcessButtonDialog | TProcessButtonLink | TProcessButtonWindow);

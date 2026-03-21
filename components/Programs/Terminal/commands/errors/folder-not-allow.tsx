@@ -1,17 +1,13 @@
-import { TCmdError } from "@/types/terminal";
-import HelpSuggestion from "./help-suggestion";
-import BasicError from "./basic-error";
-import Path from "./path";
+import { TCmdError } from '@/types/terminal';
+import HelpSuggestion from './help-suggestion';
+import BasicError from './basic-error';
+import Path from './path';
 
 type FolderNotAllowProps = TCmdError & {
   folders: string[];
 };
 
-export default function FolderNotAllow({
-  cmd,
-  folders,
-  onClick,
-}: FolderNotAllowProps) {
+export default function FolderNotAllow({ cmd, folders, onClick }: FolderNotAllowProps) {
   return (
     <>
       {folders.map((folderPath) => (

@@ -1,16 +1,13 @@
-import { TSuggestionAction } from "@/types/terminal";
+import { TSuggestionAction } from '@/types/terminal';
 
 type SuggestionActionProps = TSuggestionAction;
 
-export default function SuggestionAction({
-  command,
-  onClick,
-}: SuggestionActionProps) {
+export default function SuggestionAction({ command, onClick }: SuggestionActionProps) {
   return (
     <span>
       &nbsp;
       <span
-        className='text-green-700 hover:underline cursor-pointer select-none'
+        className="text-green-700 hover:underline cursor-pointer select-none"
         onClick={() => onClick && onClick(command)}
       >
         &#39;{command}&#39;

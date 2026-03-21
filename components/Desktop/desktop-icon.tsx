@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useWindowSize } from "@/hook/useWindowSize";
-import { cn } from "@/lib/utils";
-import { motion, PanInfo, useAnimation } from "motion/react";
-import Image, { StaticImageData } from "next/image";
-import { useState } from "react";
-import { isMobile } from "react-device-detect";
+import { useWindowSize } from '@/hook/useWindowSize';
+import { cn } from '@/lib/utils';
+import { motion, PanInfo, useAnimation } from 'motion/react';
+import Image, { StaticImageData } from 'next/image';
+import { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 export type DesktopIconProps = {
   icon: StaticImageData;
@@ -27,14 +27,7 @@ const ICON_WIDTH_SIZE = isMobile ? 83 : 74;
 const ICON_HEIGHT_SIZE = isMobile ? 90 : 74;
 const GRID_PADDING = isMobile ? 16 : 8;
 
-export default function DesktopIcon({
-  icon,
-  title,
-  x,
-  y,
-  viewer,
-  onDoubleClick,
-}: DesktopIconProps) {
+export default function DesktopIcon({ icon, title, x, y, viewer, onDoubleClick }: DesktopIconProps) {
   const [gridColumn, setGridColumn] = useState(x);
   const [gridRow, setGridRow] = useState(y);
   const [placeholder, setPlaceholder] = useState<TPlaceholder>(null);
@@ -58,22 +51,8 @@ export default function DesktopIcon({
     const offsetX = info.offset.x;
     const offsetY = info.offset.y;
 
-    const col = gridLength(
-      gridColumn,
-      offsetX,
-      ICON_WIDTH_SIZE,
-      GRID_GAP_X,
-      width,
-      2 * GRID_PADDING
-    );
-    const row = gridLength(
-      gridRow,
-      offsetY,
-      ICON_HEIGHT_SIZE,
-      GRID_GAP_Y,
-      height,
-      130
-    );
+    const col = gridLength(gridColumn, offsetX, ICON_WIDTH_SIZE, GRID_GAP_X, width, 2 * GRID_PADDING);
+    const row = gridLength(gridRow, offsetY, ICON_HEIGHT_SIZE, GRID_GAP_Y, height, 130);
 
     setPlaceholder({ col, row });
   };
@@ -85,7 +64,7 @@ export default function DesktopIcon({
       x: 0,
       y: 0,
       transition: {
-        type: "spring",
+        type: 'spring',
         duration: 0.1,
         stiffness: 0,
       },
@@ -99,7 +78,7 @@ export default function DesktopIcon({
     <>
       {placeholder && (
         <div
-          className='w-full h-full border-2 border-dashed border-primary'
+          className="w-full h-full border-2 border-dashed border-primary"
           style={{
             gridColumnStart: placeholder.col,
             gridRowStart: placeholder.row,
@@ -113,39 +92,29 @@ export default function DesktopIcon({
         onDrag={handleDrag}
         onDragEnd={handleDragEnd}
         animate={controls}
-        whileTap={{ cursor: "grabbing" }}
+        whileTap={{ cursor: 'grabbing' }}
         dragElastic={0.25}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
         onDoubleClick={onDoubleClick}
-        className={cn(
-          "p-1 h-min rounded-xl hover:bg-foreground/8 border border-transparent hover:border-current/10"
-        )}
+        className={cn('p-1 h-min rounded-xl hover:bg-foreground/8 border border-transparent hover:border-current/10')}
         style={{
-          gridColumnStart: gridColumn === 0 ? "auto" : gridColumn,
-          gridRowStart: gridRow === 0 ? "auto" : gridRow,
+          gridColumnStart: gridColumn === 0 ? 'auto' : gridColumn,
+          gridRowStart: gridRow === 0 ? 'auto' : gridRow,
         }}
       >
-        <figure className='flex flex-col place-items-center'>
-          <picture className='relative'>
-            <Image
-              alt={title}
-              src={icon}
-              placeholder='blur'
-              priority
-              className='pointer-events-none size-12'
-            />
+        <figure className="flex flex-col place-items-center">
+          <picture className="relative">
+            <Image alt={title} src={icon} placeholder="blur" priority className="pointer-events-none size-12" />
             {viewer && (
               <Image
                 alt={title}
                 src={viewer}
                 priority
-                className='absolute -right-2 -bottom-1 pointer-events-none size-6.5'
+                className="absolute -right-2 -bottom-1 pointer-events-none size-6.5"
               />
             )}
           </picture>
-          <figcaption className='text-xs text-shadow-xs text-center pt-2 sm:pt-1 select-none'>
-            {title}
-          </figcaption>
+          <figcaption className="text-xs text-shadow-xs text-center pt-2 sm:pt-1 select-none">{title}</figcaption>
         </figure>
       </motion.li>
     </>

@@ -1,17 +1,11 @@
-"use client";
+'use client';
 
-import { AnimatePresence } from "motion/react";
-import { useProcessContext } from "@/contexts/process-manager";
-import ProcessWindow from "../Window/process-window";
+import { AnimatePresence } from 'motion/react';
+import { useProcessContext } from '@/contexts/process-manager';
+import ProcessWindow from '../Window/process-window';
 
 export default function ProcessManager() {
-  const {
-    processes,
-    handleClose,
-    handleMinimized,
-    handleMaximized,
-    handleFocus,
-  } = useProcessContext();
+  const { processes, handleClose, handleMinimized, handleMaximized, handleFocus } = useProcessContext();
 
   return (
     <AnimatePresence>

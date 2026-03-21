@@ -1,14 +1,14 @@
-import FolderView from "../../UI/folder-view";
-import { WindowBodyProps } from "../../Window/window-body";
-import { Trash } from "lucide-react";
-import { TSidebarMenu } from "@/types/folder-view";
-import Snapped from "./Snapped";
+import FolderView from '../../UI/folder-view';
+import { WindowBodyProps } from '../../Window/window-body';
+import { Trash } from 'lucide-react';
+import { TSidebarMenu } from '@/types/folder-view';
+import Snapped from './Snapped';
 
 const SIDEBAR_MENU: TSidebarMenu = {
-  activeTab: "Trash",
+  activeTab: 'Trash',
   menuOptions: [
     {
-      title: "Trash",
+      title: 'Trash',
       icon: Trash,
       content: Snapped,
     },

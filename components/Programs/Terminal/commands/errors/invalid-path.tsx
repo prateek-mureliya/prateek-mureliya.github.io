@@ -1,17 +1,13 @@
-import { TCmdError } from "@/types/terminal";
-import BasicError from "./basic-error";
-import Path from "./path";
+import { TCmdError } from '@/types/terminal';
+import BasicError from './basic-error';
+import Path from './path';
 
 type InvalidPathProps = TCmdError & {
   invalidFiles: string[];
   invalidFolders: string[];
 };
 
-export default function InvalidPath({
-  cmd,
-  invalidFiles,
-  invalidFolders,
-}: InvalidPathProps) {
+export default function InvalidPath({ cmd, invalidFiles, invalidFolders }: InvalidPathProps) {
   return (
     <>
       {invalidFiles.map((filePath) => (

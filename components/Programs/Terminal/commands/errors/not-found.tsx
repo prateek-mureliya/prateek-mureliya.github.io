@@ -1,5 +1,5 @@
-import { TCmdError } from "@/types/terminal";
-import BasicError from "./basic-error";
+import { TCmdError } from '@/types/terminal';
+import BasicError from './basic-error';
 
 type NotFoundProps = TCmdError;
 

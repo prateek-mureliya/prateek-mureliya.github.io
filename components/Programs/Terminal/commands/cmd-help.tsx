@@ -1,48 +1,40 @@
-import { isNotEmptyArray } from "@/lib/utils";
-import { THelp } from "@/types/terminal";
+import { isNotEmptyArray } from '@/lib/utils';
+import { THelp } from '@/types/terminal';
 
 type HelpProps = THelp;
 
-export default function CmdHelp({
-  cmd,
-  description,
-  options,
-  itemType,
-  aliases,
-}: HelpProps) {
+export default function CmdHelp({ cmd, description, options, itemType, aliases }: HelpProps) {
   const items = {
-    NOTHING: "",
-    MULT_FILE_DIR: "[Files/Directories]...",
-    SINGLE_DIR: "[Directory]",
-    SINGLE_FILE: "[FILE]",
+    NOTHING: '',
+    MULT_FILE_DIR: '[Files/Directories]...',
+    SINGLE_DIR: '[Directory]',
+    SINGLE_FILE: '[FILE]',
   }[itemType];
 
   return (
     <>
       <div>
-        <span className='bg-muted text-foreground font-bold border px-1 shadow-2xl rounded-xs'>
-          {cmd}
-        </span>{" "}
+        <span className="bg-muted text-foreground font-bold border px-1 shadow-2xl rounded-xs">{cmd}</span>{' '}
         {description}
       </div>
-      <div className='mt-2'>
-        <span className='text-red-500'>Usage:</span> {cmd}{" "}
+      <div className="mt-2">
+        <span className="text-red-500">Usage:</span> {cmd}{' '}
         {isNotEmptyArray(Object.keys(options)) && (
           <span>
-            [<span className='text-blue-500'>OPTIONS</span>]
+            [<span className="text-blue-500">OPTIONS</span>]
           </span>
         )}
         {items}
       </div>
       {isNotEmptyArray(Object.keys(options)) && (
-        <div className='mt-2'>
-          <div className='text-red-500'>OPTIONS:</div>
+        <div className="mt-2">
+          <div className="text-red-500">OPTIONS:</div>
           <table>
             <tbody>
               {Object.entries(options).map(([key, description]) => (
                 <tr key={key}>
-                  <td className='whitespace-nowrap pr-4 align-top'>{key}</td>
-                  <td className='text-muted-foreground'>{description}</td>
+                  <td className="whitespace-nowrap pr-4 align-top">{key}</td>
+                  <td className="text-muted-foreground">{description}</td>
                 </tr>
               ))}
             </tbody>
@@ -50,14 +42,14 @@ export default function CmdHelp({
         </div>
       )}
       {aliases && isNotEmptyArray(Object.keys(aliases)) && (
-        <div className='mt-2'>
-          <div className='text-red-500'>Aliases:</div>
+        <div className="mt-2">
+          <div className="text-red-500">Aliases:</div>
           <table>
             <tbody>
               {Object.entries(aliases).map(([key, description]) => (
                 <tr key={key}>
-                  <td className='whitespace-nowrap pr-4 align-top'>{key}</td>
-                  <td className='text-muted-foreground'>{description}</td>
+                  <td className="whitespace-nowrap pr-4 align-top">{key}</td>
+                  <td className="text-muted-foreground">{description}</td>
                 </tr>
               ))}
             </tbody>
