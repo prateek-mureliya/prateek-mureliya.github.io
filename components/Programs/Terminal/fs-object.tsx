@@ -182,12 +182,12 @@ const $resume_2016_pdf: TFile = {
   fileType: 'process',
   process: RESUME2016_PDF,
 };
-const $snap_bin: TFolder = {
+const $trash_bin: TFolder = {
   type: 'folder',
   owner: 'mureliya',
   group: 'dev',
   createdAt: 'Aug 31, 7:14 PM GMT+5:30',
-  name: 'snap-bin',
+  name: 'trash-bin',
   dir: [$decoration_only_png, $resume_2021_pdf, $old_portfolio_connect, $resume_2016_pdf],
 };
 
@@ -197,7 +197,7 @@ const $portfolio: TFolder = {
   group: 'dev',
   createdAt: 'Jul 3, 1:58 PM GMT+5:30',
   name: 'portfolio',
-  dir: [$about_me_run, $resume_pdf, $social, $snap_bin],
+  dir: [$about_me_run, $resume_pdf, $social, $trash_bin],
 };
 const $user: TFolder = {
   type: 'folder',
@@ -243,11 +243,11 @@ const fsObject: TFileSystem = {
   '/home/#USER#/portfolio/social/instagram.connect': $instagram_connect,
   '/home/#USER#/portfolio/social/linkedin.connect': $linkedin_connect,
   '/home/#USER#/portfolio/social/twitter.connect': $twitter_connect,
-  '/home/#USER#/portfolio/snap-bin': $snap_bin,
-  '/home/#USER#/portfolio/snap-bin/decoration-only.png': $decoration_only_png,
-  '/home/#USER#/portfolio/snap-bin/Prateek_Kumar_SoftwareEngineer_2021.pdf': $resume_2021_pdf,
-  '/home/#USER#/portfolio/snap-bin/old-portfolio.connect': $old_portfolio_connect,
-  '/home/#USER#/portfolio/snap-bin/Prateek_Kumar_Fresher_2016.pdf': $resume_2016_pdf,
+  '/home/#USER#/portfolio/trash-bin': $trash_bin,
+  '/home/#USER#/portfolio/trash-bin/decoration-only.png': $decoration_only_png,
+  '/home/#USER#/portfolio/trash-bin/Prateek_Kumar_SoftwareEngineer_2021.pdf': $resume_2021_pdf,
+  '/home/#USER#/portfolio/trash-bin/old-portfolio.connect': $old_portfolio_connect,
+  '/home/#USER#/portfolio/trash-bin/Prateek_Kumar_Fresher_2016.pdf': $resume_2016_pdf,
   '/mnt': $mnt,
   '/tmp': $tmp,
   '/usr': $usr,

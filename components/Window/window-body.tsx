@@ -15,7 +15,7 @@ export default function WindowBody({
   return (
     <div {...props} className={cn('flex-1 overflow-auto', className, isMaximized ? 'pb-0' : '')}>
       {children}
-      {isMaximized && <div className="min-h-22" />}
+      {isMaximized && <div className="min-h-30" />}
     </div>
   );
 }

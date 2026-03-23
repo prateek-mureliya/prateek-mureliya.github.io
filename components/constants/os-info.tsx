@@ -142,7 +142,7 @@ export const OS: TBaseTreeData = {
 export const Iam: TBaseTreeData = {
   icon: ContactRound,
   title: 'Iam',
-  details: <TextLoop words={AUTHOR_ROLES} className="text-muted-foreground" />,
+  details: <TextLoop words={AUTHOR_ROLES} className="text-muted-foreground font-extrabold" />,
 };
 
 export const Uptime: TBaseTreeData = {

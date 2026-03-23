@@ -5,6 +5,7 @@ import { getFiles } from '../fs-object';
 import { PermissionDenied } from './errors';
 import { Check } from 'lucide-react';
 import { useProcessContext } from '@/contexts/process-manager';
+import { TProcessButtonWindow } from '@/types/process-button';
 
 export const help: THelp = {
   cmd: 'open',
@@ -67,8 +68,11 @@ export default function Open({ path, cmd = '', files = [], isLastCmd = false }: 
   const handleFinish = () => {
     if (fileObject.fileType === 'process') {
       handleOpen({
-        ...fileObject.process,
-        icon: fileObject.process.viewer || fileObject.process.icon,
+        id: fileObject.process.id,
+        icon: fileObject.process.icon,
+        viewer: fileObject.process.viewer,
+        title: fileObject.process.title,
+        ...(fileObject.process as TProcessButtonWindow),
       });
     } else if (fileObject.fileType === 'link') {
       window.open(fileObject.href, '_blank', 'noopener,noreferrer');

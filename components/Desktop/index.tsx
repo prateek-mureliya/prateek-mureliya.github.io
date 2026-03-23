@@ -1,15 +1,11 @@
 'use client';
 import DesktopIcon from './desktop-icon';
 import { useProcessContext } from '@/contexts/process-manager';
-import { ABOUT_ME } from '../constants/app-icons/about-me';
-import { TERMINAL } from '../constants/app-icons/terminal';
 import { RESUME_PDF } from '../constants/app-icons/resume-pdf';
-import { CONTACT_US } from '../constants/app-icons/contact-us';
-import { SNAP_BIN } from '../constants/app-icons/snap-bin';
 import { SECRET } from '../constants/app-icons/sceret';
 import { TProcessButton, TProcessButtonDialog, TProcessButtonWindow } from '@/types/process-button';
 
-const desktopButtons: TProcessButton[] = [ABOUT_ME, TERMINAL, RESUME_PDF, CONTACT_US, SNAP_BIN, SECRET];
+const desktopButtons: TProcessButton[] = [RESUME_PDF, SECRET];
 
 export default function Desktop() {
   const { handleOpen } = useProcessContext();
@@ -34,7 +30,8 @@ export default function Desktop() {
                 onDoubleClick={() =>
                   handleOpen({
                     id,
-                    icon: viewer || icon,
+                    icon: icon,
+                    viewer: viewer,
                     title,
                     ...windowProps,
                   })

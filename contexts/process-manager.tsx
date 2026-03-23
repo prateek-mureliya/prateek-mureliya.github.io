@@ -14,6 +14,7 @@ enum ProcessState {
 type TProcess = {
   id: string;
   icon: StaticImageData;
+  viewer?: StaticImageData;
   title: string;
   x: number;
   y: number;

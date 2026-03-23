@@ -13,6 +13,7 @@ export default function ProcessManager() {
         <ProcessWindow
           {...props}
           key={id}
+          icon={props.viewer || props.icon}
           onClose={() => handleClose(id)}
           onMinimize={() => handleMinimized(id)}
           onMaximizeRestore={() => handleMaximized(id)}

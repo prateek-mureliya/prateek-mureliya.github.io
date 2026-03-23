@@ -1,20 +1,20 @@
 import FolderView from '../../UI/folder-view';
 import { WindowBodyProps } from '../../Window/window-body';
-import { Trash } from 'lucide-react';
+import { TrashIcon } from 'lucide-react';
 import { TSidebarMenu } from '@/types/folder-view';
-import Snapped from './Snapped';
+import Trash from './Trash';
 
 const SIDEBAR_MENU: TSidebarMenu = {
   activeTab: 'Trash',
   menuOptions: [
     {
       title: 'Trash',
-      icon: Trash,
-      content: Snapped,
+      icon: TrashIcon,
+      content: Trash,
     },
   ],
 };
 
-export default function SnapBin({ isMaximized }: WindowBodyProps) {
+export default function TrashBin({ isMaximized }: WindowBodyProps) {
   return <FolderView {...SIDEBAR_MENU} isMaximized={isMaximized}></FolderView>;
 }

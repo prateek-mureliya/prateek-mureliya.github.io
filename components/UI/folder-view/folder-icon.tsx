@@ -62,7 +62,8 @@ export default function FolderIcon({ type, id, title, icon, viewer, ...others }:
               const props = others as TProcessButtonWindow;
               handleOpen({
                 id,
-                icon: viewer || icon,
+                icon: icon,
+                viewer: viewer,
                 title,
                 ...props,
               });

@@ -1,5 +1,6 @@
 import { IconType } from 'react-icons/lib';
 import { BasicOnClick } from './basic-props';
+import { TProcessButton } from './process-button';
 
 // file system
 export type TFileSystemMeta = {
