@@ -24,6 +24,7 @@ export const SITE_KEYWORDS = [
 export const JOINING_DATE = '2018-12-05';
 
 // Author name
+export const AUTHOR_PORTFOLIO = "Prateek's Portfolio";
 export const AUTHOR_NAME = 'Prateek Kumar';
 export const AUTHOR_USER = 'mureliya';
 export const AUTHOR_ROLES = [

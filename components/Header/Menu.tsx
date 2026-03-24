@@ -36,7 +36,7 @@ export default function Menu() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <NavigationMenu viewport={false} className="col-start-3 justify-self-end">
+    <NavigationMenu viewport={false} className="col-start-2 justify-self-end">
       <NavigationMenuList>
         <NavigationMenuItem asChild>
           <DropdownMenu>

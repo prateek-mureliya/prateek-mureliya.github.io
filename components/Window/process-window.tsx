@@ -124,7 +124,7 @@ export default function ProcessWindow({
       disableDragging={isMaximized}
       dragHandleClassName="window-header"
       cancel=".group"
-      className={cn(isMaximized ? 'pt-11' : '')}
+      className={cn(isMaximized ? 'pt-10' : '')}
       style={
         {
           zIndex: style.zIndex,

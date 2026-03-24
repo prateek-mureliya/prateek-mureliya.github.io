@@ -5,6 +5,7 @@ import { Skeleton } from '../UI/skeleton';
 import { useLocalStorage } from '@/hook/useLocalStorage';
 import { cn } from '@/lib/utils';
 import { getAMPM, getDate, getDay, getHours, getMinutes, getMonth } from '@/lib/date-utils';
+import { isMobile } from 'react-device-detect';
 
 export default function DigitalClock() {
   const [time, setTime] = useState<Date>(new Date());
@@ -30,20 +31,21 @@ export default function DigitalClock() {
     const minutes = getMinutes(time);
     const ampm = getAMPM(time, is24Hour);
 
-    return `${day}, ${date} ${month}, ${hours}:${minutes}${ampm}`;
+    const timeformat = `${hours}:${minutes}${ampm}`;
+    return isMobile ? timeformat : `${day}, ${date} ${month}, ${timeformat}`;
   }, [time, is24Hour, mounted]);
 
   const is24HourHandler = () => {
     setIs24Hour(!is24Hour);
   };
 
-  const className = 'self-center col-start-2 justify-self-center cursor-default select-none';
+  const className = 'self-center col-start-3 justify-self-center cursor-default select-none';
 
   return mounted ? (
     <div role="system-date-time" className={cn('text-sm h-fit', className)} onClick={is24HourHandler}>
       {formattedTime}
     </div>
   ) : (
-    <Skeleton className={cn('h-[20px] w-[140px] rounded-full', className)} />
+    <Skeleton className={cn('h-[20px] w-[60px] sm:w-[140px] rounded-full', className)} />
   );
 }
