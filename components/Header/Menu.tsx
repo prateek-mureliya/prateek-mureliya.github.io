@@ -9,18 +9,7 @@ import {
   navigationMenuTriggerStyle,
 } from '../UI/navigation-menu';
 import { cn } from '@/lib/utils';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '../UI/dialog';
-import { Button } from '../UI/button';
-import Link from 'next/link';
+import { Dialog, DialogTrigger } from '../UI/dialog/dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,6 +20,8 @@ import {
   DropdownMenuTrigger,
 } from '../UI/dropdown-menu';
 import { GITHUB_URL } from '@/lib/constants';
+import { CancelAction, ConfirmBox, LinkButtonAction } from '../UI/dialog/confirm';
+import ShutdownIcon from '@/public/images/icon/shutdown.png';
 
 export default function Menu() {
   const { theme, setTheme } = useTheme();
@@ -69,25 +60,19 @@ export default function Menu() {
             <DialogTrigger className={cn(navigationMenuTriggerStyle(), 'ml-1')}>
               <Power className="size-4" />
             </DialogTrigger>
-            <DialogContent hideHeader onCloseAutoFocus={(e) => e.preventDefault()}>
-              <DialogHeader>
-                <DialogTitle>Are you sure you want to shut down?</DialogTitle>
-                <DialogDescription>
-                  You&#39;re about to be redirected to my GitHub profile! 🚀 Come explore my work, projects, and
-                  passion! 💻✨
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <Button variant={'default'} asChild>
-                  <Link href={GITHUB_URL}>
-                    <ExternalLink /> Continue
-                  </Link>
-                </Button>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
+            <ConfirmBox
+              title="Are you sure you want to shut down?"
+              description="You&#39;re about to be redirected to my GitHub profile! 🚀 Come explore my work, projects, and
+                  passion! 💻✨"
+              icon={ShutdownIcon}
+              iconAlt="Shutdown OS"
+              action={
+                <LinkButtonAction variant={'default'} href={GITHUB_URL}>
+                  <ExternalLink /> Continue
+                </LinkButtonAction>
+              }
+              cancel={<CancelAction variant={'outline'}>Cancel</CancelAction>}
+            />
           </Dialog>
         </NavigationMenuItem>
       </NavigationMenuList>

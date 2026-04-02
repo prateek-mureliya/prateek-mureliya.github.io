@@ -6,7 +6,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '../UI/button';
-import { Input } from '../UI/input';
+import { Input } from './form/input';
 import { Separator } from '../UI/separator';
 import { Skeleton } from '../UI/skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../UI/tooltip';

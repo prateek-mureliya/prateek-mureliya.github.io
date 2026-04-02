@@ -1,11 +1,11 @@
-import { TLucideIcon } from '@/types/lucide-icon';
+import { TIconType } from '@/types/icon-type';
 import { TreeColor } from '@/types/tree';
 import { BORDER_COLOR } from './Branches';
 import { TEXT_COLOR } from './TreeRoot';
 
 type ItemProps = TreeColor & {
   title: string;
-  icon: TLucideIcon;
+  icon: TIconType;
   children: React.ReactNode;
 };
 

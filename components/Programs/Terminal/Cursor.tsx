@@ -9,7 +9,7 @@ import { TCommand, TFromSubmitArgs } from '@/types/terminal';
 import Ls from './commands/ls';
 import { useState } from 'react';
 import { getAbsolutePath, isFolder, isValidPath } from './fs-object';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../../UI/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../../UI/dialog/dialog';
 import { isMobile } from 'react-device-detect';
 import { useLocalStorage } from '@/hook/useLocalStorage';
 import { DialogDescription } from '@radix-ui/react-dialog';

@@ -124,7 +124,7 @@ export default function ProcessWindow({
       disableDragging={isMaximized}
       dragHandleClassName="window-header"
       cancel=".group"
-      className={cn(isMaximized ? 'pt-10' : '')}
+      className={cn(isMaximized ? 'pt-9' : '')}
       style={
         {
           zIndex: style.zIndex,
@@ -139,7 +139,8 @@ export default function ProcessWindow({
         transition={{ duration: 0.3 }}
         exit="exit"
         className={cn(
-          'relative w-full h-full rounded-xl border border-border bg-background overflow-hidden flex flex-col'
+          'relative w-full h-full border border-border bg-background overflow-hidden flex flex-col',
+          isMaximized ? '' : 'rounded-xl'
         )}
         onAnimationComplete={(definition) => {
           if (definition === 'minimized') setIsAnimationComplete(true);
@@ -149,7 +150,7 @@ export default function ProcessWindow({
         onDoubleClick={(e) => handleDoubleClick(e, () => {})}
       >
         <WindowHeader
-          className={cn('window-header', focus ? 'bg-background' : '')}
+          className={cn('window-header', focus ? '' : 'bg-background')}
           onDoubleClick={(e) => handleDoubleClick(e, onMaximizeRestore)}
         >
           <WindowActionBar className="group">

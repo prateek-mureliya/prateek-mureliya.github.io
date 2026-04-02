@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '../../UI/dialog';
+} from '../../UI/dialog/dialog';
 
 export default function HackedSecrets({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
   useEffect(() => {

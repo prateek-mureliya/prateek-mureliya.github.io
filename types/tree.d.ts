@@ -1,16 +1,18 @@
+import { TIconType } from './icon-type';
+
 export type TColor = 'Yellow' | 'Purple' | 'Green';
 
 export type TreeColor = {
-  color: color;
+  color: TColor;
 };
 
 export type TBaseTreeData = {
-  icon: TLucideIcon;
+  icon: TIconType;
   title: string;
   details: React.ReactNode;
 };
 
 export type TBadgeData = {
-  icon: TLucideIcon;
+  icon: TIconType;
   title: string;
 };

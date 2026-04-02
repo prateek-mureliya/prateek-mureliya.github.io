@@ -1,7 +1,9 @@
+import { TIconType } from './icon-type';
+
 export type TSidebarMenuItem = {
   title: string;
-  icon: TLucideIcon;
-  content: (props: TrashProps) => JSX.Element;
+  icon: TIconType;
+  content: (props: TFolderContent) => React.JSX.Element;
 };
 
 export type TSidebarMenu = {

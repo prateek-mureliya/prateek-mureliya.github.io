@@ -37,7 +37,7 @@ export type TCommandBase = {
   folders?: string[];
   showHelp: boolean;
   isLastCmd?: boolean;
-  onFormSubmit?: (cmd) => void;
+  onFormSubmit?: (cmd: string) => void;
 };
 
 export type TFromSubmitArgs = {

@@ -1,13 +1,13 @@
-import { TLucideIcon } from '@/types/lucide-icon';
-import { TreeColor } from '@/types/tree';
+import { TIconType } from '@/types/icon-type';
+import { TreeColor, TColor } from '@/types/tree';
 
 type TreeRootProps = TreeColor & {
   title: string;
-  icon: TLucideIcon;
+  icon: TIconType;
   children: React.ReactNode;
 };
 
-export const TEXT_COLOR: { [key: string]: string } = {
+export const TEXT_COLOR: { [key in TColor]: string } = {
   Yellow: 'text-yellow-800 dark:text-yellow-400',
   Purple: 'text-purple-800 dark:text-purple-400',
   Green: 'text-green-800 dark:text-green-400',

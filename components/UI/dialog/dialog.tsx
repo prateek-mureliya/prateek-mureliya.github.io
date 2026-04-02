@@ -3,10 +3,11 @@
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
-import WindowHeader from '../Window/window-header';
-import WindowActionBar from '../Window/window-action-bar';
-import { WindowActionClose } from '../Window/window-action-button';
-import WindowBody from '../Window/window-body';
+import WindowHeader from '../../Window/window-header';
+import WindowActionBar from '../../Window/window-action-bar';
+import { WindowActionClose } from '../../Window/window-action-button';
+import WindowBody from '../../Window/window-body';
+import Image from 'next/image';
 
 function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
@@ -50,7 +51,7 @@ function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"
-        className="border border-border shadow-lg bg-background overflow-hidden w-full max-w-[calc(100%-2rem)] sm:w-fit sm:max-w-lg rounded-lg z-100 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] duration-200"
+        className="border border-border shadow-lg bg-background overflow-hidden w-full max-w-[calc(100%-2rem)] sm:w-md rounded-lg z-100 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] duration-200"
         {...props}
       >
         {!hideHeader && (
@@ -65,37 +66,35 @@ function DialogContent({
           </WindowHeader>
         )}
 
-        <WindowBody className={cn('grid gap-4 p-6', className)}>{children}</WindowBody>
+        <WindowBody className={cn('grid gap-8 p-6', className)}>{children}</WindowBody>
       </DialogPrimitive.Content>
     </DialogPortal>
   );
 }
 
 function DialogHeader({ className, ...props }: React.ComponentProps<'div'>) {
-  return (
-    <div
-      data-slot="dialog-header"
-      className={cn('flex flex-col gap-2 text-center sm:text-left', className)}
-      {...props}
-    />
-  );
+  return <div data-slot="dialog-header" className={cn('flex flex-col gap-3 items-center', className)} {...props} />;
 }
 
 function DialogFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="dialog-footer"
-      className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)}
+      className={cn('grid grid-cols-[repeat(auto-fit,minmax(0,1fr))] gap-2', className)}
       {...props}
     />
   );
+}
+
+function DialogIcon({ className, alt, ...props }: React.ComponentProps<typeof Image>) {
+  return <Image data-slot="dialog-icon" className={cn('size-16 mb-3', className)} alt={alt} {...props} />;
 }
 
 function DialogTitle({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Title>) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn('text-lg leading-none font-semibold', className)}
+      className={cn('text-md leading-none font-semibold', className)}
       {...props}
     />
   );
@@ -120,6 +119,7 @@ export {
   DialogHeader,
   DialogOverlay,
   DialogPortal,
+  DialogIcon,
   DialogTitle,
   DialogTrigger,
 };

@@ -14,7 +14,7 @@ import {
 } from 'react-hook-form';
 
 import { cn } from '@/lib/utils';
-import { Label } from '../UI/label';
+import { Label } from './label';
 
 const Form = FormProvider;
 
@@ -74,7 +74,7 @@ function FormItem({ className, ...props }: React.ComponentProps<'div'>) {
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div data-slot="form-item" className={cn('grid gap-2', className)} {...props} />
+      <div data-slot="form-item" className={cn('grid gap-3', className)} {...props} />
     </FormItemContext.Provider>
   );
 }
