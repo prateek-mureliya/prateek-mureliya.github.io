@@ -1,6 +1,5 @@
 'use client';
 
-import HomeIcon from '@/public/images/icon/home.png';
 import { HEADER_FOOTER_Z_INDEX } from '@/lib/constants';
 import { useProcessContext } from '@/contexts/process-manager';
 import { LimelightNav } from '../UI/lime-light-nav';
@@ -16,7 +15,7 @@ const { id: trminlId, icon: trminlIcon, title: trminlTitle, viewer: trminlViewer
 const { id: trashId, icon: trashIcon, title: trashTitle, viewer: trashViewer, ...trashOthers } = TRASH_BIN;
 
 export default function Footer() {
-  const { processes, handleHome, handleOpen } = useProcessContext();
+  const { processes, handleOpen } = useProcessContext();
   const openApp = processes.map((p) => p.id);
 
   return (
@@ -65,14 +64,14 @@ export default function Footer() {
               ...(trminlOthers as TProcessButtonWindow),
             }),
         }}
-        home={{
-          id: 'Home',
-          icon: HomeIcon,
-          label: 'Desktop',
-          focus: false,
-          isOpen: false,
-          onClick: handleHome,
-        }}
+        // home={{
+        //   id: 'Home',
+        //   icon: ,
+        //   label: ,
+        //   focus: false,
+        //   isOpen: false,
+        //   onClick: handleHome,
+        // }}
         trash={{
           id: trashId,
           icon: trashIcon,

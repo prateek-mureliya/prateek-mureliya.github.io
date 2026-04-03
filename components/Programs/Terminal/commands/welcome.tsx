@@ -2,6 +2,7 @@ import { AUTHOR_NAME, AUTHOR_ROLES } from '@/lib/constants';
 import { PixelatedCanvas } from '../../../UI/pixelated-canvas';
 import { TCommandBase, THelp } from '@/types/terminal';
 import SuggestionAction from './errors/suggestion-action';
+import { ProfileBgRemoveImg } from '@/lib/media';
 
 export const help: THelp = {
   cmd: 'welcome',
@@ -19,7 +20,7 @@ export default function Welcome({ onFormSubmit }: TCommandBase) {
         </div>
       </div>
       <PixelatedCanvas
-        src="/images/profile-welcome-terminal.png"
+        src={ProfileBgRemoveImg}
         width={200}
         height={200}
         cellSize={2}

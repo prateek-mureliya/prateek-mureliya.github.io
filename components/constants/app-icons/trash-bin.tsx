@@ -1,12 +1,12 @@
 import { TProcessButton } from '@/types/process-button';
-import TrashBinIcon from '@/public/images/icon/trash-bin.png';
+import { TrashBinImg } from '@/lib/media';
 import TrashBin from '../../Programs/TrashBin';
 
 export const TRASH_BIN: TProcessButton = {
   type: 'window',
   id: 'trashbin',
-  title: 'Trash Bin',
-  icon: TrashBinIcon,
+  title: TrashBinImg.alt,
+  icon: TrashBinImg.src,
   x: 350,
   y: 215,
   width: 665,

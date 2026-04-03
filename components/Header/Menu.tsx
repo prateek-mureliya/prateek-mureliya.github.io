@@ -21,7 +21,7 @@ import {
 } from '../UI/dropdown-menu';
 import { GITHUB_URL } from '@/lib/constants';
 import { CancelAction, ConfirmBox, LinkButtonAction } from '../UI/dialog/confirm';
-import ShutdownIcon from '@/public/images/icon/shutdown.png';
+import { ShutdownImg } from '@/lib/media';
 
 export default function Menu() {
   const { theme, setTheme } = useTheme();
@@ -64,8 +64,8 @@ export default function Menu() {
               title="Are you sure you want to shut down?"
               description="You&#39;re about to be redirected to my GitHub profile! 🚀 Come explore my work, projects, and
                   passion! 💻✨"
-              icon={ShutdownIcon}
-              iconAlt="Shutdown OS"
+              icon={ShutdownImg.src}
+              iconAlt={ShutdownImg.alt}
               action={
                 <LinkButtonAction variant={'default'} href={GITHUB_URL}>
                   <ExternalLink /> Continue

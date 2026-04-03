@@ -87,7 +87,16 @@ function DialogFooter({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function DialogIcon({ className, alt, ...props }: React.ComponentProps<typeof Image>) {
-  return <Image data-slot="dialog-icon" className={cn('size-16 mb-3', className)} alt={alt} {...props} />;
+  return (
+    <Image
+      data-slot="dialog-icon"
+      placeholder="blur"
+      className={cn('size-16 mb-3', className)}
+      priority
+      alt={alt}
+      {...props}
+    />
+  );
 }
 
 function DialogTitle({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Title>) {

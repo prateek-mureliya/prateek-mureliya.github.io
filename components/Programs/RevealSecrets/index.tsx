@@ -5,7 +5,7 @@ import DesktopIcon, { DesktopIconProps } from '../../Desktop/desktop-icon';
 import { Dialog, DialogTrigger } from '../../UI/dialog/dialog';
 import HackedSecrets from './hacked-secrets';
 import { useHackedContext } from '@/contexts/hacked';
-import SecretIcon from '@/public/images/icon/secret.png';
+import { SecretImg } from '@/lib/media';
 import { ConfirmBox } from '@/components/UI/dialog/confirm';
 
 export default function RevealSecrets(props: DesktopIconProps) {
@@ -32,8 +32,8 @@ export default function RevealSecrets(props: DesktopIconProps) {
         <ConfirmBox
           title="TOP SECRET"
           description="Shhh... Secret Stuff Goes Here 👇 👇 👇"
-          icon={SecretIcon}
-          iconAlt="Secret Icon"
+          icon={SecretImg.src}
+          iconAlt={SecretImg.alt}
           onSubmit={onSubmit}
         />
       </Dialog>

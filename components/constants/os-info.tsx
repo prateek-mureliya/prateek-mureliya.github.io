@@ -38,6 +38,7 @@ import { AUTHOR_NAME, AUTHOR_ROLES } from '@/lib/constants';
 import { TextLoop } from '../UI/text-loop';
 import { calYearExperience } from '@/lib/utils';
 import BadgeContainer from '../UI/badge-container';
+import { AUTHOR_NAME_AUDIO } from '@/lib/media';
 
 const ENVIRONMENT: TBadgeData[] = [
   {
@@ -217,7 +218,7 @@ export const Disk: TBaseTreeData = {
 
 function OSName() {
   const handlePlay = () => {
-    const audio = new Audio('/media/Prateek_Kumar_Voice.mp3');
+    const audio = new Audio(AUTHOR_NAME_AUDIO);
     audio.play();
   };
 

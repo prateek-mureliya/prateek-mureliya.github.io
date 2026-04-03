@@ -18,7 +18,6 @@ export type LimelightNavProps = {
   about: NavItem;
   contact: NavItem;
   terminal: NavItem;
-  home: NavItem;
   trash: NavItem;
   items: NavItem[];
   className?: string;
