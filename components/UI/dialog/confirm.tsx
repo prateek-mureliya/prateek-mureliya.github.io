@@ -56,7 +56,7 @@ function LinkButtonAction({
   );
 }
 
-const formSchema = z.object({
+export const formSchema = z.object({
   secret: z
     .string()
     .nonempty({
@@ -85,7 +85,7 @@ function SecretForm({ onSubmit }: { onSubmit: () => void }) {
             <FormItem>
               <FormLabel className="justify-self-center">Enter your password to allow this.</FormLabel>
               <FormControl>
-                <Input placeholder="eg. *****" type="password" {...field} />
+                <Input placeholder="Secret" type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

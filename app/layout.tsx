@@ -4,7 +4,7 @@ import { ProcessContextProvider } from '@/contexts/process-manager';
 import './globals.css';
 import { Toaster } from '@/components/UI/sonner';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_KEYWORDS, GITHUB_SITE_URL } from '@/lib/constants';
-import { HackedContextProvider } from '@/contexts/hacked';
+import { LoginContextProvider } from '@/contexts/login';
 import { URL } from 'node:url';
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="relative w-full h-dvh overflow-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ProcessContextProvider>
-            <HackedContextProvider>{children}</HackedContextProvider>
+            <LoginContextProvider>{children}</LoginContextProvider>
           </ProcessContextProvider>
 
           <Toaster

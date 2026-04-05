@@ -5,6 +5,7 @@ import Wallpaper from '@/components/Wallpaper';
 import Desktop from '@/components/Desktop';
 import Footer from '@/components/Footer';
 import ProcessManager from '@/components/ProcessManager';
+import LockScreen from '@/components/LockScreen';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Footer />
       <ProcessManager />
       <WelcomeMessage />
+      <LockScreen />
     </>
   );
 }

@@ -1,8 +1,3 @@
-import { StaticImageData } from 'next/image';
-
-type ImageFile = { src: StaticImageData; alt: string };
-type PDFType = { file: string; name: string };
-
 // author
 import ProfileImage from '@/public/images/profile.png';
 const ProfileImg: ImageFile = { src: ProfileImage, alt: 'Profile' };
@@ -12,7 +7,6 @@ const ProfileBgRemoveImg = '/images/profile-bg-remove.png';
 import AboutMeIcon from '@/public/images/icon/about-me.png';
 import ContactUsIcon from '@/public/images/icon/contact-us.png';
 import AdobeIcon from '@/public/images/icon/adobe.png';
-import SecretIcon from '@/public/images/icon/secret.png';
 import TerminalIcon from '@/public/images/icon/terminal.png';
 import TrashBinIcon from '@/public/images/icon/trash-bin.png';
 import ShutdownIcon from '@/public/images/icon/shutdown.png';
@@ -21,11 +15,19 @@ import SiteLinkIcon from '@/public/images/icon/link.png';
 const AboutMeImg: ImageFile = { src: AboutMeIcon, alt: 'About Me' };
 const ContactUsImg: ImageFile = { src: ContactUsIcon, alt: 'Contact Us' };
 const AdobeImg: ImageFile = { src: AdobeIcon, alt: 'Adobe' };
-const SecretImg: ImageFile = { src: SecretIcon, alt: 'Secret' };
 const TerminalImg: ImageFile = { src: TerminalIcon, alt: 'Terminal' };
 const TrashBinImg: ImageFile = { src: TrashBinIcon, alt: 'Trash Bin' };
 const ShutdownImg: ImageFile = { src: ShutdownIcon, alt: 'Shutdown OS' };
 const SiteLinkImg: ImageFile = { src: SiteLinkIcon, alt: 'Site Link' };
+
+// logic user
+import UserRecruiter from '@/public/images/user-recruiter.png';
+import UserDeveloper from '@/public/images/user-developer.png';
+import UserStalker from '@/public/images/user-stalker.png';
+
+const UserRecruiterImg: ImageFile = { src: UserRecruiter, alt: 'Recruiter' };
+const UserDeveloperImg: ImageFile = { src: UserDeveloper, alt: 'Developer' };
+const UserStalkerImg: ImageFile = { src: UserStalker, alt: 'Stalker' };
 
 // social
 import InstagramIcon from '@/public/images/social/instagram/icon.png';
@@ -56,6 +58,7 @@ import OldPortfolioPreview from '@/public/images/old-portfolio.png';
 import ResumePreview from '@/public/images/resume-preview.png';
 import ResumePreview2016 from '@/public/images/resume-preview_2016.png';
 import ResumePreview2021 from '@/public/images/resume-preview_2021.png';
+import { ImageFile, PDFType } from '@/types/basic-props';
 
 const Meme1Img: ImageFile = { src: Meme1, alt: 'Decoration Only' };
 const OldPortfolioPreviewImg: ImageFile = { src: OldPortfolioPreview, alt: 'Old Portfolio' };
@@ -80,12 +83,14 @@ export {
   AboutMeImg,
   ContactUsImg,
   AdobeImg,
-  SecretImg,
   TerminalImg,
   TrashBinImg,
   ShutdownImg,
   Meme1Img,
   SiteLinkImg,
+  UserRecruiterImg,
+  UserDeveloperImg,
+  UserStalkerImg,
   InstagramImg,
   InstagramPreviewImg,
   FacebookImg,

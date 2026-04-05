@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer
       className={`fixed bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2`}
-      style={{ zIndex: HEADER_FOOTER_Z_INDEX }}
+      style={{ zIndex: HEADER_FOOTER_Z_INDEX - 5 }}
     >
       <LimelightNav
         about={{

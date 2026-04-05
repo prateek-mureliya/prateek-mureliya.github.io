@@ -4,7 +4,7 @@ import ImageWallpaper from './ImageWallpaper';
 
 export default function Wallpaper() {
   return (
-    <Slot role="wallpaper" className="absolute inset-0 z-0 overflow-hidden">
+    <Slot role="wallpaper" className="absolute inset-0 z-0 overflow-hidden bg-background">
       <ImageWallpaper wallpaperName="Mac Monterey" />
     </Slot>
   );

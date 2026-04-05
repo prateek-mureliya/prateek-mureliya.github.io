@@ -69,4 +69,4 @@ export const OLD_SITE_URI = '/old-portfolio-site';
 export const OLD_SITE_URL = `${GITHUB_SITE_URL}${OLD_SITE_URI}`;
 
 // SECRET easter egg
-export const SECRET = 'pass123';
+export const SECRET = 'hello world';

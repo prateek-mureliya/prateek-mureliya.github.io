@@ -113,7 +113,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Feel free to reach out!
 
 - Portfolio: [https://prateek-mureliya.github.io/](https://prateek-mureliya.github.io/)
-- Email: [prateekkumar1393@gmail.com](prateekkumar1393@gmail.com)
+- Email: [prateekkumar1393@gmail.com](mailto:prateekkumar1393@gmail.com)
 - LinkedIn: [https://www.linkedin.com/in/prateek-mureliya/](https://www.linkedin.com/in/prateek-mureliya/)
 
 #

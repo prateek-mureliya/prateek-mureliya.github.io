@@ -2,10 +2,9 @@
 import DesktopIcon from './desktop-icon';
 import { useProcessContext } from '@/contexts/process-manager';
 import { RESUME_PDF } from '../constants/app-icons/resume-pdf';
-import { SECRET } from '../constants/app-icons/sceret';
 import { TProcessButton, TProcessButtonDialog, TProcessButtonWindow } from '@/types/process-button';
 
-const desktopButtons: TProcessButton[] = [RESUME_PDF, SECRET];
+const desktopButtons: TProcessButton[] = [RESUME_PDF];
 
 export default function Desktop() {
   const { handleOpen } = useProcessContext();
