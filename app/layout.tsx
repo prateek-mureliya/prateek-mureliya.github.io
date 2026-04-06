@@ -4,7 +4,7 @@ import { ProcessContextProvider } from '@/contexts/process-manager';
 import './globals.css';
 import { Toaster } from '@/components/UI/sonner';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_KEYWORDS, GITHUB_SITE_URL } from '@/lib/constants';
-import { LoginContextProvider } from '@/contexts/login';
+import { ApplicationContextProvider } from '@/contexts/application-context';
 import { URL } from 'node:url';
 
 export const metadata: Metadata = {
@@ -21,10 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="relative w-full h-dvh overflow-hidden">
+      <body className="relative w-full h-dvh overflow-hidden" style={{ filter: 'brightness(100%);' }}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ProcessContextProvider>
-            <LoginContextProvider>{children}</LoginContextProvider>
+            <ApplicationContextProvider>{children}</ApplicationContextProvider>
           </ProcessContextProvider>
 
           <Toaster

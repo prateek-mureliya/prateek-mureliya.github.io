@@ -1,17 +1,22 @@
 import { AUTHOR_PORTFOLIO, HEADER_FOOTER_Z_INDEX } from '@/lib/constants';
 import DigitalClock from './digital-clock';
 import NavigationMenu from './Menu';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
+  const bgColor = 'bg-stone-300/50 dark:bg-indigo-950/70';
   return (
     <header
-      className={`absolute left-0 right-0 grid grid-cols-[1fr_auto] gap-3 py-1.5 px-3 border-b bg-stone-300/50 dark:bg-indigo-950/70 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md`}
+      className={cn(
+        'absolute left-0 right-0 grid grid-cols-[1fr_auto] gap-3 py-1.5 px-3 border-b supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md',
+        bgColor
+      )}
       style={{
         zIndex: HEADER_FOOTER_Z_INDEX,
       }}
     >
       <div className="text-sm cursor-default select-none font-semibold col-start-1">{AUTHOR_PORTFOLIO}</div>
-      <NavigationMenu />
+      <NavigationMenu className={bgColor} />
       <DigitalClock />
     </header>
   );

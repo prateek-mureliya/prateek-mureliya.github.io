@@ -2,13 +2,12 @@
 
 import Wallpaper from '../Wallpaper';
 import { AnimatePresence, motion } from 'motion/react';
-import { useLoginContext } from '@/contexts/login';
+import { useApplicationContext, UserType } from '@/contexts/application-context';
 import Image from 'next/image';
 import { UserDeveloperImg, UserRecruiterImg, UserStalkerImg } from '@/lib/media';
 import { cn } from '@/lib/utils';
 import { BasicProps, ImageFile } from '@/types/basic-props';
 import { ArrowRight, Eye, EyeOff, UserRound } from 'lucide-react';
-import { useLocalStorage } from '@/hook/useLocalStorage';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
@@ -18,21 +17,14 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '../UI/form/
 import { Input } from '../UI/form/input';
 import { Button } from '../UI/button';
 
-type UserType = 'RECRUITER' | 'STALKER' | 'DEVELOPER';
-
-const users: { [key in UserType]: ImageFile } = {
-  RECRUITER: UserRecruiterImg,
-  STALKER: UserStalkerImg,
-  DEVELOPER: UserDeveloperImg,
-};
-
 function UserProfile({ src, alt, className }: ImageFile & BasicProps) {
   return (
     <Image
       src={src}
       alt={alt}
+      placeholder="blur"
       className={cn(
-        'bg-cyan-100 hover:bg-cyan-200 size-25 rounded-full border border-cyan-500 p-3 shadow-xs shadow-cyan-300/500',
+        'bg-cyan-100 hover:bg-cyan-200 size-25 sm:size-30 rounded-full border border-cyan-500 p-3 shadow-xs shadow-cyan-300/500',
         className
       )}
     />
@@ -131,8 +123,7 @@ function UserLogin({
 }
 
 export default function LockScreen() {
-  const { isLogin, setIsLogin } = useLoginContext();
-  const [selectedUser, setSelectedUser, removeSelectedUser] = useLocalStorage<UserType | null>('loginUser', null);
+  const { isLogin, selectedUser, setIsLogin, setSelectedUser, deleteSelectedUser } = useApplicationContext();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -158,7 +149,7 @@ export default function LockScreen() {
         >
           <Wallpaper />
           {mounted && (
-            <div className="absolute size-full max-w-xl flex flex-col p-4">
+            <div className="absolute size-full max-w-2xl flex flex-col p-4">
               <div
                 className={cn('grow-1 flex items-center gap-4', selectedUser ? 'justify-center' : 'justify-between')}
               >
@@ -188,10 +179,10 @@ export default function LockScreen() {
 
                   {selectedUser && (
                     <UserLogin
-                      alt={users[selectedUser].alt}
-                      src={users[selectedUser].src}
+                      alt={selectedUser.alt}
+                      src={selectedUser.src}
                       onSubmit={() => setIsLogin(true)}
-                      isDeveloper={selectedUser == 'DEVELOPER'}
+                      isDeveloper={selectedUser.alt.toLowerCase() == 'DEVELOPER'.toLowerCase()}
                     />
                   )}
                 </AnimatePresence>
@@ -205,7 +196,7 @@ export default function LockScreen() {
                       exit={{ opacity: 0, scale: 0 }}
                       transition={{ duration: 0.4, type: 'spring', stiffness: 120, damping: 20 }}
                       className="flex flex-col items-center gap-2 select-none"
-                      onClick={() => removeSelectedUser()}
+                      onClick={() => deleteSelectedUser()}
                     >
                       <UserRound className="bg-white/40 text-white size-8 p-2 rounded-full" />
                       <UserTitle className="text-xs">Switch User</UserTitle>
