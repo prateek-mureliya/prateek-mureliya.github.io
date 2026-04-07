@@ -26,7 +26,7 @@ export default function Desktop() {
                 x={iconY}
                 y={iconY}
                 viewer={viewer}
-                onDoubleClick={() =>
+                onClick={() =>
                   handleOpen({
                     id,
                     icon: icon,

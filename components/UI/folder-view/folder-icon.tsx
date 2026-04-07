@@ -56,7 +56,7 @@ export default function FolderIcon({ type, id, title, icon, viewer, ...others }:
     <div
       key={id}
       className="p-2 h-min rounded-xl hover:bg-foreground/8 border border-transparent hover:border-current/10"
-      onDoubleClick={
+      onClick={
         type == 'window'
           ? () => {
               const props = others as TProcessButtonWindow;

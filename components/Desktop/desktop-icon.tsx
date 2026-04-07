@@ -13,7 +13,7 @@ export type DesktopIconProps = {
   x: number;
   y: number;
   viewer?: StaticImageData;
-  onDoubleClick?: () => void;
+  onClick?: () => void;
 };
 
 type TPlaceholder = {
@@ -27,7 +27,7 @@ const ICON_WIDTH_SIZE = isMobile ? 83 : 74;
 const ICON_HEIGHT_SIZE = isMobile ? 90 : 74;
 const GRID_PADDING = isMobile ? 16 : 8;
 
-export default function DesktopIcon({ icon, title, x, y, viewer, onDoubleClick }: DesktopIconProps) {
+export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: DesktopIconProps) {
   const [gridColumn, setGridColumn] = useState(x);
   const [gridRow, setGridRow] = useState(y);
   const [placeholder, setPlaceholder] = useState<TPlaceholder>(null);
@@ -95,7 +95,7 @@ export default function DesktopIcon({ icon, title, x, y, viewer, onDoubleClick }
         whileTap={{ cursor: 'grabbing' }}
         dragElastic={0.25}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
-        onDoubleClick={onDoubleClick}
+        onClick={onClick}
         className={cn('p-1 h-min rounded-xl hover:bg-foreground/8 border border-transparent hover:border-current/10')}
         style={{
           gridColumnStart: gridColumn === 0 ? 'auto' : gridColumn,
