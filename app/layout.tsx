@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="relative w-full h-dvh overflow-hidden" style={{ filter: 'brightness(100%);' }}>
+      <body className="relative w-full h-dvh overflow-hidden" style={{ filter: 'brightness(100%)' }}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ProcessContextProvider>
             <ApplicationContextProvider>{children}</ApplicationContextProvider>

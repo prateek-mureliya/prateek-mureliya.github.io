@@ -90,7 +90,7 @@ export const LimelightNav = ({ about, contact, terminal, trash, items, className
   return (
     <nav
       className={cn(
-        'relative flex items-center gap-1 rounded-2xl border px-2 w-max h-[74px] supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md',
+        'relative flex items-center gap-1 rounded-2xl border px-2 w-max h-[74px] bg-stone-300/50 dark:bg-indigo-950/70 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md',
         className
       )}
     >

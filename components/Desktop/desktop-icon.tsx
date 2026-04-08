@@ -96,7 +96,7 @@ export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: Desk
         dragElastic={0.25}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
         onClick={onClick}
-        className={cn('p-1 h-min rounded-xl hover:bg-foreground/8 border border-transparent hover:border-current/10')}
+        className={cn('p-1 h-min rounded-sm hover:bg-blue-500/60 border border-transparent hover:border-blue-500')}
         style={{
           gridColumnStart: gridColumn === 0 ? 'auto' : gridColumn,
           gridRowStart: gridRow === 0 ? 'auto' : gridRow,
@@ -114,7 +114,9 @@ export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: Desk
               />
             )}
           </picture>
-          <figcaption className="text-xs text-shadow-xs text-center pt-2 sm:pt-1 select-none">{title}</figcaption>
+          <figcaption className="text-xs text-shadow-xs text-center text-white pt-2 sm:pt-1 select-none">
+            {title}
+          </figcaption>
         </figure>
       </motion.li>
     </>
