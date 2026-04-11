@@ -123,7 +123,8 @@ function UserLogin({
 }
 
 export default function LockScreen() {
-  const { isLogin, selectedUser, setIsLogin, setSelectedUser, deleteSelectedUser } = useApplicationContext();
+  const { isLogin, selectedUser, isDeveloper, setIsLogin, setSelectedUser, deleteSelectedUser } =
+    useApplicationContext();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -132,7 +133,7 @@ export default function LockScreen() {
 
   const selectUserHandler = (userType: UserType) => {
     setSelectedUser(userType);
-    if (userType != 'DEVELOPER') {
+    if (userType != UserType.Developer) {
       setIsLogin(true);
     }
   };
@@ -160,19 +161,19 @@ export default function LockScreen() {
                         key={UserRecruiterImg.alt}
                         alt={UserRecruiterImg.alt}
                         src={UserRecruiterImg.src}
-                        onClick={() => selectUserHandler('RECRUITER')}
+                        onClick={() => selectUserHandler(UserType.Recruiter)}
                       />
                       <UserSelection
                         key={UserStalkerImg.alt}
                         alt={UserStalkerImg.alt}
                         src={UserStalkerImg.src}
-                        onClick={() => selectUserHandler('STALKER')}
+                        onClick={() => selectUserHandler(UserType.Stalker)}
                       />
                       <UserSelection
                         key={UserDeveloperImg.alt}
                         alt={UserDeveloperImg.alt}
                         src={UserDeveloperImg.src}
-                        onClick={() => selectUserHandler('DEVELOPER')}
+                        onClick={() => selectUserHandler(UserType.Developer)}
                       />
                     </>
                   )}
@@ -182,7 +183,7 @@ export default function LockScreen() {
                       alt={selectedUser.alt}
                       src={selectedUser.src}
                       onSubmit={() => setIsLogin(true)}
-                      isDeveloper={selectedUser.alt.toLowerCase() == 'DEVELOPER'.toLowerCase()}
+                      isDeveloper={isDeveloper}
                     />
                   )}
                 </AnimatePresence>

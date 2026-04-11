@@ -1,13 +1,17 @@
 'use client';
 import DesktopIcon from './desktop-icon';
 import { useProcessContext } from '@/contexts/process-manager';
-import { RESUME_PDF } from '../constants/app-icons/resume-pdf';
-import { TProcessButton, TProcessButtonDialog, TProcessButtonWindow } from '@/types/process-button';
-
-const desktopButtons: TProcessButton[] = [RESUME_PDF];
+import { TProcessButtonDialog, TProcessButtonWindow } from '@/types/process-button';
+import { useMemo } from 'react';
+import { useApplicationContext } from '@/contexts/application-context';
+import { getDesktopIcons } from '../constants/app-icons';
+import { isMobile } from 'react-device-detect';
 
 export default function Desktop() {
   const { handleOpen } = useProcessContext();
+  const { isDeveloper } = useApplicationContext();
+
+  const desktopButtons = useMemo(() => getDesktopIcons(isMobile, isDeveloper), [isDeveloper]);
 
   return (
     <ol className="absolute inset-0 z-1 h-desktop grid grid-flow-row sm:grid-flow-col grid-cols-desktop grid-rows-desktop gap-x-4 sm:gap-x-2 gap-y-5 px-4 sm:px-2 py-4 sm:py-2 mt-11">

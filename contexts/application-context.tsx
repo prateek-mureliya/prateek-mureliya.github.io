@@ -5,10 +5,17 @@ import { UserDeveloperImg, UserRecruiterImg, UserStalkerImg } from '@/lib/media'
 import { ImageFile } from '@/types/basic-props';
 import { useFullscreen } from '@/hook/useFullscreen';
 
-export type UserType = 'RECRUITER' | 'STALKER' | 'DEVELOPER';
+export enum UserType {
+  Recruiter = 'RECRUITER',
+  Stalker = 'STALKER',
+  Developer = 'DEVELOPER',
+}
 type ApplicationContextType = {
   isLogin: boolean;
   selectedUser?: ImageFile;
+  isRecruiter: boolean;
+  isStalker: boolean;
+  isDeveloper: boolean;
   brightness: number;
   fullscreen: boolean;
   setIsLogin: (isLogin: boolean) => void;
@@ -30,7 +37,7 @@ export const ApplicationContextProvider = ({ children }: { children: ReactNode }
   const [isLogin, setIsLogin] = useState(false);
   const [brightness, setBrightness] = useState(75);
   const { fullscreen, toggleFullscreen } = useFullscreen();
-  const [selectedUserType, setSelectedUserType, removeSelectedUserType] = useLocalStorage<UserType | undefined>(
+  const [selectedUserType, setSelectedUserType, deleteSelectedUser] = useLocalStorage<UserType | undefined>(
     'selectedUser',
     undefined
   );
@@ -42,16 +49,22 @@ export const ApplicationContextProvider = ({ children }: { children: ReactNode }
     setBrightness(brightness);
   };
 
+  const checkUserType = (userType: UserType) =>
+    selectedUser != undefined && selectedUser.alt.toLowerCase() == userType.toLowerCase();
+
   return (
     <ApplicationContext.Provider
       value={{
         isLogin,
         selectedUser,
+        isRecruiter: checkUserType(UserType.Recruiter),
+        isStalker: checkUserType(UserType.Stalker),
+        isDeveloper: checkUserType(UserType.Developer),
         brightness,
         fullscreen,
         setIsLogin,
         setSelectedUser,
-        deleteSelectedUser: removeSelectedUserType,
+        deleteSelectedUser,
         updateBrightness,
         toggleFullscreen,
       }}
