@@ -55,7 +55,7 @@ export default function FolderIcon({ type, id, title, icon, viewer, ...others }:
   return (
     <div
       key={id}
-      className="p-2 h-min rounded-xl hover:bg-foreground/8 border border-transparent hover:border-current/10"
+      className="p-2 h-min rounded-xl hover:bg-blue-500/60 border border-transparent hover:border-blue-500"
       onClick={
         type == 'window'
           ? () => {

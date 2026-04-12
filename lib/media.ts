@@ -1,3 +1,5 @@
+import { ImageFile, PDFType } from '@/types/basic-props';
+
 // author
 import ProfileImage from '@/public/images/profile.png';
 const ProfileImg: ImageFile = { src: ProfileImage, alt: 'Profile' };
@@ -58,7 +60,6 @@ import OldPortfolioPreview from '@/public/images/old-portfolio.png';
 import ResumePreview from '@/public/images/resume-preview.png';
 import ResumePreview2016 from '@/public/images/resume-preview_2016.png';
 import ResumePreview2021 from '@/public/images/resume-preview_2021.png';
-import { ImageFile, PDFType } from '@/types/basic-props';
 
 const Meme1Img: ImageFile = { src: Meme1, alt: 'Decoration Only' };
 const OldPortfolioPreviewImg: ImageFile = { src: OldPortfolioPreview, alt: 'Old Portfolio' };
@@ -67,10 +68,13 @@ const ResumePreview2016Img: ImageFile = { src: ResumePreview2016, alt: '2016 Res
 const ResumePreview2021Img: ImageFile = { src: ResumePreview2021, alt: '2021 Resume Preview' };
 
 // pdf
-const ResumePDF: PDFType = { file: 'media/Prateek_Kumar_SeniorSoftwareEngineer_Resume.pdf', name: 'Resume.pdf' };
-const Resume2016PDF: PDFType = { file: 'media/Prateek_Kumar_Fresher_2016.pdf', name: 'Prateek_Kumar_Fresher_2016.pdf' };
+const ResumePDF: PDFType = { file: '/media/Prateek_Kumar_SeniorSoftwareEngineer_Resume.pdf', name: 'Resume.pdf' };
+const Resume2016PDF: PDFType = {
+  file: '/media/Prateek_Kumar_Fresher_2016.pdf',
+  name: 'Prateek_Kumar_Fresher_2016.pdf',
+};
 const Resume2021PDF: PDFType = {
-  file: 'media/Prateek_Kumar_SoftwareEngineer_2021.pdf',
+  file: '/media/Prateek_Kumar_SoftwareEngineer_2021.pdf',
   name: 'Prateek_Kumar_SoftwareEngineer_2021.pdf',
 };
 
