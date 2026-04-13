@@ -13,6 +13,7 @@ import TerminalIcon from '@/public/images/icon/terminal.png';
 import TrashBinIcon from '@/public/images/icon/trash-bin.png';
 import ShutdownIcon from '@/public/images/icon/shutdown.png';
 import SiteLinkIcon from '@/public/images/icon/link.png';
+import VsCodeIcon from '@/public/images/icon/vscode.png';
 
 const AboutMeImg: ImageFile = { src: AboutMeIcon, alt: 'About Me' };
 const ContactUsImg: ImageFile = { src: ContactUsIcon, alt: 'Contact Us' };
@@ -21,6 +22,7 @@ const TerminalImg: ImageFile = { src: TerminalIcon, alt: 'Terminal' };
 const TrashBinImg: ImageFile = { src: TrashBinIcon, alt: 'Trash Bin' };
 const ShutdownImg: ImageFile = { src: ShutdownIcon, alt: 'Shutdown OS' };
 const SiteLinkImg: ImageFile = { src: SiteLinkIcon, alt: 'Site Link' };
+const VsCodeImg: ImageFile = { src: VsCodeIcon, alt: 'VS Code' };
 
 // logic user
 import UserRecruiter from '@/public/images/user-recruiter.png';
@@ -92,6 +94,7 @@ export {
   ShutdownImg,
   Meme1Img,
   SiteLinkImg,
+  VsCodeImg,
   UserRecruiterImg,
   UserDeveloperImg,
   UserStalkerImg,

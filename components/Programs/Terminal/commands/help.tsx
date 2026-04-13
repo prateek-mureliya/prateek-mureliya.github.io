@@ -13,6 +13,10 @@ const AVAILABLE_COMMANDS = [
     desc: 'Show the welcome message',
   },
   {
+    cmd: 'code',
+    desc: 'Open VS Code editor',
+  },
+  {
     cmd: 'open',
     desc: 'Use to open a file',
   },

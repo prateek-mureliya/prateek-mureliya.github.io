@@ -9,6 +9,7 @@ import help, { help as helpHelp } from './help';
 import welcome, { help as welcomeHelp } from './welcome';
 import cat, { help as catHelp } from './cat';
 import open, { help as openHelp } from './open';
+import code, { help as codeHelp } from './code';
 import history, { help as historyHelp } from './history';
 import {
   FileNotAllow,
@@ -25,7 +26,7 @@ import {
 import { getAbsolutePath, getDirectory, isValidPath } from '../fs-object';
 import { isNotEmptyArray } from '@/lib/utils';
 
-const COMMANDS = { pwd, ls, clear, cd, help, welcome, cat, open, history };
+const COMMANDS = { pwd, ls, clear, cd, help, welcome, cat, open, code, history };
 const HELP = {
   pwd: pwdHelp,
   ls: lsHelp,
@@ -35,6 +36,7 @@ const HELP = {
   help: helpHelp,
   cat: catHelp,
   open: openHelp,
+  code: codeHelp,
   history: historyHelp,
 };
 

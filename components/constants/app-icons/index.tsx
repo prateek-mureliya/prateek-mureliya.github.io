@@ -5,18 +5,20 @@ import { RESUME2021_PDF } from './resume-2021-pdf';
 import { RESUME_PDF } from './resume-pdf';
 import { TERMINAL } from './terminal';
 import { TRASH_BIN } from './trash-bin';
+import { VS_CODE } from './vs-code';
 
 const apps = {
   [ABOUT_ME.id]: ABOUT_ME,
   [CONTACT_US.id]: CONTACT_US,
   [TERMINAL.id]: TERMINAL,
   [TRASH_BIN.id]: TRASH_BIN,
+  [VS_CODE.id]: VS_CODE,
   [RESUME_PDF.id]: RESUME_PDF,
   [RESUME2021_PDF.id]: RESUME2021_PDF,
   [RESUME2016_PDF.id]: RESUME2016_PDF,
 };
 
-const developerApps = [TERMINAL.id];
+const developerApps = [TERMINAL.id, VS_CODE.id];
 
 export function idToApp(appids: string[]) {
   return appids.map((a) => apps[a]);
