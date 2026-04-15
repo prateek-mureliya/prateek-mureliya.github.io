@@ -8,19 +8,12 @@ type FolderIconProps = TProcessButton;
 export function WindowIconCard({ title, icon, viewer }: TProcessButtonBase) {
   return (
     <picture className="relative">
-      <Image
-        alt={title}
-        src={icon}
-        placeholder="blur"
-        priority
-        className="pointer-events-none select-none size-28 sm:size-33"
-      />
+      <Image alt={title} src={icon} placeholder="blur" className="pointer-events-none select-none size-28 sm:size-33" />
       {viewer && (
         <Image
           alt={title}
           src={viewer}
           placeholder="blur"
-          priority
           className="absolute -right-2 -bottom-2 pointer-events-none select-none size-11.5"
         />
       )}

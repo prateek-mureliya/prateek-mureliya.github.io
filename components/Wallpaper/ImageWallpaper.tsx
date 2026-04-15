@@ -6,7 +6,7 @@ type WALLPAPER_NAME = 'Mac Monterey';
 
 const wallpapers: { [key in WALLPAPER_NAME]: string } = {
   'Mac Monterey':
-    "bg-[url('/images/wallpaper/macos-monterey-wwdc-21-light.jpg')] dark:bg-[url('/images/wallpaper/macos-monterey-wwdc-21-dark.jpg')]",
+    "bg-[url('/images/original/wallpaper/macos-monterey-wwdc-21-light.jpg')] dark:bg-[url('/images/original/wallpaper/macos-monterey-wwdc-21-dark.jpg')]",
 };
 
 export default function ImageWallpaper({

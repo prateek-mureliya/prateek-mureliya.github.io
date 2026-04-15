@@ -1,19 +1,19 @@
 import { ImageFile, PDFType } from '@/types/basic-props';
 
 // author
-import ProfileImage from '@/public/images/profile.png';
+import ProfileImage from '@/public/images/original/profile.png';
 const ProfileImg: ImageFile = { src: ProfileImage, alt: 'Profile' };
-const ProfileBgRemoveImg = '/images/profile-bg-remove.png';
+const ProfileBgRemoveImg = '/images/original/profile-bg-remove.png';
 
 // icon
-import AboutMeIcon from '@/public/images/icon/about-me.png';
-import ContactUsIcon from '@/public/images/icon/contact-us.png';
-import AdobeIcon from '@/public/images/icon/adobe.png';
-import TerminalIcon from '@/public/images/icon/terminal.png';
-import TrashBinIcon from '@/public/images/icon/trash-bin.png';
-import ShutdownIcon from '@/public/images/icon/shutdown.png';
-import SiteLinkIcon from '@/public/images/icon/link.png';
-import VsCodeIcon from '@/public/images/icon/vscode.png';
+import AboutMeIcon from '@/public/images/original/icon/about-me.png';
+import ContactUsIcon from '@/public/images/original/icon/contact-us.png';
+import AdobeIcon from '@/public/images/original/icon/adobe.png';
+import TerminalIcon from '@/public/images/original/icon/terminal.png';
+import TrashBinIcon from '@/public/images/original/icon/trash-bin.png';
+import ShutdownIcon from '@/public/images/original/icon/shutdown.png';
+import SiteLinkIcon from '@/public/images/original/icon/link.png';
+import VsCodeIcon from '@/public/images/original/icon/vscode.png';
 
 const AboutMeImg: ImageFile = { src: AboutMeIcon, alt: 'About Me' };
 const ContactUsImg: ImageFile = { src: ContactUsIcon, alt: 'Contact Us' };
@@ -25,25 +25,25 @@ const SiteLinkImg: ImageFile = { src: SiteLinkIcon, alt: 'Site Link' };
 const VsCodeImg: ImageFile = { src: VsCodeIcon, alt: 'VS Code' };
 
 // logic user
-import UserRecruiter from '@/public/images/user-recruiter.png';
-import UserDeveloper from '@/public/images/user-developer.png';
-import UserStalker from '@/public/images/user-stalker.png';
+import UserRecruiter from '@/public/images/original/user-recruiter.png';
+import UserDeveloper from '@/public/images/original/user-developer.png';
+import UserStalker from '@/public/images/original/user-stalker.png';
 
 const UserRecruiterImg: ImageFile = { src: UserRecruiter, alt: 'Recruiter' };
 const UserDeveloperImg: ImageFile = { src: UserDeveloper, alt: 'Developer' };
 const UserStalkerImg: ImageFile = { src: UserStalker, alt: 'Stalker' };
 
 // social
-import InstagramIcon from '@/public/images/social/instagram/icon.png';
-import InstagramPreview from '@/public/images/social/instagram/banner.jpg';
-import FacebookIcon from '@/public/images/social/facebook/icon.png';
-import FacebookPreview from '@/public/images/social/facebook/banner.png';
-import LinkedInIcon from '@/public/images/social/linkedin/icon.png';
-import LinkedInPreview from '@/public/images/social/linkedin/banner.jpg';
-import GitHubIcon from '@/public/images/social/github/icon.png';
-import GitHubPreview from '@/public/images/social/github/banner.jpg';
-import XIcon from '@/public/images/social/x/icon.png';
-import XPreview from '@/public/images/social/x/banner.png';
+import InstagramIcon from '@/public/images/original/social/instagram/icon.png';
+import InstagramPreview from '@/public/images/original/social/instagram/banner.jpg';
+import FacebookIcon from '@/public/images/original/social/facebook/icon.png';
+import FacebookPreview from '@/public/images/original/social/facebook/banner.png';
+import LinkedInIcon from '@/public/images/original/social/linkedin/icon.png';
+import LinkedInPreview from '@/public/images/original/social/linkedin/banner.jpg';
+import GitHubIcon from '@/public/images/original/social/github/icon.png';
+import GitHubPreview from '@/public/images/original/social/github/banner.jpg';
+import XIcon from '@/public/images/original/social/x/icon.png';
+import XPreview from '@/public/images/original/social/x/banner.png';
 
 const InstagramImg: ImageFile = { src: InstagramIcon, alt: 'Instagram' };
 const InstagramPreviewImg: ImageFile = { src: InstagramPreview, alt: 'Instagram' };
@@ -57,11 +57,11 @@ const XImg: ImageFile = { src: XIcon, alt: 'Twitter / X' };
 const XPreviewImg: ImageFile = { src: XPreview, alt: 'Twitter / X' };
 
 // preview
-import Meme1 from '@/public/images/meme-1.png';
-import OldPortfolioPreview from '@/public/images/old-portfolio.png';
-import ResumePreview from '@/public/images/resume-preview.png';
-import ResumePreview2016 from '@/public/images/resume-preview_2016.png';
-import ResumePreview2021 from '@/public/images/resume-preview_2021.png';
+import Meme1 from '@/public/images/original/meme-1.png';
+import OldPortfolioPreview from '@/public/images/original/old-portfolio.png';
+import ResumePreview from '@/public/images/original/resume-preview.png';
+import ResumePreview2016 from '@/public/images/original/resume-preview_2016.png';
+import ResumePreview2021 from '@/public/images/original/resume-preview_2021.png';
 
 const Meme1Img: ImageFile = { src: Meme1, alt: 'Decoration Only' };
 const OldPortfolioPreviewImg: ImageFile = { src: OldPortfolioPreview, alt: 'Old Portfolio' };

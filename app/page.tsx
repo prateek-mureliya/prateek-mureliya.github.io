@@ -18,7 +18,7 @@ export default function Home() {
       <Header />
       <Wallpaper />
       {isLogin && <Desktop />}
-      <Footer />
+      {isLogin && <Footer />}
       <ProcessManager />
       <WelcomeMessage />
       <LockScreen />

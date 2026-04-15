@@ -57,7 +57,6 @@ const LimelightNavIcon = ({
           alt={label}
           src={viewer}
           placeholder="blur"
-          priority
           className="absolute right-0 bottom-2 pointer-events-none select-none size-6"
         />
       )}
