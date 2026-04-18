@@ -7,6 +7,8 @@ export const RESUME_PDF: TProcessButton = {
   id: 'resume',
   title: ResumePDF.name,
   icon: ResumePreviewImg.src,
+  iconX: 1,
+  iconY: 1,
   viewer: AdobeImg.src,
   x: 205,
   y: 155,

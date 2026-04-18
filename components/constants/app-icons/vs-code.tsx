@@ -7,6 +7,8 @@ export const VS_CODE: TProcessButton = {
   id: 'vscode',
   title: VsCodeImg.alt,
   icon: VsCodeImg.src,
+  iconX: 1,
+  iconY: 3,
   x: 258,
   y: 62,
   width: 1020,

@@ -1,5 +1,6 @@
 import { ABOUT_ME } from './about-me';
 import { CONTACT_US } from './contact-us';
+import { MAIL_BOX } from './mailbox';
 import { RESUME2016_PDF } from './resume-2016-pdf';
 import { RESUME2021_PDF } from './resume-2021-pdf';
 import { RESUME_PDF } from './resume-pdf';
@@ -13,6 +14,7 @@ const apps = {
   [TERMINAL.id]: TERMINAL,
   [TRASH_BIN.id]: TRASH_BIN,
   [VS_CODE.id]: VS_CODE,
+  [MAIL_BOX.id]: MAIL_BOX,
   [RESUME_PDF.id]: RESUME_PDF,
   [RESUME2021_PDF.id]: RESUME2021_PDF,
   [RESUME2016_PDF.id]: RESUME2016_PDF,
@@ -31,7 +33,7 @@ export function getDesktopIcons(isMobile: boolean, isDeveloper: boolean) {
 }
 
 export function getLeftSideArr(isMobile: boolean, isDeveloper: boolean) {
-  let final = [ABOUT_ME.id, CONTACT_US.id];
+  let final = [ABOUT_ME.id, CONTACT_US.id, MAIL_BOX.id];
   if (!isMobile && isDeveloper) final = final.concat(developerApps);
   return final;
 }

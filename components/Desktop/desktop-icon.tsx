@@ -28,8 +28,8 @@ const ICON_HEIGHT_SIZE = isMobile ? 90 : 74;
 const GRID_PADDING = isMobile ? 16 : 8;
 
 export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: DesktopIconProps) {
-  const [gridColumn, setGridColumn] = useState(x);
-  const [gridRow, setGridRow] = useState(y);
+  const [gridRow, setGridRow] = useState(x);
+  const [gridColumn, setGridColumn] = useState(y);
   const [placeholder, setPlaceholder] = useState<TPlaceholder>(null);
   const controls = useAnimation();
   const { width = 0, height = 0 } = useWindowSize();
@@ -78,7 +78,7 @@ export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: Desk
     <>
       {placeholder && (
         <div
-          className="w-full h-full border-2 border-dashed border-primary"
+          className="w-full h-full border-2 border-dashed border-white"
           style={{
             gridColumnStart: placeholder.col,
             gridRowStart: placeholder.row,
@@ -95,8 +95,8 @@ export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: Desk
         whileTap={{ cursor: 'grabbing' }}
         dragElastic={0.25}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
-        onClick={onClick}
-        className={cn('p-1 h-min rounded-sm hover:bg-blue-500/60 border border-transparent hover:border-blue-500')}
+        onClick={() => !placeholder && onClick && onClick()}
+        className={cn('p-1 h-min rounded-sm hover:bg-blue-500/60 border border-transparent hover:border-blue-500 z-1')}
         style={{
           gridColumnStart: gridColumn === 0 ? 'auto' : gridColumn,
           gridRowStart: gridRow === 0 ? 'auto' : gridRow,

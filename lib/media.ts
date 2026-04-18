@@ -14,6 +14,7 @@ import TrashBinIcon from '@/public/images/original/icon/trash-bin.png';
 import ShutdownIcon from '@/public/images/original/icon/shutdown.png';
 import SiteLinkIcon from '@/public/images/original/icon/link.png';
 import VsCodeIcon from '@/public/images/original/icon/vscode.png';
+import MailIcon from '@/public/images/original/icon/mail.png';
 
 const AboutMeImg: ImageFile = { src: AboutMeIcon, alt: 'About Me' };
 const ContactUsImg: ImageFile = { src: ContactUsIcon, alt: 'Contact Us' };
@@ -23,6 +24,7 @@ const TrashBinImg: ImageFile = { src: TrashBinIcon, alt: 'Trash Bin' };
 const ShutdownImg: ImageFile = { src: ShutdownIcon, alt: 'Shutdown OS' };
 const SiteLinkImg: ImageFile = { src: SiteLinkIcon, alt: 'Site Link' };
 const VsCodeImg: ImageFile = { src: VsCodeIcon, alt: 'VS Code' };
+const MailImg: ImageFile = { src: MailIcon, alt: 'Mail' };
 
 // logic user
 import UserRecruiter from '@/public/images/original/user-recruiter.png';
@@ -95,6 +97,7 @@ export {
   Meme1Img,
   SiteLinkImg,
   VsCodeImg,
+  MailImg,
   UserRecruiterImg,
   UserDeveloperImg,
   UserStalkerImg,

@@ -14,7 +14,7 @@ export default function Desktop() {
   const desktopButtons = useMemo(() => getDesktopIcons(isMobile, isDeveloper), [isDeveloper]);
 
   return (
-    <ol className="absolute inset-0 z-1 h-desktop grid grid-flow-row sm:grid-flow-col grid-cols-desktop grid-rows-desktop gap-x-4 sm:gap-x-2 gap-y-5 px-4 sm:px-2 py-4 sm:py-2 mt-11">
+    <ol className="absolute inset-0 h-desktop grid grid-flow-row sm:grid-flow-col grid-cols-desktop grid-rows-desktop gap-x-4 sm:gap-x-2 gap-y-5 px-4 sm:px-2 py-4 sm:py-2 mt-11">
       {desktopButtons.map(({ type, id, icon, title, iconX = 0, iconY = 0, viewer, ...others }) => {
         switch (type) {
           case 'dialog':
@@ -27,7 +27,7 @@ export default function Desktop() {
                 key={id}
                 icon={icon}
                 title={title}
-                x={iconY}
+                x={iconX}
                 y={iconY}
                 viewer={viewer}
                 onClick={() =>
