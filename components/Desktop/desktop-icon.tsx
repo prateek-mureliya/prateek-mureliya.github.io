@@ -106,7 +106,11 @@ export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: Desk
           <picture className="relative">
             <Image alt={title} src={icon} placeholder="blur" className="pointer-events-none size-12" />
             {viewer && (
-              <Image alt={title} src={viewer} className="absolute -right-2 -bottom-1 pointer-events-none size-6.5" />
+              <Image
+                alt={`viewer:${title}`}
+                src={viewer}
+                className="absolute -right-2 -bottom-1 pointer-events-none size-6.5"
+              />
             )}
           </picture>
           <figcaption className="text-xs text-shadow-xs text-center text-white pt-2 sm:pt-1 select-none">

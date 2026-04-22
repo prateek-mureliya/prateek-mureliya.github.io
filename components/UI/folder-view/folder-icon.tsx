@@ -11,7 +11,7 @@ export function WindowIconCard({ title, icon, viewer }: TProcessButtonBase) {
       <Image alt={title} src={icon} placeholder="blur" className="pointer-events-none select-none size-28 sm:size-33" />
       {viewer && (
         <Image
-          alt={title}
+          alt={`viewer:${title}`}
           src={viewer}
           placeholder="blur"
           className="absolute -right-2 -bottom-2 pointer-events-none select-none size-11.5"

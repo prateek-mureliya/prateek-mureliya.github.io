@@ -42,7 +42,7 @@ export default function DigitalClock() {
   const className = 'self-center col-start-3 justify-self-center cursor-default select-none';
 
   return mounted ? (
-    <div role="system-date-time" className={cn('text-sm h-fit', className)} onClick={is24HourHandler}>
+    <div role="button" aria-label="digital-clock" className={cn('text-sm h-fit', className)} onClick={is24HourHandler}>
       {formattedTime}
     </div>
   ) : (
