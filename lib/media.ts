@@ -1,20 +1,20 @@
 import { ImageFile, PDFType } from '@/types/basic-props';
 
 // author
-import ProfileImage from '@/public/images/original/profile.png';
+import ProfileImage from '@/public/images/optimized/profile.webp';
 const ProfileImg: ImageFile = { src: ProfileImage, alt: 'Profile' };
-const ProfileBgRemoveImg = '/images/original/profile-bg-remove.png';
+const ProfileBgRemoveImg = '/images/optimized/profile-bg-remove.webp';
 
 // icon
-import AboutMeIcon from '@/public/images/original/icon/about-me.png';
-import ContactUsIcon from '@/public/images/original/icon/contact-us.png';
-import AdobeIcon from '@/public/images/original/icon/adobe.png';
-import TerminalIcon from '@/public/images/original/icon/terminal.png';
-import TrashBinIcon from '@/public/images/original/icon/trash-bin.png';
-import ShutdownIcon from '@/public/images/original/icon/shutdown.png';
-import SiteLinkIcon from '@/public/images/original/icon/link.png';
-import VsCodeIcon from '@/public/images/original/icon/vscode.png';
-import MailIcon from '@/public/images/original/icon/mail.png';
+import AboutMeIcon from '@/public/images/optimized/icon/about-me.webp';
+import ContactUsIcon from '@/public/images/optimized/icon/contact-us.webp';
+import AdobeIcon from '@/public/images/optimized/icon/adobe.webp';
+import TerminalIcon from '@/public/images/optimized/icon/terminal.webp';
+import TrashBinIcon from '@/public/images/optimized/icon/trash-bin.webp';
+import ShutdownIcon from '@/public/images/optimized/icon/shutdown.webp';
+import SiteLinkIcon from '@/public/images/optimized/icon/link.webp';
+import VsCodeIcon from '@/public/images/optimized/icon/vscode.webp';
+import MailIcon from '@/public/images/optimized/icon/mail.webp';
 
 const AboutMeImg: ImageFile = { src: AboutMeIcon, alt: 'About Me' };
 const ContactUsImg: ImageFile = { src: ContactUsIcon, alt: 'Contact Us' };
@@ -27,9 +27,9 @@ const VsCodeImg: ImageFile = { src: VsCodeIcon, alt: 'VS Code' };
 const MailImg: ImageFile = { src: MailIcon, alt: 'Mail' };
 
 // logic user
-import UserRecruiter from '@/public/images/original/user-recruiter.png';
-import UserDeveloper from '@/public/images/original/user-developer.png';
-import UserStalker from '@/public/images/original/user-stalker.png';
+import UserRecruiter from '@/public/images/optimized/user-recruiter.webp';
+import UserDeveloper from '@/public/images/optimized/user-developer.webp';
+import UserStalker from '@/public/images/optimized/user-stalker.webp';
 
 const UserRecruiterImg: ImageFile = { src: UserRecruiter, alt: 'Recruiter' };
 const UserDeveloperImg: ImageFile = { src: UserDeveloper, alt: 'Developer' };
@@ -59,11 +59,11 @@ const XImg: ImageFile = { src: XIcon, alt: 'Twitter / X' };
 const XPreviewImg: ImageFile = { src: XPreview, alt: 'Twitter / X' };
 
 // preview
-import Meme1 from '@/public/images/original/meme-1.png';
-import OldPortfolioPreview from '@/public/images/original/old-portfolio.png';
-import ResumePreview from '@/public/images/original/resume-preview.png';
-import ResumePreview2016 from '@/public/images/original/resume-preview_2016.png';
-import ResumePreview2021 from '@/public/images/original/resume-preview_2021.png';
+import Meme1 from '@/public/images/optimized/meme-1.webp';
+import OldPortfolioPreview from '@/public/images/optimized/old-portfolio.webp';
+import ResumePreview from '@/public/images/optimized/resume-preview.webp';
+import ResumePreview2016 from '@/public/images/optimized/resume-preview_2016.webp';
+import ResumePreview2021 from '@/public/images/optimized/resume-preview_2021.webp';
 
 const Meme1Img: ImageFile = { src: Meme1, alt: 'Decoration Only' };
 const OldPortfolioPreviewImg: ImageFile = { src: OldPortfolioPreview, alt: 'Old Portfolio' };
