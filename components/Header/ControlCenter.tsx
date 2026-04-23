@@ -17,6 +17,7 @@ import { Button } from '../UI/button';
 import { Separator } from '../UI/separator';
 import { Dialog, DialogTrigger } from '../UI/dialog/dialog';
 import ShutdownDialog from './ShutdownDialog';
+import { Skeleton } from '../UI/skeleton';
 
 function ControlCenterBox({ className, children }: BasicProps) {
   return <div className={cn('bg-card/30 rounded-md p-3 border border-card/50', className)}>{children}</div>;
@@ -42,11 +43,11 @@ function ControlCenterHorizontalBox({
   onClick: () => void;
 }) {
   return (
-    <div className="flex items-center gap-2" onClick={onClick}>
+    <div role="button" className="group flex items-center gap-2" onClick={onClick}>
       <Icon
         className={cn(
           'size-9 p-2 bg-muted dark:bg-primary-foreground rounded-full',
-          isActive ? 'bg-blue-500 dark:bg-blue-500 text-white' : ''
+          isActive ? 'bg-blue-500 dark:bg-blue-500 text-white' : 'group-hover:bg-accent dark:group-hover:bg-accent'
         )}
       />
       <div>
@@ -70,7 +71,7 @@ type ControlCenterProps = {
   toggleFullscreen: () => void;
 };
 
-export default function ControlCenter({
+function ControlCenter({
   theme,
   selectedUser,
   wifi,
@@ -84,6 +85,7 @@ export default function ControlCenter({
 }: ControlCenterProps) {
   const [bluetooth, setBluetooth] = useState(false);
   const [airdrop, setAirdrop] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const toggleTheme = (theme: string) => {
     let nextTheme = 'light';
     if (theme == 'light') {
@@ -182,6 +184,50 @@ export default function ControlCenter({
         </div>
         <Slider value={[brightness]} max={100} step={1} onValueChange={(nums) => updateBrightness(nums[0])} />
       </ControlCenterBox>
+      <ControlCenterBox className="relative overflow-hidden p-0">
+        {!loaded && (
+          <div className="absolute inset-0 flex flex-col justify-between p-3">
+            <div className="flex flex-row gap-8">
+              <Skeleton className="size-20 rounded bg-zinc-400" />
+              <div className="flex flex-col grow-1 h-full justify-around">
+                <Skeleton className="h-2 w-full rounded bg-zinc-400" />
+                <Skeleton className="h-2 w-full rounded bg-zinc-400" />
+                <Skeleton className="h-2 w-full rounded bg-zinc-400" />
+              </div>
+            </div>
+            <div className="flex flex-row mt-3 gap-10 items-center">
+              <Skeleton className="h-2 rounded grow-1 bg-zinc-400" />
+              <Skeleton className="size-8 rounded-full bg-zinc-400" />
+            </div>
+          </div>
+        )}
+        <iframe
+          data-testid="embed-iframe"
+          src="https://open.spotify.com/embed/playlist/4QKBShsxyl6bUnNx1LVzCN?utm_source=generator&theme=1"
+          width="100%"
+          height="152"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          className={`select-none rounded-xl transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        ></iframe>
+      </ControlCenterBox>
     </>
   );
 }
+
+function WifiCenter({ wifi, toggleWifi }: { wifi: boolean; toggleWifi: () => void }) {
+  return (
+    <ControlCenterBox>
+      <ControlCenterHorizontalBox
+        icon={wifi ? MdWifi : MdWifiOff}
+        title="Wifi"
+        subTitle={wifi ? 'Home' : 'Off'}
+        isActive={wifi}
+        onClick={toggleWifi}
+      />
+    </ControlCenterBox>
+  );
+}
+
+export { ControlCenter, WifiCenter };

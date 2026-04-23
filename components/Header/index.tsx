@@ -12,7 +12,7 @@ export default function Header() {
         zIndex: HEADER_FOOTER_Z_INDEX,
       }}
     >
-      <div className="text-sm cursor-default select-none font-semibold col-start-1">{AUTHOR_PORTFOLIO}</div>
+      <div className="text-sm cursor-default select-none font-semibold col-start-1 self-center">{AUTHOR_PORTFOLIO}</div>
       <NavigationMenu className={'bg-stone-300 dark:bg-indigo-950'} />
       <DigitalClock />
     </header>
