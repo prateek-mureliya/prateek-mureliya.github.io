@@ -1,7 +1,7 @@
 import { VS_CODE } from '@/components/constants/app-icons/vs-code';
 import { TerminalLoader } from '@/components/UI/terminal-loader';
 import { useProcessContext } from '@/contexts/process-manager';
-import { TProcessButtonWindow } from '@/types/process-button';
+import { toWindowApp } from '@/lib/utils';
 import { TCommandBase, THelp } from '@/types/terminal';
 
 export const help: THelp = {
@@ -14,8 +14,7 @@ export const help: THelp = {
 export default function Code({ isLastCmd = false }: TCommandBase) {
   const { handleOpen } = useProcessContext();
   const handleFinish = () => {
-    const { id, icon, viewer, title, ...other } = VS_CODE;
-    handleOpen({ id, icon, viewer, title, ...(other as TProcessButtonWindow) });
+    handleOpen(toWindowApp(VS_CODE));
   };
   return <TerminalLoader isDone={isLastCmd} duration={1200} onFinish={handleFinish} />;
 }

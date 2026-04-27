@@ -2,7 +2,7 @@ import WindowBody, { WindowBodyProps } from '@/components/Window/window-body';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
-import { NAME_FIELD, EMAIL_FIELD, MESSAGE_FIELD, CONTACT_FORM_URL } from '@/lib/constants';
+import { NAME_FIELD, EMAIL_FIELD, MESSAGE_FIELD, CONTACT_FORM_URL, AUTHOR_EMAIL } from '@/lib/constants';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/UI/form/form';
 import { Input } from '@/components/UI/form/input';
 import { Textarea } from '@/components/UI/form/textarea';
@@ -96,7 +96,7 @@ export default function MailBox({ isMaximized }: WindowBodyProps) {
                 <FormControl>
                   <Input
                     {...field}
-                    value={'prateekkumar1393@gmail.com'}
+                    value={AUTHOR_EMAIL}
                     disabled
                     className="rounded-none pl-9 border border-b-foreground/50"
                   />

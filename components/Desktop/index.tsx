@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { useApplicationContext } from '@/contexts/application-context';
 import { getDesktopIcons } from '../constants/app-icons';
 import { isMobile } from 'react-device-detect';
+import { Dialog, DialogTrigger } from '../UI/dialog/dialog';
 
 export default function Desktop() {
   const { handleOpen } = useProcessContext();
@@ -19,7 +20,14 @@ export default function Desktop() {
         switch (type) {
           case 'dialog':
             const dialogProps = others as TProcessButtonDialog;
-            return <dialogProps.popup key={id} icon={icon} title={title} x={iconX} y={iconY} />;
+            return (
+              <Dialog key={id}>
+                <DialogTrigger asChild>
+                  <DesktopIcon icon={icon} title={title} x={iconX} y={iconY} />
+                </DialogTrigger>
+                <dialogProps.popup />
+              </Dialog>
+            );
           case 'window':
             const windowProps = others as TProcessButtonWindow;
             return (
@@ -33,8 +41,8 @@ export default function Desktop() {
                 onClick={() =>
                   handleOpen({
                     id,
-                    icon: icon,
-                    viewer: viewer,
+                    icon,
+                    viewer,
                     title,
                     ...windowProps,
                   })

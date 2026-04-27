@@ -1,7 +1,8 @@
 import { useProcessContext } from '@/contexts/process-manager';
-import { TProcessButton, TProcessButtonBase, TProcessButtonLink, TProcessButtonWindow } from '@/types/process-button';
+import { TProcessButton, TProcessButtonBase, TProcessButtonLink } from '@/types/process-button';
 import Image, { StaticImageData } from 'next/image';
 import { PinContainer } from '../3d-pin';
+import { toWindowApp } from '@/lib/utils';
 
 type FolderIconProps = TProcessButton;
 
@@ -42,8 +43,9 @@ export function LinkIconCard({
   );
 }
 
-export default function FolderIcon({ type, id, title, icon, viewer, ...others }: FolderIconProps) {
+export default function FolderIcon(props: FolderIconProps) {
   const { handleOpen } = useProcessContext();
+  const { type, id, title, icon, viewer, ...others } = props;
 
   return (
     <div
@@ -52,14 +54,7 @@ export default function FolderIcon({ type, id, title, icon, viewer, ...others }:
       onClick={
         type == 'window'
           ? () => {
-              const props = others as TProcessButtonWindow;
-              handleOpen({
-                id,
-                icon: icon,
-                viewer: viewer,
-                title,
-                ...props,
-              });
+              handleOpen(toWindowApp(props));
             }
           : undefined
       }

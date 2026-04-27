@@ -26,6 +26,7 @@ export const JOINING_DATE = '2018-12-05';
 // Author name
 export const AUTHOR_PORTFOLIO = "Prateek's Portfolio";
 export const AUTHOR_NAME = 'Prateek Kumar';
+export const AUTHOR_EMAIL = 'prateekkumar1393@gmail.com';
 export const AUTHOR_USER = 'mureliya';
 export const AUTHOR_ROLES = [
   'Senior Software Engineer',

@@ -3,7 +3,7 @@
 import { HEADER_FOOTER_Z_INDEX } from '@/lib/constants';
 import { useProcessContext } from '@/contexts/process-manager';
 import { LimelightNav, NavItem } from '../UI/lime-light-nav';
-import { TProcessButtonWindow } from '@/types/process-button';
+import { TProcessButtonDialog, TProcessButtonWindow } from '@/types/process-button';
 import { getLeftSideArr, getRightSideArr, idToApp } from '../constants/app-icons';
 import { useEffect, useMemo, useState } from 'react';
 import { useApplicationContext } from '@/contexts/application-context';
@@ -20,20 +20,43 @@ export default function Footer() {
   const footerLeftArr = useMemo(() => getLeftSideArr(isMobile, isDeveloper), [isDeveloper]);
   const footerRightArr = useMemo(() => getRightSideArr(), []);
 
-  const footerLeftSide = useMemo(() => {
-    return idToApp(footerLeftArr).map(({ id, icon, viewer, title, ...p }) => ({
-      id,
-      icon,
-      viewer,
-      label: title,
-      focus: false,
-      isOpen: false,
-      onClick: () => handleOpen({ id, icon, viewer, title, ...(p as TProcessButtonWindow) }),
-    }));
+  const footerLeftSide: NavItem[] = useMemo(() => {
+    return idToApp(footerLeftArr).map(({ type, id, icon, viewer, title, ...p }) => {
+      if (type === 'dialog') {
+        const others = p as TProcessButtonDialog;
+        const a: NavItem = {
+          type: 'dialog',
+          id,
+          icon,
+          viewer,
+          label: title,
+          focus: false,
+          isOpen: false,
+          popup: others.popup,
+        };
+
+        return a;
+      } else {
+        const others = p as TProcessButtonWindow;
+        const a: NavItem = {
+          type: 'window',
+          id,
+          icon,
+          viewer,
+          label: title,
+          focus: false,
+          isOpen: false,
+          onClick: () => handleOpen({ id, icon, viewer, title, ...others }),
+        };
+
+        return a;
+      }
+    });
   }, [footerLeftArr, handleOpen]);
 
-  const footerRightSide = useMemo(() => {
+  const footerRightSide: NavItem[] = useMemo(() => {
     return idToApp(footerRightArr).map(({ id, icon, viewer, title, ...p }) => ({
+      type: 'window',
       id,
       icon,
       viewer,
@@ -46,7 +69,7 @@ export default function Footer() {
 
   useEffect(() => {
     setSelectedItemId(null);
-    const items = processes
+    const items: NavItem[] = processes
       .filter((p) => {
         const leftIndex = footerLeftArr.indexOf(p.id);
         const rightIndex = footerRightArr.indexOf(p.id);
@@ -68,6 +91,7 @@ export default function Footer() {
         return true;
       })
       .map((p) => ({
+        type: 'window',
         id: p.id,
         icon: p.icon,
         viewer: p.viewer,

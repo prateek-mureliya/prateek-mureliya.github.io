@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { JOINING_DATE } from './constants';
+import { TProcessButton, TProcessButtonWindow } from '@/types/process-button';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -23,4 +24,9 @@ export const calYearExperience = () => {
   const currentDate = new Date();
   const year = currentDate.getFullYear() - joiningDate.getFullYear() - 1;
   return `${year}+`;
+};
+
+export const toWindowApp = (app: TProcessButton) => {
+  const { id, icon, viewer, title, ...other } = app;
+  return { id, icon, viewer, title, ...(other as TProcessButtonWindow) };
 };

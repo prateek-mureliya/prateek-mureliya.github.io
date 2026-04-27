@@ -4,8 +4,8 @@ import { TCommandBase, TFile, THelp } from '@/types/terminal';
 import { getFiles } from '../fs-object';
 import { PermissionDenied } from './errors';
 import { useProcessContext } from '@/contexts/process-manager';
-import { TProcessButtonWindow } from '@/types/process-button';
 import { TerminalLoader } from '@/components/UI/terminal-loader';
+import { toWindowApp } from '@/lib/utils';
 
 export const help: THelp = {
   cmd: 'open',
@@ -20,13 +20,7 @@ export default function Open({ path, cmd = '', files = [], isLastCmd = false }: 
 
   const handleFinish = () => {
     if (fileObject.fileType === 'process') {
-      handleOpen({
-        id: fileObject.process.id,
-        icon: fileObject.process.icon,
-        viewer: fileObject.process.viewer,
-        title: fileObject.process.title,
-        ...(fileObject.process as TProcessButtonWindow),
-      });
+      handleOpen(toWindowApp(fileObject.process));
     } else if (fileObject.fileType === 'link') {
       window.open(fileObject.href, '_blank', 'noopener,noreferrer');
     }

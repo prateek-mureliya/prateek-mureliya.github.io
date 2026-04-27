@@ -36,27 +36,27 @@ const UserDeveloperImg: ImageFile = { src: UserDeveloper, alt: 'Developer' };
 const UserStalkerImg: ImageFile = { src: UserStalker, alt: 'Stalker' };
 
 // social
-import InstagramIcon from '@/public/images/original/social/instagram/icon.png';
-import InstagramPreview from '@/public/images/original/social/instagram/banner.jpg';
-import FacebookIcon from '@/public/images/original/social/facebook/icon.png';
-import FacebookPreview from '@/public/images/original/social/facebook/banner.png';
-import LinkedInIcon from '@/public/images/original/social/linkedin/icon.png';
-import LinkedInPreview from '@/public/images/original/social/linkedin/banner.jpg';
-import GitHubIcon from '@/public/images/original/social/github/icon.png';
-import GitHubPreview from '@/public/images/original/social/github/banner.jpg';
-import XIcon from '@/public/images/original/social/x/icon.png';
-import XPreview from '@/public/images/original/social/x/banner.png';
+import InstagramQR from '@/public/images/original/social/instagram/qr.png';
+import InstagramPic from '@/public/images/original/social/instagram/profile.png';
+import FacebookQR from '@/public/images/original/social/facebook/qr.png';
+import FacebookPic from '@/public/images/original/social/facebook/profile.png';
+import LinkedInQR from '@/public/images/original/social/linkedin/qr.png';
+import LinkedInPic from '@/public/images/original/social/linkedin/profile.png';
+import GitHubQR from '@/public/images/original/social/github/qr.png';
+import GitHubPic from '@/public/images/original/social/github/profile.png';
+import XQR from '@/public/images/original/social/x/qr.png';
+import XPic from '@/public/images/original/social/x/profile.png';
 
-const InstagramImg: ImageFile = { src: InstagramIcon, alt: 'Instagram' };
-const InstagramPreviewImg: ImageFile = { src: InstagramPreview, alt: 'Instagram' };
-const FacebookImg: ImageFile = { src: FacebookIcon, alt: 'Facebook' };
-const FacebookPreviewImg: ImageFile = { src: FacebookPreview, alt: 'Facebook' };
-const LinkedInImg: ImageFile = { src: LinkedInIcon, alt: 'LinkedIn' };
-const LinkedInPreviewImg: ImageFile = { src: LinkedInPreview, alt: 'LinkedIn' };
-const GitHubImg: ImageFile = { src: GitHubIcon, alt: 'GitHub' };
-const GitHubPreviewImg: ImageFile = { src: GitHubPreview, alt: 'GitHub' };
-const XImg: ImageFile = { src: XIcon, alt: 'Twitter / X' };
-const XPreviewImg: ImageFile = { src: XPreview, alt: 'Twitter / X' };
+const InstagramQRImg: ImageFile = { src: InstagramQR, alt: 'Instagram QR' };
+const InstagramPicImg: ImageFile = { src: InstagramPic, alt: 'Instagram Profile' };
+const FacebookQRImg: ImageFile = { src: FacebookQR, alt: 'Facebook QR' };
+const FacebookPicImg: ImageFile = { src: FacebookPic, alt: 'Facebook Profile' };
+const LinkedInQRImg: ImageFile = { src: LinkedInQR, alt: 'LinkedIn QR' };
+const LinkedInPicImg: ImageFile = { src: LinkedInPic, alt: 'LinkedIn Profile' };
+const GitHubQRImg: ImageFile = { src: GitHubQR, alt: 'GitHub QR' };
+const GitHubPicImg: ImageFile = { src: GitHubPic, alt: 'GitHub Profile' };
+const XQRImg: ImageFile = { src: XQR, alt: 'XTwitter QR' };
+const XPicImg: ImageFile = { src: XPic, alt: 'XTwitter Profile' };
 
 // preview
 import Meme1 from '@/public/images/optimized/meme-1.webp';
@@ -101,16 +101,16 @@ export {
   UserRecruiterImg,
   UserDeveloperImg,
   UserStalkerImg,
-  InstagramImg,
-  InstagramPreviewImg,
-  FacebookImg,
-  FacebookPreviewImg,
-  LinkedInImg,
-  LinkedInPreviewImg,
-  GitHubImg,
-  GitHubPreviewImg,
-  XImg,
-  XPreviewImg,
+  InstagramQRImg,
+  InstagramPicImg,
+  FacebookQRImg,
+  FacebookPicImg,
+  LinkedInQRImg,
+  LinkedInPicImg,
+  GitHubQRImg,
+  GitHubPicImg,
+  XQRImg,
+  XPicImg,
   OldPortfolioPreviewImg,
   ResumePreviewImg,
   ResumePreview2016Img,

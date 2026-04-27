@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, JSX } from 'react';
 import { cn } from '@/lib/utils';
 import Image, { StaticImageData } from 'next/image';
 import { Separator } from './separator';
@@ -11,16 +11,28 @@ import {
   DropdownMenuTrigger,
 } from './dropdown-menu';
 import { BasicProps } from '@/types/basic-props';
+import { Dialog, DialogTrigger } from './dialog/dialog';
 
-export type NavItem = {
+type TNavItemBase = {
   id: string;
   icon: StaticImageData;
   viewer?: StaticImageData;
   label: string;
   focus: boolean;
   isOpen: boolean;
+};
+
+type TNavItemDialog = {
+  type: 'dialog';
+  popup: () => JSX.Element;
+};
+
+type TNavItemWindow = {
+  type: 'window';
   onClick?: () => void;
 };
+
+export type NavItem = TNavItemBase & (TNavItemWindow | TNavItemDialog);
 
 export type LimelightNavProps = {
   footerLeft: NavItem[];
@@ -30,7 +42,7 @@ export type LimelightNavProps = {
   className?: string;
 };
 
-const LimelightNavIcon = ({
+const FooterNavIcon = ({
   icon,
   viewer,
   label,
@@ -38,7 +50,7 @@ const LimelightNavIcon = ({
   onClick,
   className,
   ref,
-}: NavItem & { ref?: (e: HTMLDivElement | null) => void } & BasicProps) => {
+}: TNavItemBase & TNavItemWindow & { ref?: (e: HTMLDivElement | null) => void } & BasicProps) => {
   return (
     <div
       ref={ref}
@@ -63,6 +75,28 @@ const LimelightNavIcon = ({
       {isOpen && <div className="absolute size-1 rounded-full bg-primary bottom-1.5"></div>}
     </div>
   );
+};
+
+const LimelightNavIcon = (props: NavItem & { ref?: (e: HTMLDivElement | null) => void } & BasicProps) => {
+  if (props.type == 'dialog') {
+    return (
+      <Dialog>
+        <DialogTrigger>
+          <FooterNavIcon
+            type="window"
+            id={props.id}
+            icon={props.icon}
+            label={props.label}
+            focus={props.focus}
+            isOpen={props.isOpen}
+          />
+        </DialogTrigger>
+        <props.popup />
+      </Dialog>
+    );
+  }
+
+  return props.type == 'window' && <FooterNavIcon {...props} />;
 };
 
 const LimelightNavGroupIcon = ({
@@ -120,7 +154,7 @@ const LimelightNavGroupIcon = ({
                 disabled={props.focus}
                 className="data-disabled:border data-disabled:border-foreground"
               >
-                <LimelightNavIcon id={id} {...props} className="px-0 items-start h-15" />
+                {<LimelightNavIcon id={id} {...props} className="px-0 items-start h-15" />}
               </DropdownMenuItem>
             ))}
           </DropdownMenuGroup>

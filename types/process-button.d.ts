@@ -1,4 +1,3 @@
-import { DesktopIconProps } from '@/components/Desktop/desktop-icon';
 import { WindowBodyProps } from '@/components/Window/window-body';
 import { StaticImageData } from 'next/image';
 import { JSX } from 'react';
@@ -14,7 +13,7 @@ export type TProcessButtonBase = {
 export type TProcessButtonRaw = { type: 'raw' };
 export type TProcessButtonDialog = {
   type: 'dialog';
-  popup: (props: DesktopIconProps) => JSX.Element;
+  popup: () => JSX.Element;
 };
 export type TProcessButtonLink = {
   type: 'link';

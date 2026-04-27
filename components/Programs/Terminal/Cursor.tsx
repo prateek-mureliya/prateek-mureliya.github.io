@@ -294,7 +294,11 @@ function DialogCommandForm({
           <ActualCommand />
         </div>
       </DialogTrigger>
-      <DialogContent hideHeader className="sm:w-128 p-2 font-mono text-sm" onCloseAutoFocus={(e) => e.preventDefault()}>
+      <DialogContent
+        hideHeader
+        windowClassName="sm:w-128 p-2 font-mono text-sm"
+        onCloseAutoFocus={(e) => e.preventDefault()}
+      >
         <DialogHeader className="hidden">
           <DialogTitle>hidden title</DialogTitle>
           <DialogDescription>hidden desciption</DialogDescription>

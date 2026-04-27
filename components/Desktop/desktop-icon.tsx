@@ -7,13 +7,12 @@ import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
-export type DesktopIconProps = {
+type DesktopIconProps = {
   icon: StaticImageData;
   title: string;
   x: number;
   y: number;
   viewer?: StaticImageData;
-  onClick?: () => void;
 };
 
 type TPlaceholder = {
@@ -27,7 +26,14 @@ const ICON_WIDTH_SIZE = isMobile ? 83 : 74;
 const ICON_HEIGHT_SIZE = isMobile ? 90 : 74;
 const GRID_PADDING = isMobile ? 16 : 8;
 
-export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: DesktopIconProps) {
+export default function DesktopIcon({
+  icon,
+  title,
+  x,
+  y,
+  viewer,
+  onClick,
+}: DesktopIconProps & React.ComponentProps<'li'>) {
   const [gridRow, setGridRow] = useState(x);
   const [gridColumn, setGridColumn] = useState(y);
   const [placeholder, setPlaceholder] = useState<TPlaceholder>(null);
@@ -95,7 +101,7 @@ export default function DesktopIcon({ icon, title, x, y, viewer, onClick }: Desk
         whileTap={{ cursor: 'grabbing' }}
         dragElastic={0.25}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 15 }}
-        onClick={() => !placeholder && onClick && onClick()}
+        onClick={(e) => !placeholder && onClick && onClick(e)}
         className={cn('p-1 h-min rounded-sm hover:bg-blue-500/60 border border-transparent hover:border-blue-500 z-1')}
         style={{
           gridColumnStart: gridColumn === 0 ? 'auto' : gridColumn,
