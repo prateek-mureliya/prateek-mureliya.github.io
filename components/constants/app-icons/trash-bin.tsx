@@ -9,7 +9,7 @@ export const TRASH_BIN: TProcessButton = {
   icon: TrashBinImg.src,
   x: 350,
   y: 215,
-  width: 665,
+  width: 775,
   height: 450,
   window: TrashBin,
 };

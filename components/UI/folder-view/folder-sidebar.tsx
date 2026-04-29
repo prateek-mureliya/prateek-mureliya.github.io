@@ -1,14 +1,12 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
 } from '../sidebar';
 import { TabsList, TabsTrigger } from '../tabs';
 import { TSidebarMenuItem } from '@/types/folder-view';
@@ -47,9 +45,6 @@ export default function FolderSidebar({ height, menuOptions }: FolderSidebarProp
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter>
-          <SidebarTrigger />
-        </SidebarFooter>
       </Sidebar>
     </TabsList>
   );

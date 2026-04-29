@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, VariantProps } from 'class-variance-authority';
-import { Menu } from 'lucide-react';
+import { PanelLeftIcon, PanelRightIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '../UI/button';
 import { Input } from './form/input';
@@ -13,7 +13,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../UI/
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
-const SIDEBAR_WIDTH = '16rem';
+const SIDEBAR_WIDTH = '12rem';
 const SIDEBAR_WIDTH_ICON = '3rem';
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 
@@ -149,7 +149,7 @@ function Sidebar({
 
   return (
     <div
-      className="group peer text-sidebar-foreground"
+      className="group peer text-sidebar-foreground max-sm:absolute max-sm:z-1"
       data-state={state}
       data-collapsible={state === 'collapsed' ? collapsible : ''}
       data-variant={variant}
@@ -196,7 +196,7 @@ function Sidebar({
 }
 
 function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar();
+  const { open, toggleSidebar } = useSidebar();
 
   return (
     <Button
@@ -204,14 +204,14 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon"
-      className={cn('size-7', className)}
+      className={cn('size-7 hover:border hover:border-accent', className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
       }}
       {...props}
     >
-      <Menu />
+      {open ? <PanelLeftIcon className="cn-rtl-flip" /> : <PanelRightIcon className="cn-lft-flip" />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
