@@ -14,7 +14,7 @@ import { TFile, TFileSystemData, TFolder } from '@/types/terminal';
 import { RESUME_PDF } from '../../constants/app-icons/resume-pdf';
 import { RESUME2021_PDF } from '../../constants/app-icons/resume-2021-pdf';
 import { RESUME2016_PDF } from '../../constants/app-icons/resume-2016-pdf';
-import { ABOUT_ME } from '../../constants/app-icons/about-me';
+import { ABOUT_PC } from '../../constants/app-icons/about-pc';
 
 const $bin: TFolder = {
   type: 'folder',
@@ -62,15 +62,15 @@ const $usr: TFolder = {
   dir: [],
 };
 
-const $about_me_run: TFile = {
+const $about_pc_run: TFile = {
   type: 'file',
   owner: 'mureliya',
   group: 'dev',
   createdAt: 'Aug 14, 11:27 AM GMT+5:30',
-  name: 'about-me.run',
+  name: 'about-pc.run',
   icon: FaRegUser,
   fileType: 'process',
-  process: ABOUT_ME,
+  process: ABOUT_PC,
 };
 const $resume_pdf: TFile = {
   type: 'file',
@@ -197,7 +197,7 @@ const $portfolio: TFolder = {
   group: 'dev',
   createdAt: 'Jul 3, 1:58 PM GMT+5:30',
   name: 'portfolio',
-  dir: [$about_me_run, $resume_pdf, $social, $trash_bin],
+  dir: [$about_pc_run, $resume_pdf, $social, $trash_bin],
 };
 const $user: TFolder = {
   type: 'folder',
@@ -235,7 +235,7 @@ const fsObject: TFileSystem = {
   '/home': $home,
   '/home/#USER#': $user,
   '/home/#USER#/portfolio': $portfolio,
-  '/home/#USER#/portfolio/about-me.run': $about_me_run,
+  '/home/#USER#/portfolio/about-pc.run': $about_pc_run,
   '/home/#USER#/portfolio/Resume.pdf': $resume_pdf,
   '/home/#USER#/portfolio/social': $social,
   '/home/#USER#/portfolio/social/facebook.connect': $facebook_connect,

@@ -1,4 +1,4 @@
-import { ABOUT_ME } from './about-me';
+import { FINDER } from './finder';
 import { CONTACT_US } from './contact-us';
 import { MAIL_BOX } from './mailbox';
 import { RESUME2016_PDF } from './resume-2016-pdf';
@@ -9,7 +9,7 @@ import { TRASH_BIN } from './trash-bin';
 import { VS_CODE } from './vs-code';
 
 const apps = {
-  [ABOUT_ME.id]: ABOUT_ME,
+  [FINDER.id]: FINDER,
   [CONTACT_US.id]: CONTACT_US,
   [TERMINAL.id]: TERMINAL,
   [TRASH_BIN.id]: TRASH_BIN,
@@ -33,7 +33,7 @@ export function getDesktopIcons(isMobile: boolean, isDeveloper: boolean) {
 }
 
 export function getLeftSideArr(isMobile: boolean, isDeveloper: boolean) {
-  let final = [ABOUT_ME.id, CONTACT_US.id, MAIL_BOX.id];
+  let final = [FINDER.id, CONTACT_US.id, MAIL_BOX.id];
   if (!isMobile && isDeveloper) final = final.concat(developerApps);
   return final;
 }

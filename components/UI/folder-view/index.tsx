@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { SidebarProvider } from '../sidebar';
+import { SidebarProvider, SidebarTrigger } from '../sidebar';
 import { Tabs } from '../tabs';
 import WindowBody, { WindowBodyProps } from '../../Window/window-body';
 import { TSidebarMenu } from '@/types/folder-view';
@@ -12,7 +12,7 @@ type FolderViewProps = {
 } & TSidebarMenu &
   WindowBodyProps;
 
-export default function FolderView({ activeTab, defaultOpen = false, menuOptions, isMaximized }: FolderViewProps) {
+export default function FolderView({ activeTab, menuOptions, isMaximized }: FolderViewProps) {
   const [height, setHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -36,12 +36,13 @@ export default function FolderView({ activeTab, defaultOpen = false, menuOptions
   return (
     <WindowBody ref={containerRef}>
       <Tabs defaultValue={activeTab}>
-        <SidebarProvider defaultOpen={defaultOpen}>
+        <SidebarProvider defaultOpen={false}>
           <FolderSidebar height={height} menuOptions={menuOptions} />
 
           {menuOptions.map(({ title, content: Content }) => (
-            <Content key={title} value={title} isMaximized={isMaximized} />
+            <Content key={title} value={title} height={height} isMaximized={isMaximized} />
           ))}
+          <SidebarTrigger className="absolute top-2 left-17 sm:left-19" />
         </SidebarProvider>
       </Tabs>
     </WindowBody>

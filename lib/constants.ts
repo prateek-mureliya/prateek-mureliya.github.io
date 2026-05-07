@@ -29,14 +29,15 @@ export const AUTHOR_NAME = 'Prateek Kumar';
 export const AUTHOR_EMAIL = 'prateekkumar1393@gmail.com';
 export const AUTHOR_USER = 'mureliya';
 export const AUTHOR_ROLES = [
-  'Senior Software Engineer',
-  'Backend Developer',
-  'Building scalable backend systems',
-  'Optimizing system performance',
-  'Managing databases effectively',
-  'Writing clean and maintainable code',
-  'Debug & troubleshoot complex systems',
+  'Senior Backend Software Engineer',
+  'High Availability & Fault-Tolerant Systems',
+  'Optimizing System Performance',
+  'Managing Databases Effectively',
+  'Writing Clean and Maintainable Code',
+  'Debug & Troubleshoot Complex Systems',
 ];
+
+export const AUTHOR_SKILLS = ['Java', 'Spring Boot', 'System Design'];
 
 // header fooler z index
 export const HEADER_FOOTER_Z_INDEX = 80;

@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Slider } from '../UI/slider';
 import { BasicProps, ImageFile } from '@/types/basic-props';
-import { cn } from '@/lib/utils';
+import { cn, toWindowApp } from '@/lib/utils';
 import { TIconType } from '@/types/icon-type';
 import {
   MdBluetooth,
   MdBluetoothDisabled,
+  MdOutlineInfo,
   MdWifi,
   MdWifiOff,
   MdWifiTethering,
@@ -18,6 +19,8 @@ import { Separator } from '../UI/separator';
 import { Dialog, DialogTrigger } from '../UI/dialog/dialog';
 import ShutdownDialog from './ShutdownDialog';
 import { Skeleton } from '../UI/skeleton';
+import { useProcessContext } from '@/contexts/process-manager';
+import { ABOUT_PC } from '../constants/app-icons/about-pc';
 
 function ControlCenterBox({ className, children }: BasicProps) {
   return <div className={cn('bg-card/30 rounded-md p-3 border border-card/50', className)}>{children}</div>;
@@ -64,11 +67,13 @@ type ControlCenterProps = {
   wifi: boolean;
   brightness: number;
   fullscreen: boolean;
+  showPlayer: boolean;
   setTheme: Dispatch<SetStateAction<string>>;
   setIsLogin: (isLogin: boolean) => void;
   toggleWifi: () => void;
   updateBrightness: (brightness: number) => void;
   toggleFullscreen: () => void;
+  closePopover: () => void;
 };
 
 function ControlCenter({
@@ -77,12 +82,15 @@ function ControlCenter({
   wifi,
   brightness,
   fullscreen,
+  showPlayer,
   setTheme,
   setIsLogin,
   toggleWifi,
   updateBrightness,
   toggleFullscreen,
+  closePopover,
 }: ControlCenterProps) {
+  const { handleOpen } = useProcessContext();
   const [bluetooth, setBluetooth] = useState(false);
   const [airdrop, setAirdrop] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -94,6 +102,16 @@ function ControlCenter({
       nextTheme = 'system';
     }
     return nextTheme;
+  };
+
+  const handleAboutPcClick = () => {
+    handleOpen(toWindowApp(ABOUT_PC));
+    closePopover();
+  };
+
+  const handleLogout = () => {
+    setIsLogin(false);
+    closePopover();
   };
 
   return (
@@ -108,12 +126,13 @@ function ControlCenter({
           />
           <TitleLabel>{selectedUser.alt}</TitleLabel>
         </ControlCenterBox>
+
         <ControlCenterBox className="p-1 flex gap-2">
           <Button
             variant={'outline'}
             size={'icon'}
             className="bg-transparent dark:bg-transparent size-8 border-none"
-            onClick={() => setIsLogin(false)}
+            onClick={handleLogout}
           >
             <Lock className="size-4" />
           </Button>
@@ -134,6 +153,7 @@ function ControlCenter({
           </Dialog>
         </ControlCenterBox>
       </div>
+
       <div className="flex flex-row gap-2">
         <ControlCenterBox className={'flex flex-col gap-1.5 w-73.5 grow-1'}>
           <ControlCenterHorizontalBox
@@ -158,6 +178,7 @@ function ControlCenter({
             onClick={() => setAirdrop((prev) => !prev)}
           />
         </ControlCenterBox>
+
         <div className="flex flex-col gap-2 w-73.5 grow-1">
           <ControlCenterBox className="p-4">
             <ControlCenterHorizontalBox
@@ -177,6 +198,7 @@ function ControlCenter({
           </ControlCenterBox>
         </div>
       </div>
+
       <ControlCenterBox>
         <div className="flex justify-between text-sm mb-3">
           <TitleLabel>Display</TitleLabel>
@@ -184,34 +206,42 @@ function ControlCenter({
         </div>
         <Slider value={[brightness]} max={100} step={1} onValueChange={(nums) => updateBrightness(nums[0])} />
       </ControlCenterBox>
-      <ControlCenterBox className="relative overflow-hidden p-0">
-        {!loaded && (
-          <div className="absolute inset-0 flex flex-col justify-between p-3">
-            <div className="flex flex-row gap-8">
-              <Skeleton className="size-20 rounded bg-zinc-400" />
-              <div className="flex flex-col grow-1 h-full justify-around">
-                <Skeleton className="h-2 w-full rounded bg-zinc-400" />
-                <Skeleton className="h-2 w-full rounded bg-zinc-400" />
-                <Skeleton className="h-2 w-full rounded bg-zinc-400" />
+
+      {showPlayer && (
+        <ControlCenterBox className="relative overflow-hidden p-0">
+          {!loaded && (
+            <div className="absolute inset-0 flex flex-col justify-between p-3">
+              <div className="flex flex-row gap-8">
+                <Skeleton className="size-20 rounded bg-zinc-400" />
+                <div className="flex flex-col grow-1 h-full justify-around">
+                  <Skeleton className="h-2 w-full rounded bg-zinc-400" />
+                  <Skeleton className="h-2 w-full rounded bg-zinc-400" />
+                  <Skeleton className="h-2 w-full rounded bg-zinc-400" />
+                </div>
+              </div>
+              <div className="flex flex-row mt-3 gap-10 items-center">
+                <Skeleton className="h-2 rounded grow-1 bg-zinc-400" />
+                <Skeleton className="size-8 rounded-full bg-zinc-400" />
               </div>
             </div>
-            <div className="flex flex-row mt-3 gap-10 items-center">
-              <Skeleton className="h-2 rounded grow-1 bg-zinc-400" />
-              <Skeleton className="size-8 rounded-full bg-zinc-400" />
-            </div>
-          </div>
-        )}
-        <iframe
-          data-testid="embed-iframe"
-          src="https://open.spotify.com/embed/playlist/4QKBShsxyl6bUnNx1LVzCN?utm_source=generator&theme=1"
-          width="100%"
-          height="152"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-          onLoad={() => setLoaded(true)}
-          className={`select-none rounded-xl transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        ></iframe>
-      </ControlCenterBox>
+          )}
+          <iframe
+            data-testid="embed-iframe"
+            src="https://open.spotify.com/embed/playlist/4QKBShsxyl6bUnNx1LVzCN?utm_source=generator&theme=1"
+            width="100%"
+            height="152"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            onLoad={() => setLoaded(true)}
+            className={`select-none rounded-xl transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+          ></iframe>
+        </ControlCenterBox>
+      )}
+
+      <Button variant={'link'} size={'xs'} onClick={handleAboutPcClick}>
+        <MdOutlineInfo />
+        {ABOUT_PC.title}
+      </Button>
     </>
   );
 }

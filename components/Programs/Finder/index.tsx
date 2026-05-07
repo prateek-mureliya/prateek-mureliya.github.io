@@ -1,20 +1,20 @@
 import FolderView from '../../UI/folder-view';
 import { WindowBodyProps } from '../../Window/window-body';
-import { TrashIcon } from 'lucide-react';
+import { TbUserPentagon } from 'react-icons/tb';
 import { TSidebarMenu } from '@/types/folder-view';
-import Trash from './Trash';
+import AboutMe from './AboutMe';
 
 const SIDEBAR_MENU: TSidebarMenu = {
-  activeTab: 'Trash',
+  activeTab: 'About Me',
   menuOptions: [
     {
-      title: 'Trash',
-      icon: TrashIcon,
-      content: Trash,
+      title: 'About Me',
+      icon: TbUserPentagon,
+      content: AboutMe,
     },
   ],
 };
 
-export default function TrashBin({ isMaximized }: WindowBodyProps) {
+export default function Finder({ isMaximized }: WindowBodyProps) {
   return <FolderView {...SIDEBAR_MENU} isMaximized={isMaximized}></FolderView>;
 }

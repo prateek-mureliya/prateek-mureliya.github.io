@@ -2,11 +2,15 @@ import { ImageFile, PDFType } from '@/types/basic-props';
 
 // author
 import ProfileImage from '@/public/images/optimized/profile.webp';
+import Illustrations1 from '@/public/images/original/Illustrations_1.png';
+
 const ProfileImg: ImageFile = { src: ProfileImage, alt: 'Profile' };
+const Illustrations1Img: ImageFile = { src: Illustrations1, alt: 'Illustrations 1' };
 const ProfileBgRemoveImg = '/images/optimized/profile-bg-remove.webp';
 
 // icon
-import AboutMeIcon from '@/public/images/optimized/icon/about-me.webp';
+import FinderIcon from '@/public/images/optimized/icon/finder.webp';
+import AboutPCIcon from '@/public/images/optimized/icon/about-pc.webp';
 import ContactUsIcon from '@/public/images/optimized/icon/contact-us.webp';
 import AdobeIcon from '@/public/images/optimized/icon/adobe.webp';
 import TerminalIcon from '@/public/images/optimized/icon/terminal.webp';
@@ -16,7 +20,8 @@ import SiteLinkIcon from '@/public/images/optimized/icon/link.webp';
 import VsCodeIcon from '@/public/images/optimized/icon/vscode.webp';
 import MailIcon from '@/public/images/optimized/icon/mail.webp';
 
-const AboutMeImg: ImageFile = { src: AboutMeIcon, alt: 'About Me' };
+const FinderImg: ImageFile = { src: FinderIcon, alt: 'Finder' };
+const AboutPCImg: ImageFile = { src: AboutPCIcon, alt: 'About This PC' };
 const ContactUsImg: ImageFile = { src: ContactUsIcon, alt: 'Contact Us' };
 const AdobeImg: ImageFile = { src: AdobeIcon, alt: 'Adobe' };
 const TerminalImg: ImageFile = { src: TerminalIcon, alt: 'Terminal' };
@@ -87,8 +92,10 @@ const AUTHOR_NAME_AUDIO = '/media/Prateek_Kumar_Voice.mp3';
 
 export {
   ProfileImg,
+  Illustrations1Img,
   ProfileBgRemoveImg,
-  AboutMeImg,
+  FinderImg,
+  AboutPCImg,
   ContactUsImg,
   AdobeImg,
   TerminalImg,

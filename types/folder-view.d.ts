@@ -8,11 +8,12 @@ export type TSidebarMenuItem = {
 
 export type TSidebarMenu = {
   activeTab: string;
-  defaultOpen?: boolean;
   menuOptions: TSidebarMenuItem[];
 };
 
 export type TFolderContent = {
   value: string;
+  height: number;
+  isGrid?: boolean;
   isMaximized?: boolean;
 };

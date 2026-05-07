@@ -19,12 +19,22 @@ import { useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '../UI/popover';
 
 export default function Menu({ className }: BasicProps) {
-  const { isLogin, selectedUser, brightness, fullscreen, setIsLogin, updateBrightness, toggleFullscreen } =
-    useApplicationContext();
+  const {
+    isLogin,
+    selectedUser,
+    brightness,
+    fullscreen,
+    isStalker,
+    isDeveloper,
+    setIsLogin,
+    updateBrightness,
+    toggleFullscreen,
+  } = useApplicationContext();
   const { theme, setTheme } = useTheme();
   const [wifi, setWifi] = useState(true);
   const [open, setOpen] = useState(false);
   const toggleWifi = () => setWifi((prev) => !prev);
+  const closePopover = () => setOpen(false);
 
   return (
     <NavigationMenu viewport={false} className="col-start-2 justify-self-end">
@@ -88,10 +98,12 @@ export default function Menu({ className }: BasicProps) {
                     brightness={brightness}
                     selectedUser={selectedUser}
                     fullscreen={fullscreen}
+                    showPlayer={isStalker || isDeveloper}
                     setIsLogin={setIsLogin}
                     toggleWifi={toggleWifi}
                     updateBrightness={updateBrightness}
                     toggleFullscreen={toggleFullscreen}
+                    closePopover={closePopover}
                   />
                 </PopoverContent>
               </Popover>

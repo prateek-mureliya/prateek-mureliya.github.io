@@ -52,7 +52,7 @@ const TREE_DATA: TTreeData[] = [
   },
 ];
 
-export default function AboutMe({ isMaximized }: WindowBodyProps) {
+export default function AboutPC({ isMaximized }: WindowBodyProps) {
   return (
     <WindowBody isMaximized={isMaximized} className="flex flex-col p-4">
       <div className="flex flex-1 flex-col sm:flex-row sm:max-w-228 mx-auto">
