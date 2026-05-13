@@ -1,8 +1,6 @@
 import { AUTHOR_NAME } from '@/lib/constants';
 
 export default function AboutFooter() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <div className="text-muted-foreground text-xs text-center">
       Made with
@@ -10,7 +8,7 @@ export default function AboutFooter() {
         <span className="absolute animate-ping">❤️</span>
         <span>❤️</span>
       </span>
-      by {AUTHOR_NAME} — © {currentYear}
+      by {AUTHOR_NAME}
     </div>
   );
 }

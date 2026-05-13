@@ -10,6 +10,6 @@ export const FINDER: TProcessButton = {
   x: 258,
   y: 62,
   width: 1070,
-  height: 540,
+  height: 585,
   window: Finder,
 };

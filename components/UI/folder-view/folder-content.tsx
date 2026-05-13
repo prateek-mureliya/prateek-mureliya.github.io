@@ -17,13 +17,13 @@ export default function FolderContent({
     <TabsContent
       value={value}
       className={cn(
-        'relative p-4 max-sm:pl-12',
+        'relative p-4 max-sm:pl-14',
         isGrid ? 'grid grid-flow-row grid-cols-folder grid-rows-folder gap-2' : '',
         isMaximized ? 'pb-0' : '',
         className
       )}
       style={{
-        height: height,
+        minHeight: height,
       }}
     >
       <div className="absolute top-0 left-0 z-0 size-70 bg-orange-300/40 sm:bg-orange-300/20 blur-3xl"></div>

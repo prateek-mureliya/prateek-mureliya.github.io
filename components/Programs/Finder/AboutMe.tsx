@@ -1,46 +1,56 @@
-import Image from 'next/image';
 import FolderContent from '../../UI/folder-view/folder-content';
 import { TFolderContent } from '@/types/folder-view';
-import { Illustrations1Img } from '@/lib/media';
+import { AUTHOR_NAME_AUDIO, Illustrations1Img } from '@/lib/media';
 import { AUTHOR_NAME, AUTHOR_ROLES, AUTHOR_SKILLS } from '@/lib/constants';
 import { Button } from '@/components/UI/button';
 import { Dialog, DialogTrigger } from '@/components/UI/dialog/dialog';
 import ContactUs from '../ContactUs';
 import { Badge } from '@/components/UI/badge';
-import { calYearExperience } from '@/lib/utils';
+import { calYearExperience, cn } from '@/lib/utils';
+import { TEXT_COLOR } from '@/components/UI/TreeView/TreeRoot';
+import { BORDER_COLOR } from '@/components/UI/TreeView/Branches';
+import { Container, LeftSide, LineComment, RightSideImage } from './UI';
+import { BadgeCheck, Volume2 } from 'lucide-react';
 
 export default function AboutMe(props: TFolderContent) {
+  const handlePlay = () => {
+    const audio = new Audio(AUTHOR_NAME_AUDIO);
+    audio.play();
+  };
+
   return (
-    <FolderContent {...props} isGrid={false} className="max-sm:pl-14">
-      <div className="relative z-0 flex flex-col-reverse sm:flex-row sm:max-w-228 mx-auto">
-        <div className="font-mono text-xs sm:text-sm grow-1 pt-4">
+    <FolderContent {...props} isGrid={false}>
+      <Container>
+        <LeftSide>
           <div>
-            <span className="text-emerald-600 font-extrabold">String</span>
-            <span className="mx-1 text-foreground text-3xl sm:text-5xl font-extrabold">
+            <span className={cn('font-extrabold', TEXT_COLOR.Purple)}>String</span>
+            <span className="mx-1 text-foreground text-2xl sm:text-5xl font-extrabold">
               {AUTHOR_NAME.replace(' ', '')}
             </span>
-            <span className="text-emerald-600 font-extrabold">=</span>
+            <span className={cn('font-extrabold', TEXT_COLOR.Purple)}>=</span>
+            <BadgeCheck className="inline size-4 ml-1 text-blue-800 dark:text-blue-400" />
+            <Volume2 onClick={handlePlay} className="inline size-4 ml-1 text-muted-foreground hover:text-foreground" />
           </div>
 
-          <div className="border-l border-indigo-600 pl-4 mt-6">
-            <div className="mb-2">
-              <span className="text-indigo-600 font-extrabold mr-2">role:</span>
+          <div className={cn('border-l pl-2 sm:pl-4 mt-6', BORDER_COLOR.Yellow)}>
+            <div className="mb-2 last:mb-0">
+              <span className={cn('font-extrabold mr-2', TEXT_COLOR.Yellow)}>role:</span>
               <span>&apos;{AUTHOR_ROLES[0]}&apos;</span>
             </div>
-            <div className="mb-2">
-              <span className="text-indigo-600 font-extrabold mr-2">focus:</span>
+            <div className="mb-2 last:mb-0">
+              <span className={cn('font-extrabold mr-2', TEXT_COLOR.Yellow)}>focus:</span>
               <span>&apos;{AUTHOR_ROLES[1]}&apos;</span>
             </div>
-            <div>
-              <span className="text-indigo-600 font-extrabold mr-2">stack:</span>
+            <div className="mb-2 last:mb-0">
+              <span className={cn('font-extrabold mr-2', TEXT_COLOR.Yellow)}>stack:</span>
               <span>[&apos;{AUTHOR_SKILLS.join("', '")}&apos;]</span>
             </div>
           </div>
 
-          <div className="mt-6 text-gray-500">{'// Built scalable services with Java & Spring Boot'}</div>
-          <div className="mt-2 text-gray-500">{'// Designed reliable event-driven microservices'}</div>
-          <div className="mt-2 text-gray-500">{'// Improved system performance with Redis Cache'}</div>
-          <div className="mt-2 text-gray-500">{'// Deployed services on cloud-native platforms (AWS)'}</div>
+          <LineComment className="mt-6">Built scalable services with Java & Spring Boot</LineComment>
+          <LineComment>Designed reliable event-driven microservices</LineComment>
+          <LineComment>Improved system performance with Redis Cache</LineComment>
+          <LineComment>Deployed services on cloud-native platforms (AWS)</LineComment>
 
           <Badge className="flex bg-transparent text-foreground mt-6 border border-foreground/10">
             <span className="relative flex size-2">
@@ -58,14 +68,10 @@ export default function AboutMe(props: TFolderContent) {
             </DialogTrigger>
             <ContactUs />
           </Dialog>
-        </div>
-        <Image
-          src={Illustrations1Img.src}
-          alt={Illustrations1Img.alt}
-          placeholder="blur"
-          className="hidden sm:block size-100 mx-auto"
-        />
-      </div>
+        </LeftSide>
+
+        <RightSideImage src={Illustrations1Img.src} alt={Illustrations1Img.alt} />
+      </Container>
     </FolderContent>
   );
 }

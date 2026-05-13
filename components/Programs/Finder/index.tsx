@@ -1,8 +1,9 @@
 import FolderView from '../../UI/folder-view';
 import { WindowBodyProps } from '../../Window/window-body';
-import { TbUserPentagon } from 'react-icons/tb';
+import { TbBrain, TbUserPentagon } from 'react-icons/tb';
 import { TSidebarMenu } from '@/types/folder-view';
 import AboutMe from './AboutMe';
+import Skills from './Skills';
 
 const SIDEBAR_MENU: TSidebarMenu = {
   activeTab: 'About Me',
@@ -11,6 +12,11 @@ const SIDEBAR_MENU: TSidebarMenu = {
       title: 'About Me',
       icon: TbUserPentagon,
       content: AboutMe,
+    },
+    {
+      title: 'Skills',
+      icon: TbBrain,
+      content: Skills,
     },
   ],
 };
