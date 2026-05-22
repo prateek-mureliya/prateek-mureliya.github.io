@@ -1,10 +1,11 @@
 import FolderContent from '../../UI/folder-view/folder-content';
 import { TFolderContent } from '@/types/folder-view';
-import { Container, LeftSide, LineComment, RightSideImage } from './UI';
+import { Container, LeftSide, RightSideImage } from './UI';
 import { Illustrations2Img } from '@/lib/media';
 import { BasicProps } from '@/types/basic-props';
 import { Badge } from '@/components/UI/badge';
 import { TEXT_COLOR } from '@/components/UI/TreeView/TreeRoot';
+import LineComment from '@/components/UI/line-comment';
 import { cn } from '@/lib/utils';
 import { JSX } from 'react';
 

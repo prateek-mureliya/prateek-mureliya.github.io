@@ -1,6 +1,6 @@
 import FolderContent from '../../UI/folder-view/folder-content';
 import { TFolderContent } from '@/types/folder-view';
-import { AUTHOR_NAME_AUDIO, Illustrations1Img } from '@/lib/media';
+import { AUTHOR_NAME_AUDIO } from '@/lib/media';
 import { AUTHOR_NAME, AUTHOR_ROLES, AUTHOR_SKILLS } from '@/lib/constants';
 import { Button } from '@/components/UI/button';
 import { Dialog, DialogTrigger } from '@/components/UI/dialog/dialog';
@@ -9,8 +9,16 @@ import { Badge } from '@/components/UI/badge';
 import { calYearExperience, cn } from '@/lib/utils';
 import { TEXT_COLOR } from '@/components/UI/TreeView/TreeRoot';
 import { BORDER_COLOR } from '@/components/UI/TreeView/Branches';
-import { Container, LeftSide, LineComment, RightSideImage } from './UI';
+import LineComment from '@/components/UI/line-comment';
+import { Container, LeftSide, RightSideButton } from './UI';
 import { BadgeCheck, Volume2 } from 'lucide-react';
+import { GameBox, GameBoxPopup } from '../GameBox';
+import { isMobile } from 'react-device-detect';
+import { MdOutlineVideogameAsset } from 'react-icons/md';
+
+function RightSideGame() {
+  return <GameBox className="hidden sm:block sticky top-4 w-100" />;
+}
 
 export default function AboutMe(props: TFolderContent) {
   const handlePlay = () => {
@@ -70,8 +78,16 @@ export default function AboutMe(props: TFolderContent) {
           </Dialog>
         </LeftSide>
 
-        <RightSideImage src={Illustrations1Img.src} alt={Illustrations1Img.alt} />
+        {!isMobile && <RightSideGame />}
       </Container>
+      {isMobile && (
+        <Dialog>
+          <DialogTrigger asChild>
+            <RightSideButton icon={MdOutlineVideogameAsset} title="Games" />
+          </DialogTrigger>
+          <GameBoxPopup />
+        </Dialog>
+      )}
     </FolderContent>
   );
 }

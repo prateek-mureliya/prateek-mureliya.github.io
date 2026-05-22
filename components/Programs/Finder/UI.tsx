@@ -1,10 +1,9 @@
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
-import { BasicProps, ImageFile } from '@/types/basic-props';
 
-function LineComment({ className, children }: BasicProps) {
-  return <div className={cn('mt-2 text-gray-600 dark:text-gray-400', className)}>{`// ${children}`}</div>;
-}
+import { BasicProps, ImageFile } from '@/types/basic-props';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
+import { TIconType } from '@/types/icon-type';
 
 function Container({ children }: BasicProps) {
   return (
@@ -22,4 +21,31 @@ function RightSideImage({ src, alt }: ImageFile) {
   return <Image src={src} alt={alt} placeholder="blur" className="hidden sm:block sticky top-4 size-100 mx-auto" />;
 }
 
-export { Container, LeftSide, RightSideImage, LineComment };
+function RightSideButton({
+  icon: Icon,
+  title,
+  ...props
+}: { icon: TIconType; title: string } & React.ComponentProps<'button'>) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+
+    return () => setLoaded(false);
+  }, []);
+
+  return (
+    <button
+      className={cn(
+        'fixed bottom-10 -right-18 flex size-30 bg-card text-card-foreground pt-2 px-4 -rotate-20 rounded-4xl shadow-2xl border transition-[right] duration-500 ease-in-out',
+        loaded ? '-right-18' : '-right-30'
+      )}
+      {...props}
+    >
+      <Icon className="size-6" />
+      <p className="font-extrabold text-xs -ml-22 rotate-90">{title}</p>
+    </button>
+  );
+}
+
+export { Container, LeftSide, RightSideImage, RightSideButton };
