@@ -30,3 +30,7 @@ export const toWindowApp = (app: TProcessButton) => {
   const { id, icon, viewer, title, ...other } = app;
   return { id, icon, viewer, title, ...(other as TProcessButtonWindow) };
 };
+
+export const randomNumber = (min: number, max: number) => {
+  return min + Math.random() * max;
+};

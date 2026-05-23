@@ -2,12 +2,8 @@ import { ImageFile, PDFType } from '@/types/basic-props';
 
 // author
 import ProfileImage from '@/public/images/optimized/profile.webp';
-import Illustrations1 from '@/public/images/original/Illustrations_1.png';
-import Illustrations2 from '@/public/images/original/Illustrations_2.png';
 
 const ProfileImg: ImageFile = { src: ProfileImage, alt: 'Profile' };
-const Illustrations1Img: ImageFile = { src: Illustrations1, alt: 'Illustrations 1' };
-const Illustrations2Img: ImageFile = { src: Illustrations2, alt: 'Illustrations 2' };
 const ProfileBgRemoveImg = '/images/optimized/profile-bg-remove.webp';
 
 // icon
@@ -95,8 +91,6 @@ const AUTHOR_NAME_AUDIO = '/media/Prateek_Kumar_Voice.mp3';
 export {
   ProfileImg,
   ProfileBgRemoveImg,
-  Illustrations1Img,
-  Illustrations2Img,
   FinderImg,
   AboutPCImg,
   ContactUsImg,

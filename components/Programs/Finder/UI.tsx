@@ -1,6 +1,4 @@
-import Image from 'next/image';
-
-import { BasicProps, ImageFile } from '@/types/basic-props';
+import { BasicProps } from '@/types/basic-props';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { TIconType } from '@/types/icon-type';
@@ -15,10 +13,6 @@ function Container({ children }: BasicProps) {
 
 function LeftSide({ children }: BasicProps) {
   return <div className="grow-1">{children}</div>;
-}
-
-function RightSideImage({ src, alt }: ImageFile) {
-  return <Image src={src} alt={alt} placeholder="blur" className="hidden sm:block sticky top-4 size-100 mx-auto" />;
 }
 
 function RightSideButton({
@@ -48,4 +42,4 @@ function RightSideButton({
   );
 }
 
-export { Container, LeftSide, RightSideImage, RightSideButton };
+export { Container, LeftSide, RightSideButton };
