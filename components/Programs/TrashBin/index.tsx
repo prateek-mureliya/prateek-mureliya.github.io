@@ -5,7 +5,6 @@ import { TSidebarMenu } from '@/types/folder-view';
 import Trash from './Trash';
 
 const SIDEBAR_MENU: TSidebarMenu = {
-  activeTab: 'Trash',
   menuOptions: [
     {
       title: 'Trash',
@@ -15,6 +14,8 @@ const SIDEBAR_MENU: TSidebarMenu = {
   ],
 };
 
-export default function TrashBin({ isMaximized }: WindowBodyProps) {
-  return <FolderView {...SIDEBAR_MENU} isMaximized={isMaximized}></FolderView>;
+export default function TrashBin({ isMaximized, activeTab }: WindowBodyProps) {
+  return (
+    <FolderView {...SIDEBAR_MENU} activeTab={activeTab ? activeTab : 'Trash'} isMaximized={isMaximized}></FolderView>
+  );
 }

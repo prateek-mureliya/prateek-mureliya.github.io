@@ -13,7 +13,7 @@ import { GameRef } from '@/types/game';
 import { useBrick } from './Brick';
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from './utils';
 
-function GameBox({ className }: BasicProps) {
+function GameBox({ className, focus }: BasicProps & { focus: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const tetrisRef = useTetris();
   const snakeRef = useSnake();
@@ -82,13 +82,12 @@ function GameBox({ className }: BasicProps) {
       if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') controls()?.left();
       if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') controls()?.right();
     }
-
-    window.addEventListener('keydown', handleKey);
+    if (focus) window.addEventListener('keydown', handleKey);
 
     return () => {
-      window.removeEventListener('keydown', handleKey);
+      if (focus) window.removeEventListener('keydown', handleKey);
     };
-  }, [controls, reset, isSelected, gameRef]);
+  }, [controls, reset, isSelected, gameRef, focus]);
 
   return (
     <div
@@ -130,7 +129,7 @@ function GameBoxPopup() {
           <span className="sr-only">Close</span>
         </WindowActionClose>
       </DialogClose>
-      <GameBox />
+      <GameBox focus={false} />
     </DialogContent>
   );
 }

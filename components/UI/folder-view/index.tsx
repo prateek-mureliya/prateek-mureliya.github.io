@@ -7,12 +7,9 @@ import WindowBody, { WindowBodyProps } from '../../Window/window-body';
 import { TSidebarMenu } from '@/types/folder-view';
 import FolderSidebar from './folder-sidebar';
 
-type FolderViewProps = {
-  isMaximized?: boolean;
-} & TSidebarMenu &
-  WindowBodyProps;
+type FolderViewProps = TSidebarMenu & WindowBodyProps;
 
-export default function FolderView({ activeTab, menuOptions, isMaximized }: FolderViewProps) {
+export default function FolderView({ activeTab, menuOptions, isMaximized, focus }: FolderViewProps) {
   const [height, setHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -34,13 +31,13 @@ export default function FolderView({ activeTab, menuOptions, isMaximized }: Fold
   }, []);
 
   return (
-    <WindowBody ref={containerRef}>
+    <WindowBody ref={containerRef} focus={focus}>
       <Tabs defaultValue={activeTab}>
         <SidebarProvider defaultOpen={false}>
           <FolderSidebar height={height} menuOptions={menuOptions} />
 
           {menuOptions.map(({ title, content: Content }) => (
-            <Content key={title} value={title} height={height} isMaximized={isMaximized} />
+            <Content key={title} value={title} height={height} isMaximized={isMaximized} focus={focus} />
           ))}
           <SidebarTrigger className="absolute top-2 left-17 sm:left-19" />
         </SidebarProvider>

@@ -1,6 +1,5 @@
 'use client';
 import ConsoleMessage from '@/components/console-message';
-import WelcomeMessage from '@/components/welcome-message';
 import Header from '@/components/Header';
 import Wallpaper from '@/components/Wallpaper';
 import Desktop from '@/components/Desktop';
@@ -20,7 +19,6 @@ export default function Home() {
       {isLogin && <Desktop />}
       {isLogin && <Footer />}
       <ProcessManager />
-      <WelcomeMessage />
       <LockScreen />
     </>
   );

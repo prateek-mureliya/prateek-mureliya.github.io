@@ -26,9 +26,9 @@ export const calYearExperience = () => {
   return `${year}+`;
 };
 
-export const toWindowApp = (app: TProcessButton) => {
+export const toWindowApp = (app: TProcessButton, activeTab: string | undefined = undefined) => {
   const { id, icon, viewer, title, ...other } = app;
-  return { id, icon, viewer, title, ...(other as TProcessButtonWindow) };
+  return { id, icon, viewer, title, ...(other as TProcessButtonWindow), activeTab };
 };
 
 export const randomNumber = (min: number, max: number) => {

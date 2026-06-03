@@ -4,7 +4,7 @@ import { cn, randomNumber } from '@/lib/utils';
 import { BasicProps } from '@/types/basic-props';
 import { TIconType } from '@/types/icon-type';
 import { BiInjection } from 'react-icons/bi';
-import { FaAws, FaGitAlt, FaJava, FaPython } from 'react-icons/fa6';
+import { FaAws, FaGitAlt } from 'react-icons/fa6';
 import {
   SiApachekafka,
   SiAuth0,
@@ -25,6 +25,7 @@ import { RiNextjsLine } from 'react-icons/ri';
 import { VscJson } from 'react-icons/vsc';
 import { GrMysql } from 'react-icons/gr';
 import { BsFiletypeXml } from 'react-icons/bs';
+import { JavaIcon, PythonIcon } from '@/components/custom-icons';
 
 const IconLevel = ({ icon: Icon, title }: { icon?: TIconType; title: string }) => {
   return (
@@ -88,7 +89,7 @@ function SkillsIceBerg({ className }: BasicProps) {
   return (
     <div
       className={cn(
-        'relative h-140 sm:h-126 overflow-hidden bg-gradient-to-b from-background to-cyan-500/15 dark:to-cyan-800/8 flex-none',
+        'relative h-140 sm:h-126 overflow-hidden bg-gradient-to-b from-background to-cyan-500/15 dark:to-cyan-800/8 shadow-2xl flex-none',
         className
       )}
     >
@@ -117,8 +118,8 @@ function SkillsIceBerg({ className }: BasicProps) {
         {/* Header */}
         <div className="relative text-center">
           <div>
-            <FaJava className="inline-block size-6 text-blue-500 pr-2" />
-            <FaPython className="inline-block size-6 border-l border-l-foreground pl-2 text-yellow-500" />
+            <JavaIcon className="inline-block size-6 pr-2" />
+            <PythonIcon className="inline-block size-6 border-l border-l-foreground pl-2" />
           </div>
           <h1 className="font-black text-slate-800 dark:text-slate-400 tracking-tight">Java & Python</h1>
           <p className="text-slate-400 dark:text-slate-500">what everyone sees</p>

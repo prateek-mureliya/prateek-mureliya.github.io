@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Slider } from '../UI/slider';
 import { BasicProps, ImageFile } from '@/types/basic-props';
-import { cn, toWindowApp } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { TIconType } from '@/types/icon-type';
 import {
   MdBluetooth,
@@ -19,7 +19,6 @@ import { Separator } from '../UI/separator';
 import { Dialog, DialogTrigger } from '../UI/dialog/dialog';
 import ShutdownDialog from './ShutdownDialog';
 import { Skeleton } from '../UI/skeleton';
-import { useProcessContext } from '@/contexts/process-manager';
 import { ABOUT_PC } from '../constants/app-icons/about-pc';
 
 function ControlCenterBox({ className, children }: BasicProps) {
@@ -69,11 +68,11 @@ type ControlCenterProps = {
   fullscreen: boolean;
   showPlayer: boolean;
   setTheme: Dispatch<SetStateAction<string>>;
-  setIsLogin: (isLogin: boolean) => void;
   toggleWifi: () => void;
   updateBrightness: (brightness: number) => void;
   toggleFullscreen: () => void;
-  closePopover: () => void;
+  aboutPcClick: () => void;
+  logoutClick: () => void;
 };
 
 function ControlCenter({
@@ -84,13 +83,12 @@ function ControlCenter({
   fullscreen,
   showPlayer,
   setTheme,
-  setIsLogin,
   toggleWifi,
   updateBrightness,
   toggleFullscreen,
-  closePopover,
+  aboutPcClick,
+  logoutClick,
 }: ControlCenterProps) {
-  const { handleOpen } = useProcessContext();
   const [bluetooth, setBluetooth] = useState(false);
   const [airdrop, setAirdrop] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -102,16 +100,6 @@ function ControlCenter({
       nextTheme = 'system';
     }
     return nextTheme;
-  };
-
-  const handleAboutPcClick = () => {
-    handleOpen(toWindowApp(ABOUT_PC));
-    closePopover();
-  };
-
-  const handleLogout = () => {
-    setIsLogin(false);
-    closePopover();
   };
 
   return (
@@ -132,7 +120,7 @@ function ControlCenter({
             variant={'outline'}
             size={'icon'}
             className="bg-transparent dark:bg-transparent size-8 border-none"
-            onClick={handleLogout}
+            onClick={logoutClick}
           >
             <Lock className="size-4" />
           </Button>
@@ -238,7 +226,7 @@ function ControlCenter({
         </ControlCenterBox>
       )}
 
-      <Button variant={'link'} size={'xs'} onClick={handleAboutPcClick}>
+      <Button variant={'link'} size={'xs'} onClick={aboutPcClick}>
         <MdOutlineInfo />
         {ABOUT_PC.title}
       </Button>

@@ -7,7 +7,6 @@ export type TSidebarMenuItem = {
 };
 
 export type TSidebarMenu = {
-  activeTab: string;
   menuOptions: TSidebarMenuItem[];
 };
 
@@ -16,4 +15,5 @@ export type TFolderContent = {
   height: number;
   isGrid?: boolean;
   isMaximized?: boolean;
+  focus?: boolean;
 };

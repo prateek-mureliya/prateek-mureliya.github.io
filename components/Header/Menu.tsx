@@ -8,7 +8,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '../UI/navigation-menu';
-import { cn } from '@/lib/utils';
+import { cn, toWindowApp } from '@/lib/utils';
 import { Dialog, DialogTrigger } from '../UI/dialog/dialog';
 import { ControlCenter, WifiCenter } from './ControlCenter';
 import { BasicProps } from '@/types/basic-props';
@@ -17,6 +17,12 @@ import ShutdownDialog from './ShutdownDialog';
 import { MdWifi, MdWifiOff } from 'react-icons/md';
 import { useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '../UI/popover';
+import { ContolCenterIcon } from '../custom-icons';
+import { FaBell } from 'react-icons/fa6';
+import Notifications from './Notifications';
+import { TProcessButton } from '@/types/process-button';
+import { useProcessContext } from '@/contexts/process-manager';
+import { ABOUT_PC } from '../constants/app-icons/about-pc';
 
 export default function Menu({ className }: BasicProps) {
   const {
@@ -26,15 +32,38 @@ export default function Menu({ className }: BasicProps) {
     fullscreen,
     isStalker,
     isDeveloper,
+    notifications,
     setIsLogin,
     updateBrightness,
     toggleFullscreen,
+    markNotificationsRead,
   } = useApplicationContext();
   const { theme, setTheme } = useTheme();
+  const { handleOpen } = useProcessContext();
   const [wifi, setWifi] = useState(true);
   const [open, setOpen] = useState(false);
+  const readAllNotifications = notifications.some((p) => !p.read);
+  const [notificationsPopOver, setNotificationsPopOver] = useState(readAllNotifications);
+
   const toggleWifi = () => setWifi((prev) => !prev);
   const closePopover = () => setOpen(false);
+
+  const handleAboutPC = () => {
+    handleOpen(toWindowApp(ABOUT_PC));
+    closePopover();
+  };
+  const handleLogout = () => {
+    setIsLogin(false);
+    closePopover();
+  };
+
+  const notificationsAction = (id: number, app: TProcessButton, read: boolean, activeTab: string | undefined) => {
+    if (!read) markNotificationsRead(id);
+    if (app.type === 'window') {
+      setNotificationsPopOver(false);
+      handleOpen(toWindowApp(app, activeTab));
+    }
+  };
 
   return (
     <NavigationMenu viewport={false} className="col-start-2 justify-self-end">
@@ -71,16 +100,7 @@ export default function Menu({ className }: BasicProps) {
             <NavigationMenuItem className="h-6">
               <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger className={cn(navigationMenuTriggerStyle())}>
-                  <svg
-                    viewBox="0 0 29 29"
-                    width="16"
-                    height="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    aria-label="contol center"
-                  >
-                    <path d="M7.5,13h14a5.5,5.5,0,0,0,0-11H7.5a5.5,5.5,0,0,0,0,11Zm0-9h14a3.5,3.5,0,0,1,0,7H7.5a3.5,3.5,0,0,1,0-7Zm0,6A2.5,2.5,0,1,0,5,7.5,2.5,2.5,0,0,0,7.5,10Zm14,6H7.5a5.5,5.5,0,0,0,0,11h14a5.5,5.5,0,0,0,0-11Zm1.43439,8a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,22.93439,24Z"></path>
-                  </svg>
+                  <ContolCenterIcon className="size-4" />
                 </PopoverTrigger>
                 <PopoverContent
                   portalForceMount
@@ -99,12 +119,28 @@ export default function Menu({ className }: BasicProps) {
                     selectedUser={selectedUser}
                     fullscreen={fullscreen}
                     showPlayer={isStalker || isDeveloper}
-                    setIsLogin={setIsLogin}
                     toggleWifi={toggleWifi}
                     updateBrightness={updateBrightness}
                     toggleFullscreen={toggleFullscreen}
-                    closePopover={closePopover}
+                    aboutPcClick={handleAboutPC}
+                    logoutClick={handleLogout}
                   />
+                </PopoverContent>
+              </Popover>
+            </NavigationMenuItem>
+            <NavigationMenuItem className="h-6">
+              <Popover open={notificationsPopOver} onOpenChange={(open) => setNotificationsPopOver(open)}>
+                <PopoverTrigger className={cn(navigationMenuTriggerStyle())}>
+                  <FaBell aria-label="notifications" className="size-4" />
+                  {readAllNotifications && (
+                    <div className="bg-red-500 size-1.5 absolute top-0.5 right-0.5 rounded-sm shadow-2xl"></div>
+                  )}
+                </PopoverTrigger>
+                <PopoverContent
+                  onCloseAutoFocus={(e) => e.preventDefault()}
+                  className={cn('p-0 pt-3 mt-2 mr-2 w-sm flex flex-col gap-2', className)}
+                >
+                  <Notifications notifications={notifications} action={notificationsAction} />
                 </PopoverContent>
               </Popover>
             </NavigationMenuItem>

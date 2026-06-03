@@ -7,7 +7,6 @@ import AboutMe from './AboutMe';
 import Skills from './Skills';
 
 const SIDEBAR_MENU: TSidebarMenu = {
-  activeTab: 'About Me',
   menuOptions: [
     {
       title: 'About Me',
@@ -22,6 +21,13 @@ const SIDEBAR_MENU: TSidebarMenu = {
   ],
 };
 
-export default function Finder({ isMaximized }: WindowBodyProps) {
-  return <FolderView {...SIDEBAR_MENU} isMaximized={isMaximized}></FolderView>;
+export default function Finder({ isMaximized, focus, activeTab }: WindowBodyProps) {
+  return (
+    <FolderView
+      {...SIDEBAR_MENU}
+      activeTab={activeTab ? activeTab : 'About Me'}
+      isMaximized={isMaximized}
+      focus={focus}
+    ></FolderView>
+  );
 }

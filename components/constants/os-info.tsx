@@ -1,6 +1,5 @@
 import { TBadgeData, TBaseTreeData } from '@/types/tree';
 import {
-  BadgeCheck,
   CalendarDays,
   Cog,
   ContactRound,
@@ -39,6 +38,7 @@ import { TextLoop } from '../UI/text-loop';
 import { calYearExperience } from '@/lib/utils';
 import BadgeContainer from '../UI/badge-container';
 import { AUTHOR_NAME_AUDIO } from '@/lib/media';
+import { TirangaIcon } from '../custom-icons';
 
 const ENVIRONMENT: TBadgeData[] = [
   {
@@ -225,7 +225,7 @@ function OSName() {
   return (
     <span>
       {AUTHOR_NAME}
-      <BadgeCheck className="inline size-4 ml-1 text-blue-800 dark:text-blue-400" />
+      <TirangaIcon className="inline size-4 ml-1" />
       <Volume2 onClick={handlePlay} className="inline size-4 ml-1 text-muted-foreground hover:text-foreground" />
     </span>
   );

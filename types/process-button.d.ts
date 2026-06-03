@@ -28,6 +28,7 @@ export type TProcessButtonWindow = {
   height: number;
   link?: string;
   window: (props: WindowBodyProps) => JSX.Element;
+  activeTab?: string;
 };
 
 export type TProcessButton = TProcessButtonBase &

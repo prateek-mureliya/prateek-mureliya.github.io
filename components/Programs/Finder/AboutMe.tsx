@@ -11,13 +11,14 @@ import { TEXT_COLOR } from '@/components/UI/TreeView/TreeRoot';
 import { BORDER_COLOR } from '@/components/UI/TreeView/Branches';
 import LineComment from '@/components/UI/line-comment';
 import { Container, LeftSide, RightSideButton } from './UI';
-import { BadgeCheck, Volume2 } from 'lucide-react';
+import { Volume2 } from 'lucide-react';
 import { GameBox, GameBoxPopup } from '../GameBox';
 import { isMobile } from 'react-device-detect';
 import { MdOutlineVideogameAsset } from 'react-icons/md';
+import { TirangaIcon } from '@/components/custom-icons';
 
-function RightSideGame() {
-  return <GameBox className="hidden sm:block sticky top-4 w-100" />;
+function RightSideGame({ focus }: { focus: boolean }) {
+  return <GameBox focus={focus} className="hidden sm:block sticky top-4 w-100" />;
 }
 
 export default function AboutMe(props: TFolderContent) {
@@ -36,7 +37,7 @@ export default function AboutMe(props: TFolderContent) {
               {AUTHOR_NAME.replace(' ', '')}
             </span>
             <span className={cn('font-extrabold', TEXT_COLOR.Purple)}>=</span>
-            <BadgeCheck className="inline size-4 ml-1 text-blue-800 dark:text-blue-400" />
+            <TirangaIcon className="inline size-4 ml-1" />
             <Volume2 onClick={handlePlay} className="inline size-4 ml-1 text-muted-foreground hover:text-foreground" />
           </div>
 
@@ -78,7 +79,7 @@ export default function AboutMe(props: TFolderContent) {
           </Dialog>
         </LeftSide>
 
-        {!isMobile && <RightSideGame />}
+        {!isMobile && <RightSideGame focus={props.focus ? props.focus : false} />}
       </Container>
       {isMobile && (
         <Dialog>

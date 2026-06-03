@@ -34,7 +34,14 @@ export default function FolderSidebar({ height, menuOptions }: FolderSidebarProp
                 {menuOptions.map(({ title, icon: Icon }) => (
                   <SidebarMenuItem key={title}>
                     <TabsTrigger value={title} asChild>
-                      <SidebarMenuButton tooltip={title} className="w-full justify-start">
+                      <SidebarMenuButton
+                        tooltip={title}
+                        className="w-full justify-start"
+                        onKeyDown={(e) => {
+                          if (title == 'About Me' && (e.key == 'ArrowLeft' || e.key == 'ArrowRight'))
+                            e.preventDefault();
+                        }}
+                      >
                         <Icon />
                         <span>{title}</span>
                       </SidebarMenuButton>
