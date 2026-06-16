@@ -16,4 +16,6 @@ export type TFolderContent = {
   isGrid?: boolean;
   isMaximized?: boolean;
   focus?: boolean;
+  orangeDrop?: boolean;
+  blueDrop?: boolean;
 };

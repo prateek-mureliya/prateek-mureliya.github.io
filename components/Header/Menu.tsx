@@ -23,6 +23,7 @@ import Notifications from './Notifications';
 import { TProcessButton } from '@/types/process-button';
 import { useProcessContext } from '@/contexts/process-manager';
 import { ABOUT_PC } from '../constants/app-icons/about-pc';
+import { useNotifications } from '@/hook/useNotifications';
 
 export default function Menu({ className }: BasicProps) {
   const {
@@ -32,16 +33,15 @@ export default function Menu({ className }: BasicProps) {
     fullscreen,
     isStalker,
     isDeveloper,
-    notifications,
     setIsLogin,
     updateBrightness,
     toggleFullscreen,
-    markNotificationsRead,
   } = useApplicationContext();
   const { theme, setTheme } = useTheme();
   const { handleOpen } = useProcessContext();
   const [wifi, setWifi] = useState(true);
   const [open, setOpen] = useState(false);
+  const [notifications, markAsReadNotifications] = useNotifications();
   const readAllNotifications = notifications.some((p) => !p.read);
   const [notificationsPopOver, setNotificationsPopOver] = useState(readAllNotifications);
 
@@ -58,7 +58,7 @@ export default function Menu({ className }: BasicProps) {
   };
 
   const notificationsAction = (id: number, app: TProcessButton, read: boolean, activeTab: string | undefined) => {
-    if (!read) markNotificationsRead(id);
+    if (!read) markAsReadNotifications(id);
     if (app.type === 'window') {
       setNotificationsPopOver(false);
       handleOpen(toWindowApp(app, activeTab));

@@ -29,7 +29,7 @@ import { JavaIcon, PythonIcon } from '@/components/custom-icons';
 
 const IconLevel = ({ icon: Icon, title }: { icon?: TIconType; title: string }) => {
   return (
-    <div className="text-xs px-2 py-0.5 rounded-2xl bg-white/20 dark:bg-white/4 border border-white/20 dark:border-white/4 backdrop-blur-md text-slate-800 dark:text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-white/30 shadow-md dark:shadow-xs cursor-default">
+    <div className="text-xs px-2 py-0.5 rounded-2xl bg-white/20 dark:bg-white/4 border border-white/20 dark:border-white/20 backdrop-blur-md text-slate-800 dark:text-slate-200 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-white/30 shadow-md dark:shadow-xs cursor-default">
       {Icon && <Icon className="inline-block mr-1" />}
       {title}
     </div>
@@ -74,7 +74,7 @@ const Bubbles = () =>
   [...Array(15)].map((_, i) => (
     <div
       key={i}
-      className="absolute z-1 -bottom-15 rounded-full bg-white/25 dark:bg-white/5 animate-bubble"
+      className="absolute z-1 -bottom-15 rounded-full bg-white/30 dark:bg-white/8 animate-bubble"
       style={{
         left: `${randomNumber(0, 100)}%`,
         width: `${randomNumber(20, 20)}px`,
@@ -108,7 +108,14 @@ function SkillsIceBerg({ className }: BasicProps) {
       {/* Iceberg */}
       <div className="absolute z-0 w-full h-130 sm:h-122.5 mt-4 p-2 pt-8 animate-float">
         <div
-          className="absolute inset-0 border border-white/8 backdrop-blur-xl bg-white/20 dark:bg-white/5 shadow-2xl"
+          className="absolute inset-0 border border-white/8 backdrop-blur-xl bg-white/20 dark:bg-white/5 shadow-2xl
+          
+          dark:before:absolute before:inset-0 before:content-['']
+          dark:before:bg-gradient-to-b
+          dark:before:from-cyan-200/40
+          dark:before:via-white/5
+          dark:before:to-transparent
+          "
           style={{
             clipPath: 'polygon(50% 0%, 72% 10%, 88% 40%, 78% 100%, 22% 100%, 12% 40%, 28% 10%)',
           }}
@@ -121,9 +128,9 @@ function SkillsIceBerg({ className }: BasicProps) {
             <JavaIcon className="inline-block size-6 pr-2" />
             <PythonIcon className="inline-block size-6 border-l border-l-foreground pl-2" />
           </div>
-          <h1 className="font-black text-slate-800 dark:text-slate-400 tracking-tight">Java & Python</h1>
-          <p className="text-slate-400 dark:text-slate-500">what everyone sees</p>
-          <p className="text-slate-400 dark:text-slate-500 mt-6">what I actually know</p>
+          <h1 className="font-black text-slate-800 dark:text-slate-200 tracking-tight">Java & Python</h1>
+          <p className="text-slate-400 dark:text-slate-300">what everyone sees</p>
+          <p className="text-slate-400 dark:text-slate-300 mt-6">what I actually know</p>
         </div>
 
         {/* Sections */}

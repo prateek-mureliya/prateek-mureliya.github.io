@@ -6,9 +6,7 @@ import { Button } from '@/components/UI/button';
 import { Dialog, DialogTrigger } from '@/components/UI/dialog/dialog';
 import ContactUs from '../ContactUs';
 import { Badge } from '@/components/UI/badge';
-import { calYearExperience, cn } from '@/lib/utils';
-import { TEXT_COLOR } from '@/components/UI/TreeView/TreeRoot';
-import { BORDER_COLOR } from '@/components/UI/TreeView/Branches';
+import { calYearExperience } from '@/lib/utils';
 import LineComment from '@/components/UI/line-comment';
 import { Container, LeftSide, RightSideButton } from './UI';
 import { Volume2 } from 'lucide-react';
@@ -16,10 +14,6 @@ import { GameBox, GameBoxPopup } from '../GameBox';
 import { isMobile } from 'react-device-detect';
 import { MdOutlineVideogameAsset } from 'react-icons/md';
 import { TirangaIcon } from '@/components/custom-icons';
-
-function RightSideGame({ focus }: { focus: boolean }) {
-  return <GameBox focus={focus} className="hidden sm:block sticky top-4 w-100" />;
-}
 
 export default function AboutMe(props: TFolderContent) {
   const handlePlay = () => {
@@ -32,26 +26,26 @@ export default function AboutMe(props: TFolderContent) {
       <Container>
         <LeftSide>
           <div>
-            <span className={cn('font-extrabold', TEXT_COLOR.Purple)}>String</span>
+            <span className="font-extrabold text-purple">String</span>
             <span className="mx-1 text-foreground text-2xl sm:text-5xl font-extrabold">
               {AUTHOR_NAME.replace(' ', '')}
             </span>
-            <span className={cn('font-extrabold', TEXT_COLOR.Purple)}>=</span>
+            <span className="font-extrabold text-purple">=</span>
             <TirangaIcon className="inline size-4 ml-1" />
             <Volume2 onClick={handlePlay} className="inline size-4 ml-1 text-muted-foreground hover:text-foreground" />
           </div>
 
-          <div className={cn('border-l pl-2 sm:pl-4 mt-6', BORDER_COLOR.Yellow)}>
+          <div className="border-l pl-2 sm:pl-4 mt-6 border-yellow">
             <div className="mb-2 last:mb-0">
-              <span className={cn('font-extrabold mr-2', TEXT_COLOR.Yellow)}>role:</span>
+              <span className="font-extrabold mr-2 text-yellow">role:</span>
               <span>&apos;{AUTHOR_ROLES[0]}&apos;</span>
             </div>
             <div className="mb-2 last:mb-0">
-              <span className={cn('font-extrabold mr-2', TEXT_COLOR.Yellow)}>focus:</span>
+              <span className="font-extrabold mr-2 text-yellow">focus:</span>
               <span>&apos;{AUTHOR_ROLES[1]}&apos;</span>
             </div>
             <div className="mb-2 last:mb-0">
-              <span className={cn('font-extrabold mr-2', TEXT_COLOR.Yellow)}>stack:</span>
+              <span className="font-extrabold mr-2 text-yellow">stack:</span>
               <span>[&apos;{AUTHOR_SKILLS.join("', '")}&apos;]</span>
             </div>
           </div>
@@ -79,7 +73,9 @@ export default function AboutMe(props: TFolderContent) {
           </Dialog>
         </LeftSide>
 
-        {!isMobile && <RightSideGame focus={props.focus ? props.focus : false} />}
+        {!isMobile && (
+          <GameBox focus={props.focus ? props.focus : false} className="hidden sm:block sticky top-4 w-100" />
+        )}
       </Container>
       {isMobile && (
         <Dialog>

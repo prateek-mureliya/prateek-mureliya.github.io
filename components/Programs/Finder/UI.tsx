@@ -3,9 +3,24 @@ import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { TIconType } from '@/types/icon-type';
 
-function Container({ children }: BasicProps) {
+export type TColor = 'Yellow' | 'Purple' | 'Green' | 'Sky' | 'Pink';
+
+const CardColor: { [key in TColor]: string } = {
+  Purple: 'bg-purple/8 text-purple border-purple/30',
+  Green: 'bg-green/8 text-green border-green/30',
+  Yellow: 'bg-yellow/8 text-yellow border-yellow/30',
+  Sky: 'bg-sky/8 text-sky border-sky/30',
+  Pink: 'bg-pink/8 text-pink border-pink/30',
+};
+
+function Container({ className, children }: BasicProps) {
   return (
-    <div className="relative z-0 flex flex-col-reverse sm:flex-row sm:max-w-228 mx-auto font-mono text-xs sm:text-sm">
+    <div
+      className={cn(
+        'relative z-0 flex flex-col-reverse sm:flex-row sm:max-w-228 mx-auto font-mono text-xs sm:text-sm',
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -42,4 +57,4 @@ function RightSideButton({
   );
 }
 
-export { Container, LeftSide, RightSideButton };
+export { CardColor, Container, LeftSide, RightSideButton };

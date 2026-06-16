@@ -1,4 +1,7 @@
-export type IconProps = React.SVGProps<SVGSVGElement>;
+import { JSX } from 'react';
+
+type IconProps = React.SVGProps<SVGSVGElement>;
+export type TIconSvg = (props: IconProps) => JSX.Element;
 
 const ContolCenterIcon = (props: IconProps) => (
   <svg viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-label="Contol Center" {...props}>
@@ -380,6 +383,50 @@ const TirangaIcon = (props: IconProps) => (
   </svg>
 );
 
+const MaventechLabsIcon = (props: IconProps) => (
+  <svg viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg" aria-label="Maventech Labs" {...props}>
+    {/* Top red section */}
+    <rect x="14" y="0" width="60" height="58" fill="#EE4630" />
+
+    {/* Bottom green section */}
+    <rect x="0" y="16" width="62" height="58" fill="#24B24B" />
+
+    {/* fill red between top M section */}
+    <rect x="27" y="15" width="22" height="15" fill="#EE4630" />
+
+    {/* White M */}
+    <path d="M14 58V16H27L38 30L49 16H62V58H49V34L38 46L27 34V58Z" fill="#FFFFFF" />
+  </svg>
+);
+
+const TravelyaariIcon = (props: IconProps) => (
+  <svg viewBox="0 0 27 27" xmlns="http://www.w3.org/2000/svg" aria-label="Travelyaari" {...props}>
+    <path
+      fill="#f15922"
+      d="M26,11.3L15.8,1.2C15.2,0.6,14.4,0,13.5,0c-0.9,0-1.7,0.6-2.3,1.2L1,11.3c-1.3,1.3-1.3,3.4,0,4.6l10.2,10.1
+    c0.2,0.2,0.3,0.3,0.5,0.4c0.1,0.1,0.2,0.1,0.4,0.2c0.1,0,0.1,0.1,0.2,0.1c0.1,0.1,0.3,0.1,0.4,0.1V14.4l1.7-0.4v12.9
+    c0.2-0.1,0.4-0.1,0.6-0.2c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.2-0.1,0.2-0.1c0.2-0.1,0.3-0.2,0.5-0.4L26,15.9
+    C27.3,14.7,27.3,12.6,26,11.3z M20.7,10L19,13c-0.1,0.1-0.3,0.2-0.4,0l-0.2-0.8L5.8,15.7c-0.2,0.1-0.4-0.1-0.5-0.3L4.6,13
+    c-0.1-0.2,0.1-0.4,0.3-0.5L17.5,9l-0.2-0.8c-0.1-0.2,0.2-0.3,0.3-0.2l3,1.7C20.7,9.8,20.7,9.9,20.7,10z"
+    />
+    <path fill="#FFFFFF" d="M12.7,14.4v12.5c0.3,0.1,0.5,0.1,0.8,0.1c0.3,0,0.6,0,0.8-0.1V14L12.7,14.4z" />
+    <path
+      fill="#FFFFFF"
+      d="M17.6,8.1c-0.1-0.1-0.3,0-0.3,0.2L17.5,9L4.9,12.5c-0.2,0.1-0.3,0.3-0.3,0.5l0.7,2.4c0.1,0.2,0.3,0.3,0.5,0.3
+    l12.6-3.5l0.2,0.8c0.1,0.2,0.3,0.2,0.4,0l1.7-3c0.1-0.1,0-0.3-0.1-0.3L17.6,8.1z"
+    />
+  </svg>
+);
+
+const CleartripIcon = (props: IconProps) => (
+  <svg viewBox="1.7 1.5 55 55" xmlns="http://www.w3.org/2000/svg" aria-label="Cleartrip" {...props}>
+    <path
+      d="M56.6095 17.7393C44.1095 26.8793 33.3295 38.8793 23.6895 48.9493C22.9795 49.6593 22.0495 50.1593 21.0495 50.1593C19.8395 50.1593 18.9095 49.4493 18.0495 48.1593C15.5495 44.4493 11.7695 35.4493 10.0495 31.5193C8.68954 28.3093 9.40954 25.6593 12.6195 24.3093C15.8295 23.0193 19.3995 22.8093 20.2595 26.4493C20.2595 26.4493 21.8995 32.8093 22.3995 34.6593C32.3295 25.4493 44.5395 15.6693 54.8895 9.66929C52.3195 4.80929 47.2495 1.5293 41.4695 1.5293H16.9795C8.54954 1.5293 1.76953 8.30929 1.76953 16.6693V41.2293C1.76953 49.5793 8.54954 56.3693 16.9795 56.3693H41.4695C49.8195 56.3693 56.6095 49.5893 56.6095 41.2293V17.7393V17.7393Z"
+      fill="#FF4F17"
+    />
+  </svg>
+);
+
 export {
   ContolCenterIcon,
   JavaIcon,
@@ -397,4 +444,7 @@ export {
   TailwindCSSIcon,
   ShadcnUIIcon,
   TirangaIcon,
+  CleartripIcon,
+  MaventechLabsIcon,
+  TravelyaariIcon,
 };

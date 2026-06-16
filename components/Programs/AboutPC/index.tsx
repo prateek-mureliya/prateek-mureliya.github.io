@@ -5,7 +5,7 @@ import Avatar from './Avatar';
 import AboutFooter from './AboutFooter';
 
 import { Branch, Branches, Tree, TreeRoot, TreeView } from '../../UI/TreeView';
-import { TBaseTreeData, TColor } from '@/types/tree';
+import { TBaseTreeData } from '@/types/tree';
 import {
   Backend,
   CPU,
@@ -24,27 +24,31 @@ import {
 } from '../../constants/os-info';
 
 type TTreeData = TBaseTreeData & {
-  color: TColor;
+  textColor: string;
+  borderColor: string;
   branches: TBaseTreeData[];
 };
 
 const TREE_DATA: TTreeData[] = [
   {
-    color: 'Yellow',
+    textColor: 'text-yellow',
+    borderColor: 'border-yellow',
     icon: OS.icon,
     title: OS.title,
     details: OS.details,
     branches: [Iam, Uptime, Status],
   },
   {
-    color: 'Purple',
+    textColor: 'text-purple',
+    borderColor: 'border-purple',
     icon: Environment.icon,
     title: Environment.title,
     details: Environment.details,
     branches: [Backend, Frontend, Database, Tool],
   },
   {
-    color: 'Green',
+    textColor: 'text-green',
+    borderColor: 'border-green',
     icon: Resolution.icon,
     title: Resolution.title,
     details: Resolution.details,
@@ -62,12 +66,10 @@ export default function AboutPC({ isMaximized }: WindowBodyProps) {
         <TreeView className="py-4 flex-1">
           {TREE_DATA.map((root) => (
             <Tree key={root.title}>
-              <TreeRoot title={root.title} icon={root.icon} color={root.color}>
-                {root.details}
-              </TreeRoot>
-              <Branches color={root.color}>
+              <TreeRoot {...root}>{root.details}</TreeRoot>
+              <Branches {...root}>
                 {root.branches.map((branch) => (
-                  <Branch key={branch.title} icon={branch.icon} title={branch.title} color={root.color}>
+                  <Branch key={branch.title} {...root}>
                     {branch.details}
                   </Branch>
                 ))}

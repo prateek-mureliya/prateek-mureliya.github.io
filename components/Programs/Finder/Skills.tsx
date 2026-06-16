@@ -14,7 +14,7 @@ import { GiMountainClimbing } from 'react-icons/gi';
 import {
   AWSIcon,
   FastAPIIcon,
-  IconProps,
+  TIconSvg,
   JavaIcon,
   JavaScriptIcon,
   JUnit5Icon,
@@ -29,13 +29,9 @@ import {
   TypeScriptIcon,
 } from '@/components/custom-icons';
 
-type TSkill = { title: string; icon: (props: IconProps) => JSX.Element; description: string | JSX.Element };
+type TSkill = { title: string; icon: TIconSvg; description: string | JSX.Element };
 
-function InlineIconBox({
-  iconName,
-  className,
-  icon: Icon,
-}: BasicProps & { iconName: string; icon: (props: IconProps) => JSX.Element }) {
+function InlineIconBox({ iconName, className, icon: Icon }: BasicProps & { iconName: string; icon: TIconSvg }) {
   return (
     <Badge
       variant={'outline'}
@@ -71,10 +67,6 @@ const SkillGroup = ({ children }: BasicProps) => (
     {children}
   </div>
 );
-
-function RightSideIceBerg() {
-  return <SkillsIceBerg className="hidden sm:block sticky top-4 w-100 ml-12" />;
-}
 
 const Skill = ({ title, icon: Icon, description }: TSkill) => (
   <div className="px-2 py-1 not-last:border-b border-card-foreground dark:border-card-foreground/30 flex gap-2 bg-card">
@@ -161,7 +153,7 @@ export default function Skills(props: TFolderContent) {
           </SkillGroup>
         </LeftSide>
 
-        {!isMobile && <RightSideIceBerg />}
+        {!isMobile && <SkillsIceBerg className="hidden sm:block sticky top-4 w-100 ml-12" />}
       </Container>
       {isMobile && (
         <Dialog>

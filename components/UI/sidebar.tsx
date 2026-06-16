@@ -149,7 +149,7 @@ function Sidebar({
 
   return (
     <div
-      className="group peer text-sidebar-foreground max-sm:absolute max-sm:z-1"
+      className="group peer text-sidebar-foreground max-sm:absolute max-sm:z-2"
       data-state={state}
       data-collapsible={state === 'collapsed' ? collapsible : ''}
       data-variant={variant}

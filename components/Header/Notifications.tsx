@@ -1,4 +1,4 @@
-import { TNotification } from '@/contexts/application-context';
+import { TNotification } from '@/hook/useNotifications';
 import { cn } from '@/lib/utils';
 import { TProcessButton, TProcessButtonDialog } from '@/types/process-button';
 import { Dialog, DialogTrigger } from '../UI/dialog/dialog';

@@ -57,6 +57,13 @@
   --shadow-2xl: 0px 4px 10px 0px hsl(0 0% 0% / 0.13);
   --tracking-normal: 0.02em;
   --spacing: 0.25rem;
+
+  /* custom color */
+  --purple: oklch(0.58 0.22 297.5);
+  --yellow: oklch(0.8 0.17 73.8);
+  --green: oklch(0.75 0.2 151.68);
+  --sky: oklch(0.65 0.19 251.8);
+  --pink: oklch(0.72 0.22 336.08);
 }
 
 .dark {
@@ -107,6 +114,13 @@
   --shadow-lg: 0px 12px 25px 0px hsl(0 0% 0% / 0.6), 0px 4px 6px -1px hsl(0 0% 0% / 0.6);
   --shadow-xl: 0px 12px 25px 0px hsl(0 0% 0% / 0.6), 0px 8px 10px -1px hsl(0 0% 0% / 0.6);
   --shadow-2xl: 0px 12px 25px 0px hsl(0 0% 0% / 1.5);
+
+  /* custom color */
+  --purple: oklch(0.65 0.19 302.55);
+  --yellow: oklch(0.88 0.16 90.52);
+  --green: oklch(0.71 0.2 148.37);
+  --sky: oklch(0.76 0.12 244.4);
+  --pink: oklch(0.78 0.19 328.83);
 }
 
 @theme inline {
@@ -167,6 +181,13 @@
   --tracking-wide: calc(var(--tracking-normal) + 0.025em);
   --tracking-wider: calc(var(--tracking-normal) + 0.05em);
   --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+
+  /* custom color */
+  --color-purple: var(--purple);
+  --color-yellow: var(--yellow);
+  --color-green: var(--green);
+  --color-sky: var(--sky);
+  --color-pink: var(--pink);
 
   --animate-blink: blink 1s steps(1, end) infinite;
   @keyframes blink {

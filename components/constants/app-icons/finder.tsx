@@ -8,8 +8,8 @@ export const FINDER: TProcessButton = {
   title: FinderImg.alt,
   icon: FinderImg.src,
   x: 258,
-  y: 62,
+  y: 40,
   width: 1070,
-  height: 585,
+  height: 640,
   window: Finder,
 };
