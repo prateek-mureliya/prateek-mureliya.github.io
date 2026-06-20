@@ -4,25 +4,14 @@ import GradientText from '@/components/UI/gradient-text';
 import { WindowActionClose } from '@/components/Window/window-action-button';
 import { cn } from '@/lib/utils';
 import { BasicProps } from '@/types/basic-props';
-import { CardColor, TColor } from '../UI';
+import { CardColor, TColor, TTimelineImpact } from '../UI';
 import { FaArrowTrendUp, FaCheck, FaCode } from 'react-icons/fa6';
 import { BsSpeedometer2 } from 'react-icons/bs';
 import { MdOutlinePerson4 } from 'react-icons/md';
 import { TIconType } from '@/types/icon-type';
 import { JSX } from 'react';
 
-export type TExperienceImpact = {
-  icon: TIconType;
-  title: string;
-  description: string;
-  impact: string;
-  scale: string;
-  ownership: string;
-  stack: string | JSX.Element;
-  achievements: string[];
-};
-
-type ExperienceImpactProps = BasicProps & { impacts: TExperienceImpact[]; color: TColor };
+type ExperienceImpactProps = BasicProps & { impacts: TTimelineImpact[]; color: TColor };
 
 function MiddlePoint({
   icon: Icon,
@@ -51,7 +40,7 @@ function ExperienceImpact({ className, impacts, color }: ExperienceImpactProps) 
   return (
     <div
       className={cn(
-        'relative h-140 sm:h-126 overflow-hidden shadow-2xl sm:shadow-none flex-none bg-background sm:bg-transparent p-2 sm:p-0 border sm:border-none rounded-lg sm:rounded-none',
+        'relative h-120 sm:h-126 overflow-hidden shadow-2xl lg:shadow-none flex-none bg-background lg:bg-transparent p-2 lg:p-0 border lg:border-none rounded-lg lg:rounded-none',
         className
       )}
     >

@@ -72,7 +72,7 @@ export default function Notifications({
   action,
 }: {
   notifications: TNotification[];
-  action: (id: number, app: TProcessButton, read: boolean, activeTab: string | undefined) => void;
+  action: (id: string, app: TProcessButton, read: boolean, activeTab: string | undefined) => void;
 }) {
   const now = new Date();
   const sortedNotifications = notifications.sort((a, b) => {
@@ -80,13 +80,13 @@ export default function Notifications({
       return Number(a.read) - Number(b.read); // unread first
     }
 
-    return a.id - b.id; // sort by id
+    return a.rank - b.rank; // sort by rank
   });
 
   return (
     <>
       <div className="text-xs text-shadow-2xs font-bold pl-4">Notifications</div>
-      <div className="max-h-60 p-4 pt-0 overflow-auto" style={{ scrollbarWidth: 'none' }}>
+      <div className="max-h-100 p-4 pt-0 overflow-auto" style={{ scrollbarWidth: 'none' }}>
         {sortedNotifications.map((props) => {
           if (props.app.type == 'dialog') {
             const others = props.app as TProcessButtonDialog;

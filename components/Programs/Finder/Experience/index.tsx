@@ -1,6 +1,17 @@
 import FolderContent from '../../../UI/folder-view/folder-content';
 import { TFolderContent } from '@/types/folder-view';
-import { CardColor, Container, LeftSide, TColor } from '../UI';
+import {
+  CardColor,
+  Container,
+  LeftSide,
+  TColor,
+  Timeline,
+  TimelineBadge,
+  TimelineBadges,
+  TimelineItem,
+  TTimeline,
+  TTimelineImpact,
+} from '../UI';
 import GradientText from '@/components/UI/gradient-text';
 import { RxCalendar } from 'react-icons/rx';
 import { FaArrowTrendUp, FaServer, FaPeopleGroup, FaBusSimple, FaGift } from 'react-icons/fa6';
@@ -8,13 +19,11 @@ import { BsBank2, BsDatabaseCheck, BsFillLightningChargeFill, BsGlobe, BsQrCodeS
 import { TIconType } from '@/types/icon-type';
 import { calYearExperience, cn } from '@/lib/utils';
 import { BasicProps } from '@/types/basic-props';
-import { GrLocation } from 'react-icons/gr';
-import { CleartripIcon, MaventechLabsIcon, TIconSvg, TravelyaariIcon } from '@/components/custom-icons';
-import { MdArrowForwardIos, MdOutlineCheckBox } from 'react-icons/md';
-import { ExperienceImpact, ExperienceImpactPopup, TExperienceImpact } from './ExperienceImpact';
+import { CleartripIcon, MaventechLabsIcon, TravelyaariIcon } from '@/components/custom-icons';
+import { MdOutlineCheckBox } from 'react-icons/md';
+import { ExperienceImpact, ExperienceImpactPopup } from './ExperienceImpact';
 import { isMobile } from 'react-device-detect';
-import { Dialog, DialogTrigger } from '@/components/UI/dialog/dialog';
-import { JSX, useState } from 'react';
+import { useState } from 'react';
 import { TbCalendarWeek } from 'react-icons/tb';
 
 type TSummary = {
@@ -22,17 +31,6 @@ type TSummary = {
   title: string;
   description: string;
   color: TColor;
-};
-
-type TExperience = {
-  organization: string;
-  location: string;
-  experience: string;
-  role: string;
-  points: JSX.Element;
-  color: TColor;
-  icon: TIconSvg;
-  impacts: TExperienceImpact[];
 };
 
 const summary: TSummary[] = [
@@ -68,7 +66,7 @@ const summary: TSummary[] = [
   },
 ];
 
-const GPSBusTrackingSystem: TExperienceImpact = {
+const GPSBusTrackingSystem: TTimelineImpact = {
   icon: FaBusSimple,
   title: 'Real-Time Bus Tracking System',
   description:
@@ -77,13 +75,13 @@ const GPSBusTrackingSystem: TExperienceImpact = {
   scale: 'Thousands of daily active users',
   ownership: 'End-to-end architecture & development',
   stack: (
-    <BadgeContainer>
+    <TimelineBadges>
       <Java />
       <Springboot />
       <Kafka />
       <Elasticsearch />
       <MapApi />
-    </BadgeContainer>
+    </TimelineBadges>
   ),
   achievements: [
     'Enabled live bus map visualization',
@@ -92,7 +90,7 @@ const GPSBusTrackingSystem: TExperienceImpact = {
   ],
 };
 
-const CoinRewardSystem: TExperienceImpact = {
+const CoinRewardSystem: TTimelineImpact = {
   icon: FaGift,
   title: 'Coin-Based Reward System',
   description:
@@ -101,11 +99,11 @@ const CoinRewardSystem: TExperienceImpact = {
   scale: 'Thousands of reward transactions',
   ownership: 'Reward engine architecture',
   stack: (
-    <BadgeContainer>
+    <TimelineBadges>
       <Java />
       <Springboot />
       <MySql />
-    </BadgeContainer>
+    </TimelineBadges>
   ),
   achievements: [
     'Built scalable reward management system',
@@ -114,7 +112,7 @@ const CoinRewardSystem: TExperienceImpact = {
   ],
 };
 
-const QRPaymentSystem: TExperienceImpact = {
+const QRPaymentSystem: TTimelineImpact = {
   icon: BsQrCodeScan,
   title: 'Global QR Payment Platform',
   description:
@@ -123,17 +121,17 @@ const QRPaymentSystem: TExperienceImpact = {
   scale: 'High transaction volume processing',
   ownership: 'Database schema design & QR provider integrations',
   stack: (
-    <BadgeContainer>
+    <TimelineBadges>
       <Java />
       <Springboot />
       <MySql />
       <RestAPI />
-    </BadgeContainer>
+    </TimelineBadges>
   ),
   achievements: ['Centralized QR Payment System', '20% Faster Payment Processing'],
 };
 
-const FundTransferSystem: TExperienceImpact = {
+const FundTransferSystem: TTimelineImpact = {
   icon: BsBank2,
   title: 'Fund Transfer & Settlement Platform',
   description:
@@ -142,17 +140,17 @@ const FundTransferSystem: TExperienceImpact = {
   scale: 'Real-time fund settlements',
   ownership: 'Banking API integrations',
   stack: (
-    <BadgeContainer>
+    <TimelineBadges>
       <Java />
       <Springboot />
       <JWT />
       <RestAPI />
-    </BadgeContainer>
+    </TimelineBadges>
   ),
   achievements: ['Integrated multiple bank APIs', 'Implemented JWT security', 'Automated settlement lifecycle'],
 };
 
-const CleartripProject: TExperienceImpact = {
+const CleartripProject: TTimelineImpact = {
   icon: MdOutlineCheckBox,
   title: 'Cleartrip Bus Booking Integration',
   description: 'Partnered with Cleartrip to launch bus booking capabilities into their travel ecosystem.',
@@ -160,11 +158,11 @@ const CleartripProject: TExperienceImpact = {
   scale: 'Large volume of bookings and searches',
   ownership: 'Partner onboarding and integration support',
   stack: (
-    <BadgeContainer>
+    <TimelineBadges>
       <Java />
       <Springboot />
       <RestAPI />
-    </BadgeContainer>
+    </TimelineBadges>
   ),
   achievements: [
     'Delivered reliable and scalable API integrations',
@@ -173,7 +171,7 @@ const CleartripProject: TExperienceImpact = {
   ],
 };
 
-const DatabaseMigration: TExperienceImpact = {
+const DatabaseMigration: TTimelineImpact = {
   icon: BsDatabaseCheck,
   title: 'Database Migration',
   description: 'Led the migration of legacy MSSQL databases to MySQL on AWS RDS.',
@@ -181,12 +179,12 @@ const DatabaseMigration: TExperienceImpact = {
   scale: 'Enhanced Scalability & Reliability',
   ownership: 'Migration strategy and planning',
   stack: (
-    <BadgeContainer>
+    <TimelineBadges>
       <MySql />
       <MSSql />
       <RDS />
       <DMS />
-    </BadgeContainer>
+    </TimelineBadges>
   ),
   achievements: [
     'Refactored and optimized legacy stored procedures for MySQL compatibility',
@@ -195,7 +193,7 @@ const DatabaseMigration: TExperienceImpact = {
   ],
 };
 
-const GDSSystem: TExperienceImpact = {
+const GDSSystem: TTimelineImpact = {
   icon: BsGlobe,
   title: 'Global Distribution System (GDS)',
   description: 'Developed a real-time bus inventory aggregation platform with caching and event-driven processing.',
@@ -203,11 +201,11 @@ const GDSSystem: TExperienceImpact = {
   scale: 'Large travel network',
   ownership: 'Aggregation services & Queue processing',
   stack: (
-    <BadgeContainer>
+    <TimelineBadges>
       <Java />
       <Redis />
       <SQS />
-    </BadgeContainer>
+    </TimelineBadges>
   ),
   achievements: [
     'Aggregated inventory from multiple providers',
@@ -216,48 +214,48 @@ const GDSSystem: TExperienceImpact = {
   ],
 };
 
-const experiences: TExperience[] = [
+const experiences: TTimeline[] = [
   {
-    organization: 'Maventech Labs Pvt. Ltd.',
+    interval: 'Sep 2021 - Present',
+    title: 'Senior Software Engineer',
+    desc: 'Maventech Labs Pvt. Ltd.',
     location: 'Bengaluru, India',
-    experience: 'Sep 2021 - Present',
-    role: 'Senior Software Engineer',
     points: (
-      <BadgeContainer>
-        <Badge title="Backend" color="Sky" />
-        <Badge title="Payment" color="Sky" />
-        <Badge title="Leadership" color="Sky" />
-      </BadgeContainer>
+      <TimelineBadges>
+        <TimelineBadge title="Backend" color="Sky" />
+        <TimelineBadge title="Payment" color="Sky" />
+        <TimelineBadge title="Leadership" color="Sky" />
+      </TimelineBadges>
     ),
     color: 'Sky',
     icon: MaventechLabsIcon,
     impacts: [GPSBusTrackingSystem, CoinRewardSystem, QRPaymentSystem, FundTransferSystem],
   },
   {
-    organization: 'Cleartrip',
+    interval: '(Client Project)',
+    title: 'Senior Software Engineer',
+    desc: 'Cleartrip',
     location: 'Bengaluru, India',
-    experience: '(Client Project)',
-    role: 'Senior Software Engineer',
     points: (
-      <BadgeContainer>
-        <Badge title="6 Months" color="Pink" icon={TbCalendarWeek} />
-        <Badge title="Travel Partner" color="Pink" />
-      </BadgeContainer>
+      <TimelineBadges>
+        <TimelineBadge title="6 Months" color="Pink" icon={TbCalendarWeek} />
+        <TimelineBadge title="Travel Partner" color="Pink" />
+      </TimelineBadges>
     ),
     color: 'Pink',
     icon: CleartripIcon,
     impacts: [CleartripProject],
   },
   {
-    organization: 'Travelyaari (Mantis Technologies)',
+    interval: 'Dec 2018 - Aug 2021',
+    title: 'Software Engineer',
+    desc: 'Travelyaari (Mantis Technologies)',
     location: 'Bengaluru, India',
-    experience: 'Dec 2018 - Aug 2021',
-    role: 'Software Engineer',
     points: (
-      <BadgeContainer>
-        <Badge title="Data System" color="Green" />
-        <Badge title="Performance" color="Green" />
-      </BadgeContainer>
+      <TimelineBadges>
+        <TimelineBadge title="DB Migration" color="Green" />
+        <TimelineBadge title="Performance" color="Green" />
+      </TimelineBadges>
     ),
     color: 'Green',
     icon: TravelyaariIcon,
@@ -265,63 +263,51 @@ const experiences: TExperience[] = [
   },
 ];
 
-function Badge({ icon: Icon, title, color }: { icon?: TIconType; title: string; color: TColor }) {
-  return (
-    <div className={cn('inline-block text-xs px-1 py-0.5 border rounded-xs font-bold', CardColor[color])}>
-      {Icon && <Icon className="inline-block -mt-1 mr-1" />}
-      {title}
-    </div>
-  );
-}
-
-function BadgeContainer({ className, children }: BasicProps) {
-  return <div className={cn('flex flex-wrap gap-1', className)}>{children}</div>;
-}
 function Java() {
-  return <Badge title="Java" color="Pink" />;
+  return <TimelineBadge title="Java" color="Pink" />;
 }
 function Springboot() {
-  return <Badge title="Springboot" color="Pink" />;
+  return <TimelineBadge title="Springboot" color="Pink" />;
 }
 function Kafka() {
-  return <Badge title="Kafka" color="Sky" />;
+  return <TimelineBadge title="Kafka" color="Sky" />;
 }
 function Elasticsearch() {
-  return <Badge title="Elasticsearch" color="Sky" />;
+  return <TimelineBadge title="Elasticsearch" color="Sky" />;
 }
 function MySql() {
-  return <Badge title="MySQL" color="Sky" />;
+  return <TimelineBadge title="MySQL" color="Sky" />;
 }
 function MSSql() {
-  return <Badge title="MSSQL" color="Sky" />;
+  return <TimelineBadge title="MSSQL" color="Sky" />;
 }
 function MapApi() {
-  return <Badge title="Google Maps API" color="Yellow" />;
+  return <TimelineBadge title="Google Maps API" color="Yellow" />;
 }
 function Redis() {
-  return <Badge title="Redis" color="Sky" />;
+  return <TimelineBadge title="Redis" color="Sky" />;
 }
 function RestAPI() {
-  return <Badge title="Rest APIs" color="Yellow" />;
+  return <TimelineBadge title="Rest APIs" color="Yellow" />;
 }
 function RDS() {
-  return <Badge title="AWS RDS" color="Yellow" />;
+  return <TimelineBadge title="AWS RDS" color="Yellow" />;
 }
 function DMS() {
-  return <Badge title="AWS DMS" color="Yellow" />;
+  return <TimelineBadge title="AWS DMS" color="Yellow" />;
 }
 function SQS() {
-  return <Badge title="AWS SQS" color="Yellow" />;
+  return <TimelineBadge title="AWS SQS" color="Yellow" />;
 }
 function JWT() {
-  return <Badge title="JWT" color="Green" />;
+  return <TimelineBadge title="JWT" color="Green" />;
 }
 
 function SummaryContainer({ children }: BasicProps) {
   return (
     <div className="sticky z-1 top-4 h-26">
       <div className="bg-background absolute z-0 -top-4 -left-4 -right-4 bottom-0"></div>
-      <div className=" relative z-1 flex gap-4 w-[calc(100vw-78px)] sm:w-full sm:max-w-228 mx-auto overflow-x-auto">
+      <div className=" relative z-1 flex gap-4 w-[calc(100vw-78px)] lg:w-full lg:max-w-228 mx-auto overflow-x-auto">
         {children}
       </div>
     </div>
@@ -332,7 +318,7 @@ function Summary({ icon: Icon, title, description, color }: TSummary) {
   return (
     <div
       className={cn(
-        'w-43 sm:w-fit shrink-0 sm:shrink-1 grow-1 flex gap-3 sm:gap-5 p-3 border rounded-sm',
+        'w-43 lg:w-fit shrink-0 lg:shrink-1 grow-1 flex gap-3 lg:gap-5 p-3 border rounded-sm',
         CardColor[color]
       )}
     >
@@ -343,66 +329,6 @@ function Summary({ icon: Icon, title, description, color }: TSummary) {
         <div className="font-bold text-lg">{title}</div>
         <div className="text-foreground/80">{description}</div>
       </div>
-    </div>
-  );
-}
-
-function ImpactButton({ color, ...props }: { color: TColor } & React.ComponentProps<'button'>) {
-  return (
-    <button
-      className={cn(
-        'absolute p-1 top-2 sm:top-6 right-2 sm:right-6 border rounded-full shadow-2xl active:scale-90',
-        CardColor[color]
-      )}
-      {...props}
-    >
-      <MdArrowForwardIos className="size-5 sm:size-7" />
-    </button>
-  );
-}
-
-function ExperienceCard({
-  organization,
-  experience,
-  role,
-  location,
-  points,
-  color,
-  icon: Icon,
-  impacts,
-  onClick,
-}: TExperience & { onClick: () => void }) {
-  return (
-    <div
-      className={cn(
-        'relative ml-10 p-2 text-sm border rounded-sm',
-        CardColor[color],
-        "before:absolute before:content-[''] before:top-11 before:-bottom-4 last:before:bottom-2 before:-left-6 before:border-l-2 before:border-foreground/30"
-      )}
-    >
-      <Icon className={cn('absolute size-8 p-1 top-2 -left-10 border rounded-md', CardColor[color])} />
-
-      <div className="text-xs text-muted-foreground mb-1">{experience}</div>
-      <div className="font-bold text-foreground">{role}</div>
-      <div className="font-bold mb-1">{organization}</div>
-      <div className="text-xs text-muted-foreground flex gap-1 items-center mb-2">
-        <GrLocation />
-        {location}
-      </div>
-
-      {points}
-
-      {impacts.length > 0 &&
-        (isMobile ? (
-          <Dialog>
-            <DialogTrigger asChild>
-              <ImpactButton color={color} />
-            </DialogTrigger>
-            <ExperienceImpactPopup color={color} impacts={impacts} />
-          </Dialog>
-        ) : (
-          <ImpactButton color={color} onClick={onClick} />
-        ))}
     </div>
   );
 }
@@ -423,11 +349,13 @@ export default function Experience(props: TFolderContent) {
           <h1 className="font-extrabold text-lg mb-2">
             Work <GradientText>Experience</GradientText> <BsStars className="inline text-yellow-400" />
           </h1>
-          <div className="flex flex-col gap-3">
+          <Timeline>
             {experiences.map((props, idx) => (
-              <ExperienceCard key={idx} {...props} onClick={() => setSelectedExp(idx)} />
+              <TimelineItem key={idx} {...props} onClick={() => setSelectedExp(idx)}>
+                <ExperienceImpactPopup color={props.color} impacts={props.impacts} />
+              </TimelineItem>
             ))}
-          </div>
+          </Timeline>
         </LeftSide>
 
         {!isMobile && (

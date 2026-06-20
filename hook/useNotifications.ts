@@ -7,12 +7,13 @@ import { useLocalStorage } from './useLocalStorage';
 import { useEffect, useMemo } from 'react';
 
 type TNotificationState = {
-  id: number;
+  id: string;
   date: string;
   read: boolean;
 };
 
 export type TNotification = TNotificationState & {
+  rank: number;
   emoji: string;
   title: string;
   desc: string;
@@ -27,14 +28,23 @@ const getPastminues = () => {
   return d;
 };
 
+const getPasthours = () => {
+  const d = new Date();
+  d.setMinutes(d.getHours() - 2);
+
+  return d;
+};
+
 const getYesterday = () => {
   const d = new Date();
   d.setDate(d.getDate() - 1);
   return d;
 };
+
 const NOTIFICATIONS: TNotification[] = [
   {
-    id: 1,
+    id: 'aboutme',
+    rank: 1,
     emoji: '👋',
     title: 'Welcome to My Portfolio',
     desc: `Hi, I'm ${AUTHOR_NAME} — a Senior Backend Engineer with ${calYearExperience()} years of experience.`,
@@ -44,7 +54,8 @@ const NOTIFICATIONS: TNotification[] = [
     activeTab: 'About Me',
   },
   {
-    id: 2,
+    id: 'skills',
+    rank: 2,
     emoji: '🚀',
     title: 'Technical Expertise',
     desc: 'Specialized in microservices, cloud infrastructure and distributed systems.',
@@ -54,7 +65,30 @@ const NOTIFICATIONS: TNotification[] = [
     activeTab: 'Skills',
   },
   {
-    id: 3,
+    id: 'experience',
+    rank: 3,
+    emoji: '💼',
+    title: 'Explore My Experience',
+    desc: "Dive into my professional journey and the impact I've made across various projects.",
+    date: getPasthours().toUTCString(),
+    read: false,
+    app: FINDER,
+    activeTab: 'Experience',
+  },
+  {
+    id: 'education',
+    rank: 4,
+    emoji: '🎓',
+    title: 'Educational Background',
+    desc: 'Discover my academic journey, qualifications, and the foundation of my technical expertise.',
+    date: getPasthours().toUTCString(),
+    read: false,
+    app: FINDER,
+    activeTab: 'Education',
+  },
+  {
+    id: 'contactus',
+    rank: 4,
     emoji: '📬',
     title: 'Get in Touch',
     desc: "Let's connect! I'm always open for exciting opportunities and collaborations.",
@@ -64,7 +98,7 @@ const NOTIFICATIONS: TNotification[] = [
   },
 ];
 
-export function useNotifications(): [TNotification[], (id: number) => void] {
+export function useNotifications(): [TNotification[], (id: string) => void] {
   const [savedNotifications, setSavedNotifications] = useLocalStorage<TNotificationState[]>('notifications', []);
 
   const notifications = useMemo(() => {
@@ -82,18 +116,23 @@ export function useNotifications(): [TNotification[], (id: number) => void] {
   }, [savedNotifications]);
 
   useEffect(() => {
-    if (savedNotifications.length === 0) {
+    if (savedNotifications.length !== NOTIFICATIONS.length) {
+      const result = savedNotifications.reduce<Record<string, boolean>>((acc, { id, read }) => {
+        acc[id] = read;
+        return acc;
+      }, {});
+
       setSavedNotifications(
         NOTIFICATIONS.map(({ id, date, read }) => ({
           id,
           date,
-          read,
+          read: result.hasOwnProperty(id) ? result[id] : read,
         }))
       );
     }
   }, [savedNotifications, setSavedNotifications]);
 
-  const markAsRead = (id: number) => {
+  const markAsRead = (id: string) => {
     setSavedNotifications((prev) =>
       prev.map((notification) => (notification.id === id ? { ...notification, read: true } : notification))
     );

@@ -57,7 +57,7 @@ export default function Menu({ className }: BasicProps) {
     closePopover();
   };
 
-  const notificationsAction = (id: number, app: TProcessButton, read: boolean, activeTab: string | undefined) => {
+  const notificationsAction = (id: string, app: TProcessButton, read: boolean, activeTab: string | undefined) => {
     if (!read) markAsReadNotifications(id);
     if (app.type === 'window') {
       setNotificationsPopOver(false);
@@ -106,7 +106,7 @@ export default function Menu({ className }: BasicProps) {
                   portalForceMount
                   onCloseAutoFocus={(e) => e.preventDefault()}
                   className={cn(
-                    'p-2 mt-2 w-xs flex flex-col gap-2',
+                    'p-2 mt-2 mr-2 w-xs flex flex-col gap-2',
                     open ? 'flex' : 'hidden pointer-events-none',
                     className
                   )}

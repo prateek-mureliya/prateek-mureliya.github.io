@@ -46,6 +46,6 @@ export default function DigitalClock() {
       {formattedTime}
     </div>
   ) : (
-    <Skeleton className={cn('h-[20px] w-[60px] sm:w-[140px] rounded-full', className)} />
+    <Skeleton className={cn('h-[20px] w-[60px] lg:w-[140px] rounded-full', className)} />
   );
 }

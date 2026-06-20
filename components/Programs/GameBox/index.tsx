@@ -92,11 +92,11 @@ function GameBox({ className, focus }: BasicProps & { focus: boolean }) {
   return (
     <div
       className={cn(
-        'bg-cyan-800 bg-gradient-to-r from-cyan-500 to-cyan-600 sm:bg-none w-full h-fit rounded-2xl sm:rounded-lg select-none',
+        'bg-cyan-800 bg-gradient-to-r from-cyan-500 to-cyan-600 lg:bg-none w-full h-fit rounded-2xl lg:rounded-lg select-none',
         className
       )}
     >
-      <div className="w-60 sm:w-100 h-71.5 mx-auto my-4 sm:my-0 bg-black/50 sm:bg-card sm:dark:bg-card/20 p-3 border rounded-lg shadow-none sm:shadow-2xl flex">
+      <div className="w-60 lg:w-100 h-71.5 mx-auto my-4 lg:my-0 bg-black/50 lg:bg-card lg:dark:bg-card/20 p-3 border rounded-lg shadow-none lg:shadow-2xl flex">
         <canvas ref={canvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT}></canvas>
         {!isMobile && <KeyControls />}
       </div>

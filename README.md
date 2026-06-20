@@ -14,7 +14,12 @@ Explore Prateek Kumar's online portfolio — a web OS-style site to view his pro
 - 📱 **Fully Responsive Design**
 - 🎛️ Working **Control Center**
 - 🧩 Multiple apps to showcase your skills and projects:
+  - Finder (About Me, Skills, Experience & Education)
+  - Contact Us card with Social links
+  - Mail Box for Feedback
   - Terminal (interactive command line)
+  - VS Code Viewer for checkout code
+  - Trash Bin for old resumes
 
 ## 🚀 Getting Started
 

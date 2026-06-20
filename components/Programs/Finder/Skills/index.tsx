@@ -1,13 +1,12 @@
-import FolderContent from '../../UI/folder-view/folder-content';
+import FolderContent from '../../../UI/folder-view/folder-content';
 import { TFolderContent } from '@/types/folder-view';
-import { Container, LeftSide, RightSideButton } from './UI';
+import { Container, LeftSide, RightSideButton } from '../UI';
 import { BasicProps } from '@/types/basic-props';
 import { Badge } from '@/components/UI/badge';
 import { cn } from '@/lib/utils';
 import { JSX } from 'react';
 import GradientText from '@/components/UI/gradient-text';
 import { BsStars } from 'react-icons/bs';
-import { SkillsIceBerg, SkillsIceBergPopup } from '../SkillsIceberg';
 import { isMobile } from 'react-device-detect';
 import { Dialog, DialogTrigger } from '@/components/UI/dialog/dialog';
 import { GiMountainClimbing } from 'react-icons/gi';
@@ -28,6 +27,7 @@ import {
   TailwindCSSIcon,
   TypeScriptIcon,
 } from '@/components/custom-icons';
+import { SkillsIceBerg, SkillsIceBergPopup } from './SkillsIceBerg';
 
 type TSkill = { title: string; icon: TIconSvg; description: string | JSX.Element };
 
