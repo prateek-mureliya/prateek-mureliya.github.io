@@ -7,8 +7,10 @@ import { GrLocation } from 'react-icons/gr';
 import { Dialog, DialogTrigger } from '@/components/UI/dialog/dialog';
 import { isMobile } from 'react-device-detect';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { TStringElement } from '@/types/globals';
 
-export type TColor = 'Yellow' | 'Purple' | 'Green' | 'Sky' | 'Pink';
+const COLORS = ['Purple', 'Green', 'Yellow', 'Sky', 'Pink'] as const;
+export type TColor = (typeof COLORS)[number];
 
 export type TTimelineImpact = {
   icon: TIconType;
@@ -17,7 +19,7 @@ export type TTimelineImpact = {
   impact: string;
   scale: string;
   ownership: string;
-  stack: string | JSX.Element;
+  stack: TStringElement;
   achievements: string[];
 };
 
@@ -39,6 +41,10 @@ const CardColor: { [key in TColor]: string } = {
   Sky: 'bg-sky/8 text-sky border-sky/30',
   Pink: 'bg-pink/8 text-pink border-pink/30',
 };
+
+function getColorByIndex(index: number): TColor {
+  return COLORS[index % COLORS.length];
+}
 
 function Container({ className, children }: BasicProps) {
   return (
@@ -73,13 +79,13 @@ function RightSideButton({
   return (
     <button
       className={cn(
-        'fixed bottom-10 -right-18 flex size-30 bg-card text-card-foreground pt-2 px-4 -rotate-20 rounded-4xl shadow-2xl border transition-[right] duration-500 ease-in-out',
+        'fixed bottom-10 flex gap-1 justify-end size-30 bg-card text-card-foreground pt-2 px-3 rotate-250 rounded-4xl shadow-2xl border transition-[right] duration-500 ease-in-out',
         loaded ? '-right-18' : '-right-30'
       )}
       {...props}
     >
-      <Icon className="size-6" />
-      <p className="font-extrabold text-xs -ml-22 rotate-90">{title}</p>
+      <p className="font-extrabold text-xs h-fit rotate-180 pb-1">{title}</p>
+      <Icon className="size-6 rotate-90" />
     </button>
   );
 }
@@ -162,4 +168,14 @@ function TimelineBadge({ icon: Icon, title, color }: { icon?: TIconType; title: 
   );
 }
 
-export { CardColor, Container, LeftSide, RightSideButton, Timeline, TimelineItem, TimelineBadges, TimelineBadge };
+export {
+  CardColor,
+  getColorByIndex,
+  Container,
+  LeftSide,
+  RightSideButton,
+  Timeline,
+  TimelineItem,
+  TimelineBadges,
+  TimelineBadge,
+};

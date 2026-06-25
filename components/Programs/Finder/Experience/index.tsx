@@ -3,6 +3,7 @@ import { TFolderContent } from '@/types/folder-view';
 import {
   CardColor,
   Container,
+  getColorByIndex,
   LeftSide,
   TColor,
   Timeline,
@@ -30,7 +31,6 @@ type TSummary = {
   icon: TIconType;
   title: string;
   description: string;
-  color: TColor;
 };
 
 const summary: TSummary[] = [
@@ -38,31 +38,26 @@ const summary: TSummary[] = [
     icon: RxCalendar,
     title: calYearExperience(),
     description: 'Years of Experience',
-    color: 'Purple',
   },
   {
     icon: FaArrowTrendUp,
     title: '30%',
     description: 'Increase in Repeat Bookings',
-    color: 'Green',
   },
   {
     icon: BsFillLightningChargeFill,
     title: '20%',
     description: 'Fast Transactions',
-    color: 'Yellow',
   },
   {
     icon: FaServer,
     title: 'Millions',
     description: 'Events & Requests Processed',
-    color: 'Sky',
   },
   {
     icon: FaPeopleGroup,
     title: 'Multiple',
     description: 'Travel Platforms Integrated',
-    color: 'Pink',
   },
 ];
 
@@ -314,7 +309,7 @@ function SummaryContainer({ children }: BasicProps) {
   );
 }
 
-function Summary({ icon: Icon, title, description, color }: TSummary) {
+function Summary({ icon: Icon, title, description, color }: TSummary & { color: TColor }) {
   return (
     <div
       className={cn(
@@ -339,8 +334,8 @@ export default function Experience(props: TFolderContent) {
   return (
     <FolderContent {...props} isGrid={false} orangeDrop={false}>
       <SummaryContainer>
-        {summary.map((props) => (
-          <Summary key={props.title} {...props} />
+        {summary.map((props, idx) => (
+          <Summary key={props.title} {...props} color={getColorByIndex(idx)} />
         ))}
       </SummaryContainer>
 

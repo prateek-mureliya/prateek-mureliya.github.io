@@ -5,6 +5,7 @@ import { calYearExperience } from '@/lib/utils';
 import { TProcessButton } from '@/types/process-button';
 import { useLocalStorage } from './useLocalStorage';
 import { useEffect, useMemo } from 'react';
+import { MESSAGES } from '@/components/constants/app-icons/messages';
 
 type TNotificationState = {
   id: string;
@@ -13,7 +14,6 @@ type TNotificationState = {
 };
 
 export type TNotification = TNotificationState & {
-  rank: number;
   emoji: string;
   title: string;
   desc: string;
@@ -44,7 +44,6 @@ const getYesterday = () => {
 const NOTIFICATIONS: TNotification[] = [
   {
     id: 'aboutme',
-    rank: 1,
     emoji: '👋',
     title: 'Welcome to My Portfolio',
     desc: `Hi, I'm ${AUTHOR_NAME} — a Senior Backend Engineer with ${calYearExperience()} years of experience.`,
@@ -55,7 +54,6 @@ const NOTIFICATIONS: TNotification[] = [
   },
   {
     id: 'skills',
-    rank: 2,
     emoji: '🚀',
     title: 'Technical Expertise',
     desc: 'Specialized in microservices, cloud infrastructure and distributed systems.',
@@ -66,7 +64,6 @@ const NOTIFICATIONS: TNotification[] = [
   },
   {
     id: 'experience',
-    rank: 3,
     emoji: '💼',
     title: 'Explore My Experience',
     desc: "Dive into my professional journey and the impact I've made across various projects.",
@@ -77,7 +74,6 @@ const NOTIFICATIONS: TNotification[] = [
   },
   {
     id: 'education',
-    rank: 4,
     emoji: '🎓',
     title: 'Educational Background',
     desc: 'Discover my academic journey, qualifications, and the foundation of my technical expertise.',
@@ -87,8 +83,16 @@ const NOTIFICATIONS: TNotification[] = [
     activeTab: 'Education',
   },
   {
+    id: 'faq',
+    emoji: '❓',
+    title: 'Frequently Asked Questions',
+    desc: 'Find answers to common questions about my experience, skills, projects, and work preferences.',
+    date: new Date().toUTCString(),
+    read: false,
+    app: MESSAGES,
+  },
+  {
     id: 'contactus',
-    rank: 4,
     emoji: '📬',
     title: 'Get in Touch',
     desc: "Let's connect! I'm always open for exciting opportunities and collaborations.",

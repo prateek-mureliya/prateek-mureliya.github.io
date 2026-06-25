@@ -3,67 +3,60 @@ import { WindowActionClose } from '@/components/Window/window-action-button';
 import { chunkArray, cn } from '@/lib/utils';
 import { BasicProps } from '@/types/basic-props';
 import { FaCode, FaGraduationCap, FaReact } from 'react-icons/fa6';
-import { CardColor, TColor, TimelineBadge } from '../UI';
+import { CardColor, getColorByIndex, TColor, TimelineBadge } from '../UI';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/UI/carousel';
 import { TIconType } from '@/types/icon-type';
 import { LucideBaby, LucideBriefcaseBusiness } from 'lucide-react';
 import { GiOpenBook } from 'react-icons/gi';
 import GradientText from '@/components/UI/gradient-text';
 
-type TAchievements = {
+type THighlight = {
   icon: TIconType;
   title: string;
   subtitle: string;
   tag: string;
-  color: TColor;
 };
 
-const ACHIEVEMENTS: TAchievements[] = [
+const HIGHLIGHTS: THighlight[] = [
   {
     icon: FaGraduationCap,
     title: '1st Generation',
     subtitle: 'Engineer',
     tag: 'Trailblazer',
-    color: 'Pink',
   },
   {
     icon: FaCode,
     title: 'Java & Python',
     subtitle: 'Developer',
     tag: 'Code Crafter',
-    color: 'Purple',
   },
   {
     icon: FaReact,
     title: 'STEM Background',
     subtitle: 'Science & Tech',
     tag: 'Curious Mind',
-    color: 'Green',
   },
   {
     icon: LucideBriefcaseBusiness,
     title: 'Work In',
     subtitle: 'Bengaluru, India',
     tag: 'Career Ready',
-    color: 'Yellow',
   },
   {
     icon: GiOpenBook,
     title: 'Studied In',
     subtitle: 'Gwalior, India',
     tag: 'Academic City',
-    color: 'Sky',
   },
   {
     icon: LucideBaby,
     title: 'Born In',
     subtitle: 'Jhansi, India',
     tag: 'Origin Story',
-    color: 'Pink',
   },
 ];
 
-function Achievement({ icon: Icon, title, subtitle, tag, color }: TAchievements) {
+function Highlight({ icon: Icon, title, subtitle, tag, color }: THighlight & { color: TColor }) {
   return (
     <div
       className={cn(
@@ -81,8 +74,8 @@ function Achievement({ icon: Icon, title, subtitle, tag, color }: TAchievements)
   );
 }
 
-function Achievements({ className }: BasicProps) {
-  const achievementGroups = chunkArray(ACHIEVEMENTS, 6);
+function Highlights({ className }: BasicProps) {
+  const highlightGroups = chunkArray(HIGHLIGHTS, 6);
 
   return (
     <div
@@ -96,7 +89,7 @@ function Achievements({ className }: BasicProps) {
           <h1 className="font-extrabold text-lg">
             Profile <GradientText>Highlights</GradientText>
           </h1>
-          {achievementGroups.length > 1 && (
+          {highlightGroups.length > 1 && (
             <div>
               <CarouselPrevious variant={'ghost'} className="relative left-0 top-0 translate-y-0 size-7 mr-2" />
               <CarouselNext variant={'ghost'} className="relative right-0 top-0 translate-y-0 size-7" />
@@ -105,10 +98,10 @@ function Achievements({ className }: BasicProps) {
         </div>
 
         <CarouselContent>
-          {achievementGroups.map((achievements, index) => (
+          {highlightGroups.map((highlights, index) => (
             <CarouselItem key={index} className="p-0 flex flex-wrap gap-1 sm:gap-5">
-              {achievements.map((props, idx) => (
-                <Achievement key={idx} {...props} />
+              {highlights.map((props, idx) => (
+                <Highlight key={idx} {...props} color={getColorByIndex(idx)} />
               ))}
             </CarouselItem>
           ))}
@@ -118,7 +111,7 @@ function Achievements({ className }: BasicProps) {
   );
 }
 
-function AchievementsPopup() {
+function HighlightsPopup() {
   return (
     <DialogContent
       hideHeader
@@ -126,16 +119,16 @@ function AchievementsPopup() {
       className="bg-transparent rounded-none shadow-none border-none outline-0 top-[unset] bottom-0 translate-y-0 w-full max-w-full p-2"
       windowClassName="p-0 gap-2"
     >
-      <DialogTitle hidden>Achievements DialogTitle</DialogTitle>
-      <DialogDescription hidden>Achievements DialogDescription</DialogDescription>
+      <DialogTitle hidden>Highlights DialogTitle</DialogTitle>
+      <DialogDescription hidden>Highlights DialogDescription</DialogDescription>
       <DialogClose asChild>
         <WindowActionClose>
           <span className="sr-only">Close</span>
         </WindowActionClose>
       </DialogClose>
-      <Achievements />
+      <Highlights />
     </DialogContent>
   );
 }
 
-export { Achievements, AchievementsPopup };
+export { Highlights, HighlightsPopup };

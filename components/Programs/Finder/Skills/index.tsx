@@ -4,7 +4,6 @@ import { Container, LeftSide, RightSideButton } from '../UI';
 import { BasicProps } from '@/types/basic-props';
 import { Badge } from '@/components/UI/badge';
 import { cn } from '@/lib/utils';
-import { JSX } from 'react';
 import GradientText from '@/components/UI/gradient-text';
 import { BsStars } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
@@ -28,10 +27,11 @@ import {
   TypeScriptIcon,
 } from '@/components/custom-icons';
 import { SkillsIceBerg, SkillsIceBergPopup } from './SkillsIceBerg';
+import { TStringElement } from '@/types/globals';
 
-type TSkill = { title: string; icon: TIconSvg; description: string | JSX.Element };
+type TSkill = { title: string; icon: TIconSvg; description: TStringElement };
 
-function InlineIconBox({ iconName, className, icon: Icon }: BasicProps & { iconName: string; icon: TIconSvg }) {
+export function InlineIconBox({ iconName, className, icon: Icon }: BasicProps & { iconName: string; icon: TIconSvg }) {
   return (
     <Badge
       variant={'outline'}

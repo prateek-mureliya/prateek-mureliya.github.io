@@ -8,6 +8,7 @@ const ProfileBgRemoveImg = '/images/optimized/profile-bg-remove.webp';
 
 // icon
 import FinderIcon from '@/public/images/optimized/icon/finder.webp';
+import MessagesIcon from '@/public/images/optimized/icon/messages.webp';
 import AboutPCIcon from '@/public/images/optimized/icon/about-pc.webp';
 import ContactUsIcon from '@/public/images/optimized/icon/contact-us.webp';
 import AdobeIcon from '@/public/images/optimized/icon/adobe.webp';
@@ -19,6 +20,7 @@ import VsCodeIcon from '@/public/images/optimized/icon/vscode.webp';
 import MailIcon from '@/public/images/optimized/icon/mail.webp';
 
 const FinderImg: ImageFile = { src: FinderIcon, alt: 'Finder' };
+const MessagesImg: ImageFile = { src: MessagesIcon, alt: 'Messages' };
 const AboutPCImg: ImageFile = { src: AboutPCIcon, alt: 'About This PC' };
 const ContactUsImg: ImageFile = { src: ContactUsIcon, alt: 'Contact Us' };
 const AdobeImg: ImageFile = { src: AdobeIcon, alt: 'Adobe' };
@@ -92,6 +94,7 @@ export {
   ProfileImg,
   ProfileBgRemoveImg,
   FinderImg,
+  MessagesImg,
   AboutPCImg,
   ContactUsImg,
   AdobeImg,

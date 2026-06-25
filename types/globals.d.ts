@@ -1,4 +1,7 @@
+import { JSX } from 'react';
 export {};
+
+export type TStringElement = string | JSX.Element;
 
 declare global {
   interface WindowEventMap {

@@ -80,13 +80,13 @@ export default function Notifications({
       return Number(a.read) - Number(b.read); // unread first
     }
 
-    return a.rank - b.rank; // sort by rank
+    return 0;
   });
 
   return (
     <>
       <div className="text-xs text-shadow-2xs font-bold pl-4">Notifications</div>
-      <div className="max-h-100 p-4 pt-0 overflow-auto" style={{ scrollbarWidth: 'none' }}>
+      <div className="max-h-105 p-4 pt-0 overflow-auto" style={{ scrollbarWidth: 'none' }}>
         {sortedNotifications.map((props) => {
           if (props.app.type == 'dialog') {
             const others = props.app as TProcessButtonDialog;

@@ -9,7 +9,7 @@ import { FaArrowTrendUp, FaCheck, FaCode } from 'react-icons/fa6';
 import { BsSpeedometer2 } from 'react-icons/bs';
 import { MdOutlinePerson4 } from 'react-icons/md';
 import { TIconType } from '@/types/icon-type';
-import { JSX } from 'react';
+import { TStringElement } from '@/types/globals';
 
 type ExperienceImpactProps = BasicProps & { impacts: TTimelineImpact[]; color: TColor };
 
@@ -23,7 +23,7 @@ function MiddlePoint({
   icon: TIconType;
   iconColor: string;
   label: string;
-  description: string | JSX.Element;
+  description: TStringElement;
   color: TColor;
 }) {
   return (

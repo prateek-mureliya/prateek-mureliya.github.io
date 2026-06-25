@@ -17,7 +17,7 @@ import { GiOpenBook } from 'react-icons/gi';
 import { isMobile } from 'react-device-detect';
 import { Dialog, DialogTrigger } from '@/components/UI/dialog/dialog';
 import { PiGraduationCapBold, PiGraph } from 'react-icons/pi';
-import { Achievements, AchievementsPopup } from './Achievements';
+import { Highlights, HighlightsPopup } from './Highlights';
 
 const educations: TTimeline[] = [
   {
@@ -89,14 +89,14 @@ export default function Education(props: TFolderContent) {
           </Timeline>
         </LeftSide>
 
-        {!isMobile && <Achievements className="hidden sm:block sticky top-4 w-100 ml-12" />}
+        {!isMobile && <Highlights className="hidden sm:block sticky top-4 w-100 ml-12" />}
       </Container>
       {isMobile && (
         <Dialog>
           <DialogTrigger asChild>
-            <RightSideButton icon={PiGraduationCapBold} title="Education" />
+            <RightSideButton icon={PiGraduationCapBold} title="Highlights" />
           </DialogTrigger>
-          <AchievementsPopup />
+          <HighlightsPopup />
         </Dialog>
       )}
     </FolderContent>
