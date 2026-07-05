@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
+import Link from './Link';
 import { isMobile } from 'react-device-detect';
 import { BasicProps } from '@/types/basic-props';
 import Image, { StaticImageData } from 'next/image';

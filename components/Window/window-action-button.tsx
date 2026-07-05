@@ -3,7 +3,7 @@ import { BasicProps } from '@/types/basic-props';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Minus, MoveDiagonal, XIcon } from 'lucide-react';
 import { Button } from '../UI/button';
-import Link from 'next/link';
+import Link from '../UI/Link';
 
 const buttonVariants = cva('size-4 sm:size-3 rounded-full', {
   variants: {
@@ -61,9 +61,7 @@ export function WindowActionMaximize({ children, ...props }: React.ComponentProp
 export function WindowActionExternalLink({ linkURL, className, children }: { linkURL: string } & BasicProps) {
   return (
     <Button asChild size={'xs'} variant={'outline'} className={cn('col-start-3 justify-self-end', className)}>
-      <Link href={linkURL} target="_blank">
-        {children}
-      </Link>
+      <Link href={linkURL}>{children}</Link>
     </Button>
   );
 }

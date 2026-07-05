@@ -7,7 +7,7 @@ type TreeRootProps = TreeColor & {
   children: React.ReactNode;
 };
 
-export default function TreeRoot({ title, icon: Icon, textColor, children }: TreeRootProps) {
+export default function TreeRoot({ title, icon: Icon, textColor = '', children }: TreeRootProps) {
   return (
     <div className="text-sm flex">
       <span className={`font-bold ${textColor}`}>

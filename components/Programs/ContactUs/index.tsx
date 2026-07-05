@@ -15,7 +15,7 @@ import {
   XTwitter_USERNAME,
 } from '@/lib/constants';
 import { DialogDescription } from '@radix-ui/react-dialog';
-import Link from 'next/link';
+import Link from '@/components/UI/Link';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
 import { MdMail } from 'react-icons/md';
 import { motion } from 'framer-motion';
@@ -150,14 +150,13 @@ function BackSocialCard({ socialType }: { socialType: SocialType }) {
           placeholder="blur"
           className={cn('mt-1 relative z-1 size-18 rounded-full border-3', profileBorder)}
         />
-        <Link href={url} target="_blank" className="block mt-1 relative z-1 text-sm">
+        <Link href={url} className="block mt-1 relative z-1 text-sm">
           @{username}
         </Link>
         <p className="relative z-1 text-xs text-zinc-300 capitalize">{subTitle}</p>
         <div className="mt-2 relative z-1 w-2/3 border-t border-zinc-400"></div>
         <Link
           href={url}
-          target="_blank"
           className="block mt-4 w-2/3 relative z-1 text-center text-sm rounded-md px-4 py-1 font-semibold text-white transition bg-blue-500 hover:bg-blue-600"
         >
           Follow

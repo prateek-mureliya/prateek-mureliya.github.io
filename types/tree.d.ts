@@ -1,8 +1,8 @@
 import { TIconType } from './icon-type';
 
 export type TreeColor = {
-  textColor: string;
-  borderColor: string;
+  textColor?: string;
+  borderColor?: string;
 };
 
 export type TBaseTreeData = {

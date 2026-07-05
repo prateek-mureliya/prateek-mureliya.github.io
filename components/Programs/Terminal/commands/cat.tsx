@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { TCommandBase, TFile, THelp, TSuggestionAction } from '@/types/terminal';
 import { getFiles } from '../fs-object';
 import { PermissionDenied, SuggestionAction } from './errors';
-import Link from 'next/link';
+import Link from '@/components/UI/Link';
 
 export const help: THelp = {
   cmd: 'cat',
@@ -24,7 +24,7 @@ const NoContent = ({ command, onClick }: TSuggestionAction) => (
 
 function CatLink({ href }: { href: string }) {
   return (
-    <Link href={href} target="_blank" className="hover:underline cursor-pointer">
+    <Link href={href} className="hover:underline cursor-pointer">
       {href}
     </Link>
   );

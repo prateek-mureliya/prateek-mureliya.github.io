@@ -7,7 +7,7 @@ type ItemProps = TreeColor & {
   children: React.ReactNode;
 };
 
-export default function Branch({ title, icon: Icon, textColor, borderColor, children }: ItemProps) {
+export default function Branch({ title, icon: Icon, textColor = '', borderColor = '', children }: ItemProps) {
   return (
     <li className="text-sm relative flex">
       <span className={`absolute -left-[1rem] top-2 w-4 border-t ${borderColor}`}></span>

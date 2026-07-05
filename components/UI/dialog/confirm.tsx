@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link, { LinkProps } from '../Link';
 import { Button } from '../button';
 import {
   DialogClose,
@@ -44,14 +44,10 @@ function CancelAction({ children, ...props }: React.ComponentProps<typeof Button
   );
 }
 
-function LinkButtonAction({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<typeof Button> & React.ComponentProps<typeof Link>) {
+function LinkButtonAction({ children, className, ...props }: React.ComponentProps<typeof Button> & LinkProps) {
   return (
     <ButtonAction {...props} className={className} asChild>
-      <Link {...props}>{children}</Link>
+      <Link href={props.href}>{children}</Link>
     </ButtonAction>
   );
 }

@@ -5,6 +5,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 import { isMobile } from 'react-device-detect';
 import { CircleX, FileX2 } from 'lucide-react';
 import { TextShimmerWave } from './text-shimmer-wave';
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 
 // load pdf.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
@@ -64,23 +65,25 @@ export default function PDFViewer({ pdfURL }: PDFViewerProps) {
 
   return (
     <div ref={containerRef} className="w-full">
-      <Document
-        file={pdfURL}
-        onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
-        loading={onLoading}
-        error={onError}
-        noData={onNoData}
-        externalLinkTarget="_blank"
-      >
-        {Array.from(new Array(numPages), (_, index) => (
-          <Page
-            key={`page_${index + 1}`}
-            pageNumber={index + 1}
-            width={isMobile ? width : undefined}
-            className="my-1 w-full max-w-fit mx-auto"
-          />
-        ))}
-      </Document>
+      <ErrorBoundary errorComponent={onError}>
+        <Document
+          file={pdfURL}
+          onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
+          loading={onLoading}
+          error={onError}
+          noData={onNoData}
+          externalLinkTarget="_blank"
+        >
+          {Array.from(new Array(numPages), (_, index) => (
+            <Page
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              width={isMobile ? width : undefined}
+              className="my-1 w-full max-w-fit mx-auto"
+            />
+          ))}
+        </Document>
+      </ErrorBoundary>
     </div>
   );
 }

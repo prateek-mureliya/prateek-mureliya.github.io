@@ -67,10 +67,16 @@ export default function AboutPC({ isMaximized }: WindowBodyProps) {
           {TREE_DATA.map((root) => (
             <Tree key={root.title}>
               <TreeRoot {...root}>{root.details}</TreeRoot>
-              <Branches {...root}>
-                {root.branches.map((branch) => (
-                  <Branch key={branch.title} {...root}>
-                    {branch.details}
+              <Branches borderColor={root.borderColor}>
+                {root.branches.map(({ title, icon, details }) => (
+                  <Branch
+                    key={title}
+                    title={title}
+                    icon={icon}
+                    textColor={root.textColor}
+                    borderColor={root.borderColor}
+                  >
+                    {details}
                   </Branch>
                 ))}
               </Branches>
